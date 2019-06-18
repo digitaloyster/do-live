@@ -1,4 +1,4 @@
-// All Pages Scripts Before Body CDN-v1.1
+// All Pages Scripts Before Body CDN-v1.0
 // Fix Styling Issues
 if (typeof window.ub !== "undefined") window.ub.page.disableTextAdjustments = true;
 

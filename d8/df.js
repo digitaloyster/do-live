@@ -1,4 +1,4 @@
-// Global config for Data8 validation
+// Global config for Data8 validation v1.0
 var d8Validation = {
   apiKey: "8E37-B68G-6V63-M6YF",
   email: {

@@ -1,4 +1,4 @@
-// Version 1.2
+// Version 1.0
 
 $(document).ready(function() {
   // XXX: Variables/Objects
@@ -71,7 +71,7 @@ $(document).ready(function() {
     });
 
     var styles = document.createElement('link');
-    styles.setAttribute('href','https://cdn.jsdelivr.net/gh/digitaloyster/do-ms@latest/ms.css');
+    styles.setAttribute('href','https://cdn.jsdelivr.net/gh/digitaloyster/do-live/all/ms.css');
     styles.setAttribute('rel','stylesheet');
     styles.setAttribute('type','text/css');
     document.head.appendChild(styles);
