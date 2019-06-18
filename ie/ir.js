@@ -1,3 +1,5 @@
+// Inline Errors v1.0
+
 function removeElementsByClass(className, element){
     var elements = element.getElementsByClassName(className);
     while(elements.length > 0){

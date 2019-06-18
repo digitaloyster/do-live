@@ -1,4 +1,4 @@
-// All Advertorials Before Body CDN-v1.1
+// All Advertorials Before Body CDN-v1.0
 
 // Link Builder (Doc Ready)
 function getParameterByName(name) {
