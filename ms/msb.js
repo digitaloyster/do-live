@@ -71,7 +71,7 @@ $(document).ready(function() {
     });
 
     var styles = document.createElement('link');
-    styles.setAttribute('href','https://cdn.jsdelivr.net/gh/digitaloyster/do-live/all/ms.css');
+    styles.setAttribute('href','https://cdn.jsdelivr.net/gh/digitaloyster/do-live/ms/ms.css');
     styles.setAttribute('rel','stylesheet');
     styles.setAttribute('type','text/css');
     document.head.appendChild(styles);
