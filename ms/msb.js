@@ -1,5 +1,5 @@
-// Version 1.1.2
-"use strict";
+// Version 1.1.1
+
 $(document).ready(function() {
     // XXX: Variables/Objects
     if (document.cdnMultiStep.debugMode) var d = true;
@@ -24,8 +24,6 @@ $(document).ready(function() {
     var initialise = function() {
         hooks.call('hookPreInit', []); // Hook
         var msBrowser = false;
-        var loadJqueryUi = false;
-        var datepicker_option = {};
         if (/MSIE 10/i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent)) {
             msBrowser = true;
         }
@@ -82,66 +80,25 @@ $(document).ready(function() {
                             }
                         }
                     }
+
                     if ("numeric" in val && val.numeric == "Y") {
                         var field = document.getElementById(k);
                         field.type = "number";
                         field.setAttribute('pattern', '[0-9]*');
                     }
-                    if ("display" in val && val.display == "datepicker") {
-                        loadJqueryUi = true;
-
-                        datepicker_option[ k ] = { dateFormat: "dd/mm/yy", changeYear: true, changeMonth: true };
-                        if( "dob" in val && val.dob == "Y" ){
-                            datepicker_option[ k ].yearRange = "-120:+0";
-                        }
-                        if( "datepicker_dateRange" in val && val.datepicker_dateRange != ''){
-                            var this_year = val.datepicker_dateRange.split(',');
-                            var curr_year = new Date().getFullYear();
-                            if( this_year.length === 2 ){
-                                this_year[0] = curr_year - this_year[0];
-                                this_year[1] = this_year[1] - curr_year;
-                                datepicker_option[ k ].yearRange = "-" + this_year[0] + ":+" + this_year[1];
-                            }
-                        }
-                        var field = document.getElementById(k);
-                        field.setAttribute('pattern', '(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}');
-                    }
                 });
             }
         });
 
-        // var styles = document.createElement('link');
-        // styles.setAttribute('href', 'https://cdn.jsdelivr.net/gh/digitaloyster/do-live/ms/ms.css');
-        // styles.setAttribute('rel', 'stylesheet');
-        // styles.setAttribute('type', 'text/css');
-        // document.head.appendChild(styles);
-        loadStyleSheet( 'https://cdn.jsdelivr.net/gh/digitaloyster/do-live/ms/ms.css' );
-        if( loadJqueryUi ){
-            loadStyleSheet( 'https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css' );
-            loadScript( 'https://code.jquery.com/ui/1.12.0/jquery-ui.min.js', datepicker_option );
-        }
+        var styles = document.createElement('link');
+        styles.setAttribute('href', 'https://cdn.jsdelivr.net/gh/digitaloyster/do-live/ms/ms.css');
+        styles.setAttribute('rel', 'stylesheet');
+        styles.setAttribute('type', 'text/css');
+        document.head.appendChild(styles);
 
         hooks.call('hookPageInit', []); // HOOK
     }
 
-
-    var loadStyleSheet = function( this_url ) {
-        var styles = document.createElement('link');
-        styles.setAttribute('href', this_url);
-        styles.setAttribute('rel', 'stylesheet');
-        styles.setAttribute('type', 'text/css');
-        document.head.appendChild(styles);
-    }
-    var loadScript = function( this_url, option ) {
-        var script = document.createElement('script');
-        script.onload = function () {
-              for( var el in option){
-                $( "#" + el ).datepicker( option[ el ] );
-              }
-        };
-        script.src = this_url;
-        document.head.appendChild(script);
-    }
     // D8 Validation
     var d8Validate = function() {
         if (d) console.log("d8Validate()");
