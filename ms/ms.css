@@ -11,7 +11,7 @@
   display: block;
   position: relative !important;
   height: 40px;
-  top: 0px !important;
+  top: 0 !important;
   /*background-color: #EFAC1F;*/
   padding: 0 !important;
   width: 100%;
@@ -29,6 +29,7 @@
 }
 .select-button label span {
   text-align: center;
+  font-size: 18px !important;
   width: 100% !important;
   color: white;
   display: block;
