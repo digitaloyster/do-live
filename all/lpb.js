@@ -21,22 +21,6 @@ function setCKMCookie(id) {
   document.cookie = "ckm_request_id=" + id + ";path=/;";
 }
 
-// Show/Hide Address fields
-function showhideFields() {
-  if ($("#postcode").val() == "" ) {
-    $("#container_add1").hide();
-    $("#container_add2").hide();
-    $("#container_add3").hide();
-    $("#container_add4").hide();
-  } else {
-    $("#container_add1").show();
-    $("#container_add2").show();
-    $("#container_add3").show();
-    $("#container_add4").show();
-  }
-}
-// Show/Hide Address fields
-
 // Functions
 
 $( document ).ready(function() {
@@ -101,15 +85,6 @@ $( document ).ready(function() {
     $('input:not([type=hidden]):first').focus().addClass('focusGlow');
   }
   //Glow
-
-  //PCA
-    if (document.cdnParameters.postcode_autocomplete == "Y" && typeof document.cdnParameters.postcode_autocomplete !== "undefined") {
-      showhideFields();
-      $("#postcode").change(function () {
-        showhideFields();
-      });
-    }
-  //PCA
 
   //ReqCookie
   if (getUrlParameter('ckm_request_id')) {
