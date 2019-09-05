@@ -34,9 +34,11 @@
   height: 40px;
   background-color: #5DB992;
   color: #fff;
+  width: 140px;
 }
 @media (max-width: 600px) {
   #start-search {
+    width: 100px;
     left: 170px;
     padding: 3px 15px;
   }
