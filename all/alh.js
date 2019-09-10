@@ -25,7 +25,7 @@ var guid = function() {
 };
 
 let mod1 = 0;
-document.cdnParameters.full_story ? mod1 = document.cdnParameters.full_story :  mod1 = 6;
+document.cdnParameters.full_story ? mod1 = document.cdnParameters.full_story :  mod1 = 3;
 if( typeof mod1 === 'string' ) { mod1 = mod1.toLowerCase(); }
 if ( mod1 != 'off' && guid() % parseInt( mod1 ) === 0 ) {
   window['_fs_debug'] = false;
