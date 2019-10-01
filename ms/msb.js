@@ -63,6 +63,10 @@ $(document).ready(function() {
         $.each(steps, function(i, val) {
             if ("fields" in steps[i] && steps[i].fields != '') {
                 $.each(steps[i].fields, function(k, val) {
+                    // Email Validate
+                    if (k==="email_address") {
+                        document.getElementById(k).setAttribute("pattern", "[a-zA-Z0-9.-_]{1,}@[a-zA-Z0-9.-]{1,}[.]{1}[a-zA-Z0-9]{2,}");
+                    }
                     // Buttons
                     if ("display" in val && val.display == "buttons") {
                         if (!$('#' + k).length) {
@@ -247,7 +251,7 @@ $(document).ready(function() {
         }
         hooks.call('hookNewStep', []); //HOOK
     };
-    
+
     var focusClick = function( ev, el) {
         if( ev.keyCode === 32 || ev.keyCode === 13 ){
             $(':input:enabled:visible:first').focus();
