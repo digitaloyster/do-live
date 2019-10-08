@@ -10,9 +10,9 @@ function getParameterByName(name) {
 
 $(document).ready(function(){
     // Adv pixel
-      if (document.cdnParameters.cake_offer_id != '' && typeof document.cdnParameters.cake_offer_id !== 'undefined' && document.cdnParameters.cake_adv_event_id != '' && typeof document.cdnParameters.cake_adv_event_id !== 'undefined' && document.cdnParameters.adv_tracking_prefix != ''  && typeof document.cdnParameters.adv_tracking_prefix !== 'undefined'  ) { //REVIEW: Add check for cake_offer_id AND cake_adv_event_id AND adv_tracking_prefix
+      if (document.cdnParameters.cake_offer_id != '' && typeof document.cdnParameters.cake_offer_id !== 'undefined' && document.cdnParameters.cake_adv_event_id != '' && typeof document.cdnParameters.cake_adv_event_id !== 'undefined' && document.cdnParameters.lp_tracking_prefix != ''  && typeof document.cdnParameters.lp_tracking_prefix !== 'undefined'  ) { //REVIEW: Add check for cake_offer_id AND cake_adv_event_id AND adv_tracking_prefix
         var image = new Image(1,1);
-        image.src = "https://digitaloyster.jrnytag.com/p.ashx?o="+document.cdnParameters.cake_offer_id+"&e="+document.cdnParameters.cake_adv_event_id+"&f=img&r=" + getParameterByName('ckm_request_id') + '&t='+document.cdnParameters.adv_tracking_prefix+'-' + window.ub.page.variantId + '|' + window.outerWidth + 'x' + window.outerHeight;
+        image.src = "https://digitaloyster.jrnytag.com/p.ashx?o="+document.cdnParameters.cake_offer_id+"&e="+document.cdnParameters.cake_adv_event_id+"&f=img&r=" + getParameterByName('ckm_request_id') + '&t='+document.cdnParameters.lp_tracking_prefix+'-' + window.ub.page.variantId + '|' + window.outerWidth + 'x' + window.outerHeight;
       }
     // Adv Pixel
 
