@@ -1,6 +1,6 @@
 var msb_mask = function () {
     
-  var masks = { 'money decimal': { mask: '000,000,000', regex: RegExp(/^[£0-9,.]*$/), frontChar: '£', reverse: true, escChar: { num: 1, key: '.' }  }, 
+  var masks = { 'money decimal': { mask: '000,000,000', regex: RegExp(/^[£0-9,]*\.?\d{0,2}$/), frontChar: '£', reverse: true, escChar: { num: 1, key: '.' }  },  
                 'money': { mask: '000,000,000', regex: RegExp(/^[£0-9,]*$/), frontChar: '£', reverse: true },
                 'date': { mask: '00/00/00', regex: RegExp(/^[£0-9/]*$/) }, 
                 'percent': { mask: '000', regex: RegExp(/^[£0-9%]*$/), rearChar: '%' },
