@@ -11,8 +11,6 @@ var msb_mask = function () {
                 'mobile': { mask: '00000 000000', regex: RegExp(/^[0-9 ]*$/) },
                 'credit card': { mask: '0000 0000 0000 0000', regex: RegExp(/^[£0-9 ]*$/) }
               }
-  // this.mask = '';
-  // this.maskEv;
 
   return {
     getMask: function( this_mask ) {
@@ -25,6 +23,7 @@ var msb_mask = function () {
       this.byPassKeys = [8, 9, 16, 17, 18, 36, 37, 38, 39, 40, 46, 91];
       this.unmaskArr = [];
       this.maskCharArr = [];
+      this.charArr = [];
       this.escCharNum = 0;
       this.oldValue = '';
       this.oldSelectionStart = 0;
@@ -42,6 +41,7 @@ var msb_mask = function () {
       	inputVal = a.frontChar == $( '#' + this.el ).val().slice( 0, 1 ) ? $( '#' + this.el ).val().slice( 1 ) : $( '#' + this.el ).val();
         inputVal = a.rearChar  == inputVal.slice( -1 ) ? inputVal.slice( 0, -1 ) : inputVal;
         this.unmaskArr = [];
+        this.charArr   = [];
         if( inputVal.length > a.mask.length ){
           inputVal = inputVal.slice( 0, -1 );
         }
@@ -54,6 +54,7 @@ var msb_mask = function () {
             this.oldSelectionStart -- ; 
           }
           this.unmaskArr.push( inputVal.charAt(i) );
+
         }
         if( a.frontChar && inputVal.length === 1 ){
           this.oldSelectionStart ++;
@@ -136,6 +137,7 @@ var msb_mask = function () {
       else if( this.translation[ maskVal ] ){ 
         if( this.unmaskArr[ arrPos ].match( this.translation[ maskVal ].pattern ) ){
           retChar = this.unmaskArr[ arrPos ];
+          this.charArr.push( retChar );
         }
         else{
           a.reverse ?  caret++ : caret -- ;
@@ -152,7 +154,7 @@ var msb_mask = function () {
     },
     unMask: function(){
 
-      $( '#' + this.el ).val( this.unmaskArr.join('') );
+      $( '#' + this.el ).val( this.charArr.join('') );
 
     },
     setCaretPos: function( input, start, end ){
@@ -170,7 +172,7 @@ $.fn.mask = function( mask ) {
 
     function setInputFilter(textbox, inputFilter) {
         textbox.addEventListener('input', function() {
-          if (inputFilter(this.value)) {
+          if ( inputFilter( this.value ) ) {
             this.oldValue = this.value;
             if( window.event.key ){
               var key = window.event.key;
@@ -182,7 +184,7 @@ $.fn.mask = function( mask ) {
             masks[ id ].oldSelectionEnd = this.selectionEnd;
             masks[ id ].checkMask( key, this.value, this.selectionStart, this.selectionEnd );
           } 
-          else if (this.hasOwnProperty("oldValue")) {
+          else if ( this.hasOwnProperty("oldValue") && this.value != '' ) {
             this.value = masks[ id ].oldValue;
             this.setSelectionRange( masks[ id ].oldSelectionStart, masks[ id ].oldSelectionEnd);
           }
