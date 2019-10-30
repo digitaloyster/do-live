@@ -8,20 +8,56 @@ styles.setAttribute("href", "//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/lp.
 document.getElementsByTagName('head')[0].appendChild(styles);
 //CSS CDN FILE
 
-// PCA
-if (document.cdnParameters.postcode == "A" && typeof document.cdnParameters.postcode !== "undefined") {
-    (function(n,t,i,r){var u,f;n[i]=n[i]||{},n[i].initial={accountCode:"DIGIT11191",host:"DIGIT11191.pcapredict.com"},n[i].on=n[i].on||function(){(n[i].onq=n[i].onq||[]).push(arguments)},u=t.createElement("script"),u.async=!0,u.src=r,f=t.getElementsByTagName("script")[0],f.parentNode.insertBefore(u,f)})(window,document,"pca","//DIGIT11191.pcapredict.com/js/sensor.js")
-} else if (document.cdnParameters.postcode == "S" && typeof document.cdnParameters.postcode !== "undefined") {
-    var p2Script = document.createElement('script');
-    p2Script.setAttribute('src','https://cdn.jsdelivr.net/gh/digitaloyster/do-live/p2/p2.js');
-    document.head.appendChild(p2Script);
-    var p2Style = document.createElement('link');
-    p2Style.setAttribute('rel','stylesheet');
-    p2Style.setAttribute('type','text/css');
-    p2Style.setAttribute('href','https://cdn.jsdelivr.net/gh/digitaloyster/do-live/p2/p2.css');
-    document.head.appendChild(p2Style);
+if( typeof document.cdnParameters.postcode !== "undefined" ){
+  let head = document.getElementsByTagName('head')[0];
+  if (document.cdnParameters.postcode == "A") {
+      (function(n,t,i,r){var u,f;n[i]=n[i]||{},n[i].initial={accountCode:"DIGIT11191",host:"DIGIT11191.pcapredict.com"},n[i].on=n[i].on||function(){(n[i].onq=n[i].onq||[]).push(arguments)},u=t.createElement("script"),u.async=!0,u.src=r,f=t.getElementsByTagName("script")[0],f.parentNode.insertBefore(u,f)})(window,document,"pca","//DIGIT11191.pcapredict.com/js/sensor.js")
+  } 
+  if (document.cdnParameters.postcode == "S") {
+      var p2Style = document.createElement('link');
+      p2Style.setAttribute('rel','stylesheet');
+      p2Style.setAttribute('type','text/css');
+      p2Style.setAttribute('href','https://digitaloyster.github.io/do-live/p2/p2.css');
+      document.head.appendChild(p2Style);
+      var p2Script = document.createElement('script');
+      p2Script.setAttribute('src','https://digitaloyster.github.io/do-dev/p2/p2.js');
+      head.appendChild(p2Script);
+  }
+  if (document.cdnParameters.postcode == "DP" || document.cdnParameters.postcode == "DS" || document.cdnParameters.postcode == "S"  ) {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = "https://digitaloyster.github.io/do-dev/p2/address-edit.js";
+    head.appendChild(script);
+  }
+  if (document.cdnParameters.postcode == "DP" || document.cdnParameters.postcode == "DS" ) {
+    var d8css = document.createElement('link');
+    d8css.setAttribute('rel','stylesheet');
+    d8css.setAttribute('type','text/css');
+    d8css.setAttribute('href','https://digitaloyster.github.io/do-dev/d8/d8_add_complete.css');
+    document.head.appendChild(d8css);
+  }
+  if( document.cdnParameters.postcode == "DP" ){
+    var script2 = document.createElement('script');
+    script2.type = 'text/javascript';
+    script2.src = "https://digitaloyster.github.io/do-dev/d8/d8_dp.js";
+    head.appendChild(script2);
+  }
+  if( document.cdnParameters.postcode == "DS" ){
+    var d8style = document.createElement('link');
+    d8style.setAttribute('rel','stylesheet');
+    d8style.setAttribute('type','text/css');
+    d8style.setAttribute('href','https://webservices.data-8.co.uk/content/predictiveaddress.css');
+    head.appendChild(d8style);
+    var script3 = document.createElement('script');
+    script3.type = 'text/javascript';
+    script3.src = "https://webservices.data-8.co.uk/javascript/predictiveaddress.js";
+    head.appendChild(script3);
+    var script4 = document.createElement('script');
+    script4.type = 'text/javascript';
+    script4.src = "https://digitaloyster.github.io/do-dev/d8/d8_ds.js";
+    head.appendChild(script4);
+  }
 }
-// PCA
 
 //Taboola Pixels
 if (document.cdnParameters.TB_pixel_ids != "" && typeof document.cdnParameters.TB_pixel_ids !== "undefined") {
@@ -50,3 +86,4 @@ polyfill.setAttribute('src','https://polyfill.io/v3/polyfill.min.js');
 polyfill.setAttribute('crossorigin','anonymous');
 document.head.appendChild(polyfill);
 //Load PolyFill
+
