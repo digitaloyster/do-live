@@ -84,10 +84,7 @@
 }
 @media (max-width: 600px) {
   #container_address_search {
-    width: 171px;
-  }
-  #address_search {
-    width: 171px;
+    width: 276px;
   }
   #start-search {
     width: 100px;
