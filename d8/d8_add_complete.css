@@ -19,6 +19,7 @@
 }
 #address-select {
     overflow: scroll;
+    overflow-x: hidden;
     height: 160px;
     width: 400px;
     top: 60px;
