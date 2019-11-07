@@ -1,0 +1,19 @@
+.data8-pa-autocomplete{
+    min-width: 290px !important;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    height: 217px;
+    margin-top: 5px;
+    width: 398px;
+    box-shadow: 0 8px 17px 0 rgba(0,0,0,.2);
+    font: 9pt arial;
+    padding-bottom: 10px;
+}
+.data8-pa-autocompleteitem {
+    padding: 10px 0px 0px 10px !important;
+}
+@media (max-width: 600px) {
+    .data8-pa-autocomplete{
+        width: 290px;
+    }
+}
