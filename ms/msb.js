@@ -24,11 +24,19 @@ $(document).ready(function() {
     var initialise = function() {
         hooks.call('hookPreInit', []); // Hook
         var msBrowser = false;
+        var oldIOS = false;
         var loadJqueryUi = false;
         var datepicker_option = {};
         if (/MSIE 10/i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent)) {
             msBrowser = true;
         }
+
+        var regex = /(\d{1,2})_\d{1,2}/;
+        var found = navigator.userAgent.match(regex);
+        if (found !== null) {
+            if (found[1] < 12 && navigator.userAgent.includes("Mobile")) { oldIOS = true; }
+        }
+
         $( '#' + document.cdnMultiStep.settings.nextButton ).addClass('button-next');
         $( '#' + document.cdnMultiStep.settings.nextButton ).addClass('button-back');
         $( ".lp-pom-button" ).each(function( ) {
@@ -79,7 +87,7 @@ $(document).ready(function() {
                                 var $update = $(this).parent('div');
                                 if ($("[name='" + k + "']")[0].type !== "checkbox") $("#container_" + k + " .selected").removeClass('selected');
                                 $update.toggleClass('selected');
-                                if ($update.hasClass('single-field') && !msBrowser) {
+                                if ($update.hasClass('single-field') && !msBrowser && !oldIOS) {
                                     nextStep();
                                 }
                             });
