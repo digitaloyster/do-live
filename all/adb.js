@@ -12,13 +12,18 @@ function getParameterByName(name) {
 }
 
 $(document).ready(function(){
+    var pid='';
+    if (getParameterByName('pid') != '' && typeof getParameterByName('pid') === 'string') { pid = '&pid='+getParameterByName('pid');}
+
+
+
 	// replace URL
     if (document.cdnParameters.adv_replace_urls_to != '' && typeof document.cdnParameters.adv_replace_urls_to !== 'undefined' && document.cdnParameters.adv_not_replace_url_on != '' && typeof document.cdnParameters.adv_not_replace_url_on !== 'undefined') { //REVIEW: Add check for adv_not_replace_url_on
       var url = document.cdnParameters.adv_replace_urls_to;
       if (url.indexOf('?') !== -1) {
-          url += '&ckm_request_id='+getParameterByName('ckm_request_id')+'&aff='+getParameterByName('aff');
+          url += '&ckm_request_id='+getParameterByName('ckm_request_id')+'&aff='+getParameterByName('aff')+pid;
       } else {
-          url += '?ckm_request_id='+getParameterByName('ckm_request_id')+'&aff='+getParameterByName('aff');
+          url += '?ckm_request_id='+getParameterByName('ckm_request_id')+'&aff='+getParameterByName('aff')+pid;
       }
       $('a:not(#link-no-replace, #ubpoverlay-close,'+document.cdnParameters.adv_not_replace_url_on+' )').attr('href', url);
 	    $("area").attr("href", url);
