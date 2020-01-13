@@ -4,6 +4,8 @@ $(document).ready(function() {
     // XXX: Variables/Objects
     if (document.cdnMultiStep.debugMode) var d = true;
     else var d = false;
+    d=true;
+    init = false;
 
     if (document.cdnMultiStep.steps != '') {
         var steps = document.cdnMultiStep.steps;
@@ -169,10 +171,12 @@ $(document).ready(function() {
 
     // Validate current field
     var isFieldValid = function(field) {
-        var valid = true;
-        var event = new Event('doErrors');
-        field = field.trim();
-            // NOTE: Potentially need a hook for custom validation here. Post i and return true/false.
+        if (init) {
+            $('#'+field+' .error-message').remove();
+            console.log("firing active validation on "+field);
+            var valid = true;
+            var event = new CustomEvent('doError', {detail: {id: field} });
+            field = field.trim();
             if ("postcode" in document.cdnParameters && document.cdnParameters.postcode != "N") {
                 if ((field == "add1" || field == "postcode") && $("#" + field).val() != '') {
                     if (d) console.log("setting add1/PC");
@@ -193,9 +197,8 @@ $(document).ready(function() {
                     if (d) console.log("failed");
                 }
             }
-        });
-
-        if (!valid) document.dispatchEvent(event);
+            document.dispatchEvent(event);
+        }
         return valid;
     };
 
@@ -430,8 +433,9 @@ $(document).ready(function() {
 
     //Active Validation
     $.each(steps, function(i,v) {
-        $.each(i.fields, function(j, w) {
-            $('#' + j).change(isFieldValid(j));
+        $.each(steps[i].fields, function(j, w) {
+            console.log('#' + j);
+            $('#' + j).change(function() {isFieldValid(j);});
         });
     });
 
@@ -465,6 +469,7 @@ $(document).ready(function() {
 
     // Initialise
     initialise();
+    init = true;
     gotoStep(1);
     // Initialise
 });
