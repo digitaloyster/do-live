@@ -4,7 +4,6 @@ $(document).ready(function() {
     // XXX: Variables/Objects
     if (document.cdnMultiStep.debugMode) var d = true;
     else var d = false;
-    d=true;
     init = false;
 
     if (document.cdnMultiStep.steps != '') {
