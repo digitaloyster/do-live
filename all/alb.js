@@ -63,9 +63,11 @@ var getUrlParameter = function getUrlParameter(sParam) {
 if (getUrlParameter('pid') != '' && typeof getUrlParameter('pid') !== 'undefined'){
     var id = getUrlParameter('pid');
     var ids = [];
-    if (window.ub.form.url != '' && typeof window.ub.form.url !== 'undefined'){
-        if (window.ub.form.url.indexOf('?') !== -1) window.ub.form.url = window.ub.form.url + "&pid=" + id;
-        else window.ub.form.url = window.ub.form.url + "?pid=" + id;
+    if (typeof window.ub.form.url !== 'undefined') {
+        if (window.ub.form.url != '' && typeof window.ub.form.url !== 'undefined'){
+            if (window.ub.form.url.indexOf('?') !== -1) window.ub.form.url = window.ub.form.url + "&pid=" + id;
+            else window.ub.form.url = window.ub.form.url + "?pid=" + id;
+        }
     }
     ids.push(id);
     setFBPixel(ids)
