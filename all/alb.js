@@ -41,6 +41,10 @@ function setFBPixel(ids) {
         fbq('init', ids[i]);
         fbq('track', 'PageView');
     }
+    // Add content event at the beginning of the body element
+    var contentEvent = document.createElement("script");
+    contentEvent.innerHTML = "fbq('track', 'ViewContent');";
+    document.body.prepend(contentEvent);
 }
 
 var getUrlParameter = function getUrlParameter(sParam) {
@@ -70,6 +74,9 @@ if (getUrlParameter('pid') != '' && typeof getUrlParameter('pid') !== 'undefined
     var ids = idstring.split(',');
     setFBPixel(ids)
 }
+
+
+
 // Facebook Pixels (expects csv of ID)
 
 //Twitter View
