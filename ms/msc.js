@@ -73,9 +73,9 @@ $(document).ready(function() {
             if ("fields" in steps[i] && steps[i].fields != '') {
                 $.each(steps[i].fields, function(k, val) {
                     // Email Validate
-                    if (k==="email_address") {
-                        document.getElementById(k).setAttribute("pattern", "[a-zA-Z0-9.-_]{1,}@[a-zA-Z0-9.-]{1,}[.]{1}[a-zA-Z0-9]{2,}");
-                    }
+                    //if (k==="email_address") {
+                    //    document.getElementById(k).setAttribute("pattern", "[a-zA-Z0-9.-_]{1,}@[a-zA-Z0-9.-]{1,}[.]{1}[a-zA-Z0-9]{2,}");
+                    //}
                     // Buttons
                     if ("display" in val && val.display == "buttons") {
                         if (!$('#' + k).length) {
