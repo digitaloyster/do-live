@@ -234,6 +234,7 @@ $(document).ready(function() {
     //Goto specific step
     var gotoStep = function(step) {
         // TODO: Sort out fadein for fields on step change
+        console.log("MSBGotoStep");
         $('.active').removeClass('active');
         $('#step-' + step).addClass('active');
         $('body').attr('data-current-page', step);
@@ -333,6 +334,7 @@ $(document).ready(function() {
 
     // Goto prev step
     var prevStep = function() {
+        console.log("MSBprevStep");
         if ('hookPrevCheck' in hooks && !hooks.call('hookPrevCheck', [])) return; // HOOK
         refocusForm();
         var step = getStep();
@@ -341,6 +343,7 @@ $(document).ready(function() {
 
     // Goto next step
     var nextStep = function() {
+        console.log("MSBnextStep");
         var step = getStep();
         if (step != 1) refocusForm();
 
