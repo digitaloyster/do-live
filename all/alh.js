@@ -30,6 +30,7 @@ if( typeof mod1 === 'string' ) { mod1 = mod1.toLowerCase(); }
 if ( mod1 != 'off' && guid() % parseInt( mod1 ) === 0 ) {
   window['_fs_debug'] = false;
   window['_fs_host'] = 'fullstory.com';
+  window['_fs_script'] = 'edge.fullstory.com/s/fs.js';
   window['_fs_org'] = 'F14BY';
   window['_fs_namespace'] = 'FS';
   (function(m,n,e,t,l,o,g,y){
