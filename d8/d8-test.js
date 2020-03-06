@@ -10,6 +10,7 @@ var d8Validation = {
     enabled: true,
     useLineValidation: true,
     useMobileValidation: true,
+    UseUnavailableStatus: true,
     defaultCountryCode: 44,
     msg: "Please enter a valid telephone number."
   }
@@ -109,8 +110,7 @@ function validatePhoneAsync(field, valid) {
       defaultCountry: d8Validation.phone.defaultCountryCode,
       options: {
         UseLineValidation: d8Validation.phone.useLineValidation,
-        UseMobileValidation: d8Validation.phone.useMobileValidation,
-        UseUnavailableStatus: true
+        UseMobileValidation: d8Validation.phone.useMobileValidation
       }
     }
 
