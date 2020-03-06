@@ -130,7 +130,7 @@ function validatePhoneAsync(field, valid) {
               field: field,
               valid: true
             });
-          } else if (result.Result.ValidationResult !== "Invalid" && result.Result.ValidationResult !== "NoCoverage") {
+        } else if (result.Result.ValidationResult !== "Invalid" && result.Result.ValidationResult !== "NoCoverage" && result.Result.ValidationResult !== "Unavailable") {
             resolve({
               field: field,
               valid: true
