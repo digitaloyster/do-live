@@ -109,7 +109,8 @@ function validatePhoneAsync(field, valid) {
       defaultCountry: d8Validation.phone.defaultCountryCode,
       options: {
         UseLineValidation: d8Validation.phone.useLineValidation,
-        UseMobileValidation: d8Validation.phone.useMobileValidation
+        UseMobileValidation: d8Validation.phone.useMobileValidation,
+        UseUnavailableStatus: true
       }
     }
 
@@ -123,6 +124,7 @@ function validatePhoneAsync(field, valid) {
         console.log(this);
         if (this.status === 200) {
           var result = JSON.parse(this.response);
+          console.log(result);
           if (!result.Status.Success) {
             resolve({
               field: field,
