@@ -1,7 +1,19 @@
 /**
  * All Pages Scripts Before Body CDN-v1.3
  * Change : Linted to ESLint Google
+ * Change : Added Namespacing.
  */
+const alb={};
+alb.settings = document.cdnParameters;
+alb.settings.FB_pixel_ids =
+  (alb.settings.FB_pixel_ids !== undefined) ?
+  alb.settings.FB_pixel_ids :
+  false;
+alb.settings.TW_site_visit_ids =
+  (alb.settings.TW_site_visit_ids !== undefined) ?
+  alb.settings.TW_site_visit_ids :
+  false;
+
 
 /**
   * Functions
@@ -13,7 +25,7 @@
  * @param  {string} sParam Get Variable
  * @return {string}        Value of Get Variable
  */
-function getUrlParameter(sParam) {
+alb.getUrlParameter = function(sParam) {
   const sPageURL = decodeURIComponent(window.location.search.substring(1));
   const sURLVariables = sPageURL.split('&');
   let sParameterName;
@@ -31,9 +43,9 @@ function getUrlParameter(sParam) {
  *
  * @param  {string} ids Expects CSV of ID
  */
-function setFBPixel(ids) {
+alb.setFBPixel = function(ids) {
   for (i in ids) {
-    if (Object.prototype.hasOwnProperty.call(foo, key)) {
+    if (ids.hasOwnProperty(i)) {
       console.log('FB Pixel:' + ids[i]);
       !function(f, b, e, v, n, t, s) {
         if (f.fbq) return; n=f.fbq=function() {
@@ -57,7 +69,7 @@ function setFBPixel(ids) {
   const contentEvent = document.createElement('script');
   contentEvent.innerHTML = 'fbq(\'track\', \'ViewContent\');';
   document.body.prepend(contentEvent);
-}
+};
 
 
 /**
@@ -79,9 +91,9 @@ if (navigator.appVersion.indexOf('Linux')!=-1) OSName='linux';
 document.body.className += ' ' + OSName;
 
 
-const pid = getUrlParameter('pid');
+const pid = alb.getUrlParameter('pid');
 if (pid != '' && typeof pid !== 'undefined') {
-  const id = getUrlParameter('pid');
+  const id = alb.getUrlParameter('pid');
   const ids = [];
   if (typeof window.ub.form !== 'undefined') {
     if (window.ub.form.url != '' && typeof window.ub.form.url !== 'undefined') {
@@ -94,9 +106,9 @@ if (pid != '' && typeof pid !== 'undefined') {
   }
   ids.push(id);
   setFBPixel(ids);
-} else if (document.cdnParameters.FB_pixel_ids != '' &&
- typeof document.cdnParameters.FB_pixel_ids !== 'undefined') {
-  const idstring = document.cdnParameters.FB_pixel_ids;
+} else if (alb.settings.FB_pixel_ids !== '' &&
+ typeof alb.settings.FB_pixel_ids !== 'undefined') {
+  const idstring = alb.settings.FB_pixel_ids;
   const ids = idstring.split(',');
   setFBPixel(ids);
 }
@@ -104,12 +116,12 @@ if (pid != '' && typeof pid !== 'undefined') {
 /**
  * Twitter View
  */
-if (document.cdnParameters.TW_site_visit_ids != '' &&
- typeof document.cdnParameters.TW_site_visit_ids !== 'undefined') {
-  const idstring = document.cdnParameters.TW_site_visit_ids;
+if (alb.settings.TW_site_visit_ids != '' &&
+ alb.settings.TW_site_visit_ids) {
+  const idstring = alb.settings.TW_site_visit_ids;
   const ids = idstring.split(',');
   for (i in ids) {
-    if (Object.prototype.hasOwnProperty.call(foo, key)) {
+    if (ids.hasOwnProperty(i)) {
       !function(e, t, n, s, u, a) {
         e.twq||(s=e.twq=function() {
             s.exe?s.exe.apply(s, arguments):s.queue.push(arguments);
