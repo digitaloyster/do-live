@@ -103,7 +103,7 @@ $(document).ready(function() {
     adb.settings.adv_replace_urls_to &&
     adb.settings.adv_not_replace_url_on !== '' &&
     adb.settings.adv_not_replace_url_on) {
-    url = adb.settings.adv_replace_urls_to;
+    let url = adb.settings.adv_replace_urls_to;
     if (url.indexOf('?') !== -1) {
       url += '&ckm_request_id=';
     } else {
