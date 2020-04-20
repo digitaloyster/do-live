@@ -2,14 +2,14 @@
  * All Advertorials Before Body CDN-v1.3
  * Change : Linted to ESLint Google
  */
-
+const adb={};
 /**
  * getParameterByName - Link Builder (Doc Ready)
  *
  * @param  {string} name Specify the Get Variable you need
  * @return {string}      Value of the specific Get Variable
  */
-function getParameterByName(name) {
+adb.getParameterByName = function(name) {
   'use strict';
   name = name.replace(/[\[\]]/g, '\\$&');
   const url = window.location.href;
@@ -22,14 +22,14 @@ function getParameterByName(name) {
     return '';
   }
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
+};
 
 /**
  * setURLRef - Update URLS
  *
  * @param  {string} lpURL Base URL to use
  */
-function setURLRef(lpURL) {
+adb.setURLRef = function(lpURL) {
   'use strict';
   const separator = '&';
   const urls = $('[href^="' + lpURL + '"]');
@@ -40,79 +40,80 @@ function setURLRef(lpURL) {
     href += separator + 'link_click=' + i;
     $(val).attr('href', href);
   });
-}
+};
 
 $(document).ready(function() {
   'use strict';
-  let settings;
-  let pid = '';
-  let url;
-  let advPixel;
-  let tenPixel;
-  let boxToAppend;// ,
+  adb.settings = document.cdnParameters;
+  adb.pid = '';
+  adb.url;
+  adb.advPixel;
+  adb.tenPixel;
+  adb.boxToAppend;// ,
   // boxParent;
 
   /**
    * Settings Checks
    */
-  settings.adv_replace_urls_to =
-  (document.cdnParameters.adv_replace_urls_to !== undefined) ?
-        document.cdnParameters.adv_replace_urls_to :
+  adb.settings.adv_replace_urls_to =
+  (adb.settings.adv_replace_urls_to !== undefined) ?
+        adb.settings.adv_replace_urls_to :
         false;
-  settings.adv_not_replace_url_on =
-  (document.cdnParameters.adv_not_replace_url_on !== undefined) ?
-        document.cdnParameters.adv_not_replace_url_on :
+  adb.settings.adv_not_replace_url_on =
+  (adb.settings..adv_not_replace_url_on !== undefined) ?
+        adb.settings.adv_not_replace_url_on :
         false;
-  settings.cake_offer_id =
-  (document.cdnParameters.cake_offer_id !== undefined) ?
-        document.cdnParameters.cake_offer_id :
+  adb.settings.cake_offer_id =
+  (adb.settings.cake_offer_id !== undefined) ?
+        adb.settings.cake_offer_id :
         false;
-  settings.cake_adv_event_id =
-  (document.cdnParameters.cake_adv_event_id !== undefined) ?
-        document.cdnParameters.cake_adv_event_id :
+  adb.settings.cake_adv_event_id =
+  (adb.settings.cake_adv_event_id !== undefined) ?
+        adb.settings.cake_adv_event_id :
         false;
-  settings.cake_10s_event_id =
-  (document.cdnParameters.cake_10s_event_id !== undefined) ?
-        document.cdnParameters.cake_10s_event_id :
+  adb.settings.cake_10s_event_id =
+  (adb.settings.cake_10s_event_id !== undefined) ?
+        adb.settings.cake_10s_event_id :
         false;
-  settings.adv_tracking_prefix =
-  (document.cdnParameters.adv_tracking_prefix !== undefined) ?
-        document.cdnParameters.adv_tracking_prefix :
+  adb.settings.adv_tracking_prefix =
+  (adb.settings.adv_tracking_prefix !== undefined) ?
+        adb.settings.adv_tracking_prefix :
         false;
-  settings.scrolling_banner_box_id =
-  (document.cdnParameters.scrolling_banner_box_id !== undefined) ?
-        document.cdnParameters.scrolling_banner_box_id :
+  adb.settings.scrolling_banner_box_id =
+  (adb.settings.scrolling_banner_box_id !== undefined) ?
+        adb.settings.scrolling_banner_box_id :
         false;
-  settings.TB_widget = (document.cdnParameters.TB_widget !== undefined) ?
-        document.cdnParameters.TB_widget :
+  adb.settings.TB_widget =
+  (adb.settings.TB_widget !== undefined) ?
+        adb.settings.TB_widget :
         false;
 
   /**
    *   Get Facebook Pixel ID
    */
-  if (getParameterByName('pid') !== '' &&
-  typeof getParameterByName('pid') === 'string') {
-    pid = '&pid=' + getParameterByName('pid');
+  if (adb.getParameterByName('pid') !== '' &&
+  typeof adb.getParameterByName('pid') === 'string') {
+    pid = '&pid=' + adb.getParameterByName('pid');
   }
 
   /**
    *  replace URL
    */
-  if (settings.adv_replace_urls_to !== '' &&
-    settings.adv_replace_urls_to &&
-    settings.adv_not_replace_url_on !== '' &&
-    settings.adv_not_replace_url_on) {
-    url = settings.adv_replace_urls_to;
+  if (adb.settings.adv_replace_urls_to !== '' &&
+    adb.settings.adv_replace_urls_to &&
+    adb.settings.adv_not_replace_url_on !== '' &&
+    adb.settings.adv_not_replace_url_on) {
+    url = adb.settings.adv_replace_urls_to;
     if (url.indexOf('?') !== -1) {
       url += '&ckm_request_id=';
     } else {
       url += '?ckm_request_id=';
     }
-    url += getParameterByName('ckm_request_id');
-    url += '&aff=' + getParameterByName('aff');
+    url += adb.getParameterByName('ckm_request_id');
+    url += '&aff=' + adb.getParameterByName('aff');
     url += pid;
     let a = 'a:not(#link-no-replace, #ubpoverlay-close,';
-    a += settings.adv_not_replace_url_on + ' )';
+    a += adb.settings.adv_not_replace_url_on + ' )';
     $(a).attr('href', url);
     $('area').attr('href', url);
   }
@@ -120,30 +121,30 @@ $(document).ready(function() {
   /**
    * ADV Replace URLS
    */
-  if (settings.adv_replace_urls_to !== '' && settings.adv_replace_urls_to) {
-    setURLRef(document.cdnParameters.adv_replace_urls_to);
+  if (adb.settings.adv_replace_urls_to !== '' && adb.settings.adv_replace_urls_to) {
+    setURLRef(adb.settings.adv_replace_urls_to);
   }
 
   /**
    * Adv pixel
    */
-  if (settings.cake_offer_id !== '' && settings.cake_offer_id &&
-        settings.cake_adv_event_id !== '' && settings.cake_adv_event_id &&
-        settings.adv_tracking_prefix !== '' && settings.adv_tracking_prefix) {
-    advPixel = new Image(1, 1);
-    advPixel.src = 'https://digitaloyster.jrnytag.com/p.ashx?o=' + settings.cake_offer_id + '&e=' + settings.cake_adv_event_id + '&f=img&r=' + getParameterByName('ckm_request_id') + '&t=' + settings.adv_tracking_prefix + '-' + window.ub.page.variantId + '|' + window.outerWidth + 'x' + window.outerHeight;
+  if (adb.settings.cake_offer_id !== '' && adb.settings.cake_offer_id &&
+        adb.settings.cake_adv_event_id !== '' && adb.settings.cake_adv_event_id &&
+        adb.settings.adv_tracking_prefix !== '' && adb.settings.adv_tracking_prefix) {
+    adb.advPixel = new Image(1, 1);
+    adb.advPixel.src = 'https://digitaloyster.jrnytag.com/p.ashx?o=' + adb.settings.cake_offer_id + '&e=' + adb.settings.cake_adv_event_id + '&f=img&r=' + adb.getParameterByName('ckm_request_id') + '&t=' + adb.settings.adv_tracking_prefix + '-' + window.ub.page.variantId + '|' + window.outerWidth + 'x' + window.outerHeight;
   }
 
   /**
    * 10sec pixel
    */
-  if (settings.cake_offer_id !== '' &&
-  settings.cake_offer_id &&
-  settings.cake_10s_event_id !== '' &&
-  settings.cake_10s_event_id) {
+  if (adb.settings.cake_offer_id !== '' &&
+  adb.settings.cake_offer_id &&
+  adb.settings.cake_10s_event_id !== '' &&
+  adb.settings.cake_10s_event_id) {
     setTimeout(function() {
-      tenPixel = new Image(1, 1);
-      tenPixel.src = 'https://digitaloyster.jrnytag.com/p.ashx?o=' + settings.cake_offer_id + '&e=' + settings.cake_10s_event_id + '&f=img&r=' + getParameterByName('ckm_request_id');
+      adb.tenPixel = new Image(1, 1);
+      adb.tenPixel.src = 'https://digitaloyster.jrnytag.com/p.ashx?o=' + adb.settings.cake_offer_id + '&e=' + adb.settings.cake_10s_event_id + '&f=img&r=' + adb.getParameterByName('ckm_request_id');
     }, 10000);
   }
 
@@ -151,9 +152,9 @@ $(document).ready(function() {
   /**
    * Fixed Header v1.
    */
-  if (settings.scrolling_banner_box_id !== '' &&
-      settings.scrolling_banner_box_id) {
-    boxToAppend = settings.scrolling_banner_box_id;
+  if (adb.settings.scrolling_banner_box_id !== '' &&
+      adb.settings.scrolling_banner_box_id) {
+    boxToAppend = adb.settings.scrolling_banner_box_id;
     if (boxToAppend !== '') {
       // boxParent = $(boxToAppend).parent();
       $(boxToAppend).css({
@@ -172,7 +173,7 @@ $(document).ready(function() {
   /**
    * Taboola Widgets
    */
-  if (settings.TB_widget === 'Y' && settings.TB_widget) {
+  if (adb.settings.TB_widget === 'Y' && adb.settings.TB_widget) {
     window._taboola = window._taboola || [];
     _taboola.push({flush: true});
   }
