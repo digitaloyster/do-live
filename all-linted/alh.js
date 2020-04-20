@@ -6,12 +6,13 @@
 /**
  * CSS CDN FILE
  */
-const cdnURL = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/';
-const styles=document.createElement('link');
-styles.setAttribute('rel', 'stylesheet');
-styles.setAttribute('type', 'text/css');
-styles.setAttribute('href', cdnURL + 'al.css');
-document.getElementsByTagName('head')[0].appendChild(styles);
+let alh;
+alh.cdnURL = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/';
+alh.styles = document.createElement('link');
+alh.styles.setAttribute('rel', 'stylesheet');
+alh.styles.setAttribute('type', 'text/css');
+alh.styles.setAttribute('href', alh.cdnURL + 'al.css');
+document.getElementsByTagName('head')[0].appendChild(alh.styles);
 
 
 /**
