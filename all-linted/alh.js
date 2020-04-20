@@ -6,7 +6,7 @@
 /**
  * CSS CDN FILE
  */
-let alh;
+const alh={};
 alh.cdnURL = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/';
 alh.styles = document.createElement('link');
 alh.styles.setAttribute('rel', 'stylesheet');
