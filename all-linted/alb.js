@@ -105,12 +105,12 @@ if (pid != '' && typeof pid !== 'undefined') {
     }
   }
   ids.push(id);
-  setFBPixel(ids);
+  alb.setFBPixel(ids);
 } else if (alb.settings.FB_pixel_ids !== '' &&
  typeof alb.settings.FB_pixel_ids !== 'undefined') {
   const idstring = alb.settings.FB_pixel_ids;
   const ids = idstring.split(',');
-  setFBPixel(ids);
+  alb.setFBPixel(ids);
 }
 
 /**

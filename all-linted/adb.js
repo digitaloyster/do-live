@@ -60,7 +60,7 @@ $(document).ready(function() {
         adb.settings.adv_replace_urls_to :
         false;
   adb.settings.adv_not_replace_url_on =
-  (adb.settings..adv_not_replace_url_on !== undefined) ?
+  (adb.settings.adv_not_replace_url_on !== undefined) ?
         adb.settings.adv_not_replace_url_on :
         false;
   adb.settings.cake_offer_id =
