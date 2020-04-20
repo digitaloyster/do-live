@@ -16,11 +16,11 @@ settings.TB_widget = (document.cdnParameters.TB_widget !== undefined) ?
     document.cdnParameters.TB_widget :
     false;
 // CSS CDN FILE
-const cdnURL = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/';
+const cdnAllURL = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/';
 let styles=document.createElement('link');
 styles.setAttribute('rel', 'stylesheet');
 styles.setAttribute('type', 'text/css');
-styles.setAttribute('href', cdnURL + 'ad.css');
+styles.setAttribute('href', cdnAllURL + 'ad.css');
 document.getElementsByTagName('head')[0].appendChild(styles);
 
 
