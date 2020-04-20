@@ -157,7 +157,7 @@ $(document).ready(function() {
    */
   if (adb.settings.scrolling_banner_box_id !== '' &&
       adb.settings.scrolling_banner_box_id) {
-    boxToAppend = adb.settings.scrolling_banner_box_id;
+    const boxToAppend = adb.settings.scrolling_banner_box_id;
     if (boxToAppend !== '') {
       // boxParent = $(boxToAppend).parent();
       $(boxToAppend).css({
