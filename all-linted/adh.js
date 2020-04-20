@@ -6,34 +6,36 @@
 /**
   * Settings Checks
   */
-let settings;
+const adh = {};
+// const settings = {};
 
-settings.cookie_footer_url =
+adh.cookie_footer_url =
 (document.cdnParameters.cookie_footer_url !== undefined) ?
     document.cdnParameters.cookie_footer_url :
     false;
-settings.TB_widget = (document.cdnParameters.TB_widget !== undefined) ?
+adh.TB_widget = (document.cdnParameters.TB_widget !== undefined) ?
     document.cdnParameters.TB_widget :
     false;
 // CSS CDN FILE
-const cdnAllURL = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/';
-let styles=document.createElement('link');
-styles.setAttribute('rel', 'stylesheet');
-styles.setAttribute('type', 'text/css');
-styles.setAttribute('href', cdnAllURL + 'ad.css');
-document.getElementsByTagName('head')[0].appendChild(styles);
+adh.cdnAllURL = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/';
+adh.styles={};
+adh.styles.main=document.createElement('link');
+adh.styles.main.setAttribute('rel', 'stylesheet');
+adh.styles.main.setAttribute('type', 'text/css');
+adh.styles.main.setAttribute('href', adh.cdnAllURL + 'ad.css');
+document.getElementsByTagName('head')[0].appendChild(adh.styles.main);
 
 
 // Cookie consent
-if (settings.cookie_footer_url != '' && settings.cookie_footer_url) {
-  const consentURL = '//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/';
-  styles=document.createElement('link');
-  styles.setAttribute('rel', 'stylesheet');
-  styles.setAttribute('type', 'text/css');
-  styles.setAttribute('href', consentURL + 'cookieconsent.min.css');
-  document.getElementsByTagName('head')[0].appendChild(styles);
+if (adh.cookie_footer_url != '' && adh.cookie_footer_url) {
+  adh.consentURL = '//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/';
+  adh.styles.cookie=document.createElement('link');
+  adh.styles.cookie.setAttribute('rel', 'stylesheet');
+  adh.styles.cookie.setAttribute('type', 'text/css');
+  adh.styles.cookie.setAttribute('href', adh.consentURL + 'cookieconsent.min.css');
+  document.getElementsByTagName('head')[0].appendChild(adh.styles.cookie);
 
-  $.getScript(consentURL + 'cookieconsent.min.js');
+  $.getScript(adh.consentURL + 'cookieconsent.min.js');
 
   window.addEventListener('load', function() {
     window.cookieconsent.initialise({
@@ -54,7 +56,7 @@ if (settings.cookie_footer_url != '' && settings.cookie_footer_url) {
 // Cookie consent
 
 // Taboola Widgets
-if (settings.TB_widget == 'Y' && settings.TB_widget) {
+if (adh.TB_widget == 'Y' && adh.TB_widget) {
   window._taboola = window._taboola || [];
   _taboola.push({article: 'auto'});
   !function(e, f, u, i) {
