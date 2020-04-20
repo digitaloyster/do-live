@@ -6,7 +6,7 @@
 /**
  * CSS CDN FILE
  */
-const alh={};
+let alh = {};
 alh.cdnURL = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/';
 alh.styles = document.createElement('link');
 alh.styles.setAttribute('rel', 'stylesheet');
@@ -26,20 +26,22 @@ document.getElementsByTagName('head')[0].appendChild(alh.styles);
  * @param  {type} num   description
  * @return {type}       description
  */
-function getSum(total, num) {
+alh.getSum = function(total, num) {
   return parseInt(total) + parseInt(num);
-}
+};
 
 /**
  * guid - Generate a Unique id
  *
  * @return {string}  Unique id
  */
-function guid() {
+alh.guid = function() {
   const d = new Date();
   const nav = window.navigator;
   const screen = window.screen;
-  let guid = nav.userAgent.replace(/\D+/g, '').match(/.{1}/g).reduce(getSum, 0);
+  let guid = nav.userAgent.replace(/\D+/g, '')
+      .match(/.{1}/g)
+      .reduce(alh.getSum, 0);
   guid += parseInt(nav.mimeTypes.length);
   guid += parseInt(nav.plugins.length);
   guid += parseInt(screen.pixelDepth) || 1;
@@ -54,7 +56,7 @@ document.cdnParameters.full_story ?
 if ( typeof mod1 === 'string' ) {
   mod1 = mod1.toLowerCase();
 }
-if ( mod1 != 'off' && guid() % parseInt( mod1 ) === 0 ) {
+if ( mod1 != 'off' && alh.guid % parseInt( mod1 ) === 0 ) {
   window['_fs_debug'] = false;
   window['_fs_host'] = 'fullstory.com';
   window['_fs_script'] = 'edge.fullstory.com/s/fs.js';
