@@ -122,15 +122,18 @@ $(document).ready(function() {
    * ADV Replace URLS
    */
   if (adb.settings.adv_replace_urls_to !== '' && adb.settings.adv_replace_urls_to) {
-    setURLRef(adb.settings.adv_replace_urls_to);
+    adb.setURLRef(adb.settings.adv_replace_urls_to);
   }
 
   /**
    * Adv pixel
    */
-  if (adb.settings.cake_offer_id !== '' && adb.settings.cake_offer_id &&
-        adb.settings.cake_adv_event_id !== '' && adb.settings.cake_adv_event_id &&
-        adb.settings.adv_tracking_prefix !== '' && adb.settings.adv_tracking_prefix) {
+  if (adb.settings.cake_offer_id !== '' &&
+        adb.settings.cake_offer_id &&
+        adb.settings.cake_adv_event_id !== '' &&
+        adb.settings.cake_adv_event_id &&
+        adb.settings.adv_tracking_prefix !== '' &&
+        adb.settings.adv_tracking_prefix) {
     adb.advPixel = new Image(1, 1);
     adb.advPixel.src = 'https://digitaloyster.jrnytag.com/p.ashx?o=' + adb.settings.cake_offer_id + '&e=' + adb.settings.cake_adv_event_id + '&f=img&r=' + adb.getParameterByName('ckm_request_id') + '&t=' + adb.settings.adv_tracking_prefix + '-' + window.ub.page.variantId + '|' + window.outerWidth + 'x' + window.outerHeight;
   }
