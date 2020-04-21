@@ -156,12 +156,12 @@ if (tyb.settings.TW_lead_ids != '' && tyb.settings.TW_lead_ids) {
 /**
  * Yahoo Pixel
  */
-if (settings.YG_pixel_ids != '' && settings.YG_pixel_ids) {
-  const idstring = settings.YG_pixel_ids;
+if (tyb.settings.YG_pixel_ids != '' && tyb.settings.YG_pixel_ids) {
+  const idstring = tyb.settings.YG_pixel_ids;
   if (idstring != '') {
     const ids = idstring.split(',');
     for (i in ids) {
-      if (Object.prototype.hasOwnProperty.call(foo, key)) {
+      if (ids.hasOwnProperty(i)) {
         (function(w, d, t, r, u) {
           w[u]=w[u]||[];
           w[u].push({'projectId': '10000', 'properties': {'pixelId': ids[i]}});
