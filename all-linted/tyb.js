@@ -126,7 +126,7 @@ if (tyb.settings.TB_pixel_ids != '' && tyb.settings.TB_pixel_ids) {
   if (idstring != '') {
     const ids = idstring.split(',');
     for (i in ids) {
-      if (TB_pixel_ids.hasOwnProperty(i)) {
+      if (ids.hasOwnProperty(i)) {
         _tfa.push({notify: 'event', name: 'lead', id: ids[i]});
       }
     }
