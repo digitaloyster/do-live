@@ -35,7 +35,7 @@ if (tyh.settings.OB_pixel_ids != '' && tyh.settings.OB_pixel_ids) {
   if (idstring != '') {
     const ids = idstring.split(',');
     for (i in ids) {
-      if (obj.hasOwnProperty(i)) {
+      if (ids.hasOwnProperty(i)) {
         !function(_window, _document) {
           const OB_ADV_ID=ids[i];
           if (_window.obApi) {
@@ -78,7 +78,7 @@ if (tyh.settings.TB_pixel_ids != '' && tyh.settings.TB_pixel_ids) {
   if (idstring != '') {
     const ids = idstring.split(',');
     for (i in ids) {
-      if (obj.hasOwnProperty(i)) {
+      if (ids.hasOwnProperty(i)) {
         window._tfa = window._tfa || [];
         window._tfa.push({notify: 'event', name: 'page_view', id: ids[i]});
         !function(t, f, a, x) {
