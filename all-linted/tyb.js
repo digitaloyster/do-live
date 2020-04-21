@@ -1,7 +1,7 @@
 /**
  * All Thank You Pages Before Body CDN-v1.0
  */
-
+const tyb = {};
 
 /**
   * Functions
@@ -30,7 +30,7 @@
  * @param  {string} cname Cookie Param
  * @return {string}       Cookie Value
  */
-function getCookie(cname) {
+tyb.getCookie = function(cname) {
   const name = cname + '=';
   const decodedCookie = decodeURIComponent(document.cookie);
   const ca = decodedCookie.split(';');
@@ -44,61 +44,62 @@ function getCookie(cname) {
     }
   }
   return '';
-}
+};
 
 
 /**
  * Settings
  */
-let settings;
-settings.cake_offer_id =
-  (document.cdnParameters.cake_offer_id !== undefined) ?
-  document.cdnParameters.cake_offer_id :
+tyb.settings = document.cdnParameters;
+tyb.settings.cake_offer_id =
+  (tyb.settings.cake_offer_id !== undefined) ?
+  tyb.settings.cake_offer_id :
   false;
-settings.cake_conv_id =
-  (document.cdnParameters.cake_conv_id !== undefined) ?
-  document.cdnParameters.cake_conv_id :
+tyb.settings.cake_conv_id =
+  (tyb.settings.cake_conv_id !== undefined) ?
+  tyb.settings.cake_conv_id :
   false;
-settings.ty_tracking_prefix =
-  (document.cdnParameters.ty_tracking_prefix !== undefined) ?
-  document.cdnParameters.ty_tracking_prefix :
+tyb.settings.ty_tracking_prefix =
+  (tyb.settings.ty_tracking_prefix !== undefined) ?
+  tyb.settings.ty_tracking_prefix :
   false;
-settings.FB_pixel_ids =
-  (document.cdnParameters.FB_pixel_ids !== undefined) ?
-  document.cdnParameters.FB_pixel_ids :
+tyb.settings.FB_pixel_ids =
+  (tyb.settings.FB_pixel_ids !== undefined) ?
+  tyb.settings.FB_pixel_ids :
   false;
-settings.TB_pixel_ids =
-  (document.cdnParameters.TB_pixel_ids !== undefined) ?
-  document.cdnParameters.TB_pixel_ids :
+tyb.settings.TB_pixel_ids =
+  (tyb.settings.TB_pixel_ids !== undefined) ?
+  tyb.settings.TB_pixel_ids :
   false;
-settings.TW_lead_ids =
-  (document.cdnParameters.TW_lead_ids !== undefined) ?
-  document.cdnParameters.TW_lead_ids :
+tyb.settings.TW_lead_ids =
+  (tyb.settings.TW_lead_ids !== undefined) ?
+  tyb.settings.TW_lead_ids :
   false;
-settings.YG_pixel_ids =
-  (document.cdnParameters.YG_pixel_ids !== undefined) ?
-  document.cdnParameters.YG_pixel_ids :
+tyb.settings.YG_pixel_ids =
+  (tyb.settings.YG_pixel_ids !== undefined) ?
+  tyb.settings.YG_pixel_ids :
   false;
 
 
 /**
  * Cake Conversion Pixel
  */
-if (settings.cake_offer_id != '' && settings.cake_offer_id &&
-    settings.ty_tracking_prefix != '' && settings.ty_tracking_prefix &&
-    settings.cake_conv_id != '' && typeof settings.cake_conv_id) {
+if (tyb.settings.cake_offer_id != '' && tyb.settings.cake_offer_id &&
+    tyb.settings.ty_tracking_prefix != '' && tyb.settings.ty_tracking_prefix &&
+    tyb.settings.cake_conv_id != '' && tyb.settings.cake_conv_id) {
   setTimeout(function() {
     const image = new Image(1, 1);
-    let url = 'https://digitaloyster.jrnytag.com/p.ashx?o='+settings.cake_offer_id+'&e='+settings.cake_conv_id+'&r=' + getCookie('ckm_request_id');
-    if (settings.cake_conv_id !== 'ld') {
-      if (getCookie('lead_id') !== null && getCookie('lead_id') !== '' ) {
-        url += '&t=' + getCookie('lead_id');
+    let url = 'https://digitaloyster.jrnytag.com/p.ashx?o='+tyb.settings.cake_offer_id+'&e='+tyb.settings.cake_conv_id+'&r=' + tyb.getCookie('ckm_request_id');
+    if (tyb.settings.cake_conv_id !== 'ld') {
+      if (tyb.getCookie('lead_id') !== null &&
+          tyb.getCookie('lead_id') !== '' ) {
+        url += '&t=' + tyb.getCookie('lead_id');
       }
     } else {
       let variant;
       if (typeof window.ub !== 'undefined') variant = window.ub.page.variantId;
       else variant = '';
-      url += '&t='+settings.ty_tracking_prefix+'-'+variant;
+      url += '&t='+tyb.settings.ty_tracking_prefix+'-'+variant;
     }
     console.log(url);
     image.src = url;
@@ -108,7 +109,8 @@ if (settings.cake_offer_id != '' && settings.cake_offer_id &&
 /**
  * Facebook Lead tracking
  */
-if (settings.FB_pixel_ids != '' && settings.FB_pixel_ids) {
+if (tyb.settings.FB_pixel_ids != '' &&
+    tyb.settings.FB_pixel_ids) {
   fbq('track', 'Lead', {
     value: 10.00,
     currency: 'GBP',
@@ -119,12 +121,12 @@ if (settings.FB_pixel_ids != '' && settings.FB_pixel_ids) {
 /**
  * Taboola Pixels
  */
-if (settings.TB_pixel_ids != '' && settings.TB_pixel_ids) {
-  const idstring = settings.TB_pixel_ids;
+if (tyb.settings.TB_pixel_ids != '' && tyb.settings.TB_pixel_ids) {
+  const idstring = tyb.settings.TB_pixel_ids;
   if (idstring != '') {
     const ids = idstring.split(',');
     for (i in ids) {
-      if (Object.prototype.hasOwnProperty.call(foo, key)) {
+      if (TB_pixel_ids.hasOwnProperty(i)) {
         _tfa.push({notify: 'event', name: 'lead', id: ids[i]});
       }
     }
@@ -135,12 +137,12 @@ if (settings.TB_pixel_ids != '' && settings.TB_pixel_ids) {
 /**
  * Twitter conversion
  */
-if (settings.TW_lead_ids != '' && settings.TW_lead_ids) {
+if (tyb.settings.TW_lead_ids != '' && tyb.settings.TW_lead_ids) {
   $.getScript('//platform.twitter.com/oct.js', function() {
-    const idstring = settings.TW_lead_ids;
+    const idstring = tyb.settings.TW_lead_ids;
     const ids = idstring.split(',');
     for (i in ids) {
-      if (Object.prototype.hasOwnProperty.call(foo, key)) {
+      if (ids.hasOwnProperty(i)) {
         twttr.conversion.trackPid(ids[i], {
           tw_sale_amount: 0,
           tw_order_quantity: 0,
