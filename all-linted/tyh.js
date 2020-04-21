@@ -2,39 +2,39 @@
  * All Thank You Pages Header CDN-v1.0
  * Change: Linted ESLint Google
  */
+const tyh = {};
 
-let settings;
-
-settings.OB_pixel_ids =
-(document.cdnParameters.OB_pixel_ids !== undefined) ?
-    document.cdnParameters.OB_pixel_ids :
+tyh.settings = document.cdnParameters;
+tyh.settings.OB_pixel_ids =
+(tyh.settings.OB_pixel_ids !== undefined) ?
+    tyh.settings.OB_pixel_ids :
     false;
-settings.TB_pixel_ids =
-(document.cdnParameters.TB_pixel_ids !== undefined) ?
-    document.cdnParameters.TB_pixel_ids :
+tyh.settings.TB_pixel_ids =
+(tyh.settings.TB_pixel_ids !== undefined) ?
+    tyh.settings.TB_pixel_ids :
     false;
 
 
 /**
  * CSS CDN FILE
  */
-const cdnURL = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/';
-const styles=document.createElement('link');
-styles.setAttribute('rel', 'stylesheet');
-styles.setAttribute('type', 'text/css');
-styles.setAttribute('href', cdnURL+'ty.css');
-document.getElementsByTagName('head')[0].appendChild(styles);
+tyh.cdnURL = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/';
+tyh.styles.main=document.createElement('link');
+tyh.styles.main.setAttribute('rel', 'stylesheet');
+tyh.styles.main.setAttribute('type', 'text/css');
+tyh.styles.main.setAttribute('href', cdnURL+'ty.css');
+document.getElementsByTagName('head')[0].appendChild(tyh.styles.main);
 
 
 /**
  * Outbrain Pixels
  */
-if (settings.OB_pixel_ids != '' && settings.OB_pixel_ids) {
-  const idstring = settings.OB_pixel_ids;
+if (tyh.settings.OB_pixel_ids != '' && tyh.settings.OB_pixel_ids) {
+  const idstring = tyh.settings.OB_pixel_ids;
   if (idstring != '') {
     const ids = idstring.split(',');
     for (i in ids) {
-      if (Object.prototype.hasOwnProperty.call(foo, key)) {
+      if (obj.hasOwnProperty(i)) {
         !function(_window, _document) {
           const OB_ADV_ID=ids[i];
           if (_window.obApi) {
@@ -72,12 +72,12 @@ if (settings.OB_pixel_ids != '' && settings.OB_pixel_ids) {
 /**
  * Taboola Pixels
  */
-if (settings.TB_pixel_ids != '' && settings.TB_pixel_ids) {
-  const idstring = settings.TB_pixel_ids;
+if (tyh.settings.TB_pixel_ids != '' && tyh.settings.TB_pixel_ids) {
+  const idstring = tyh.settings.TB_pixel_ids;
   if (idstring != '') {
     const ids = idstring.split(',');
     for (i in ids) {
-      if (Object.prototype.hasOwnProperty.call(foo, key)) {
+      if (obj.hasOwnProperty(i)) {
         window._tfa = window._tfa || [];
         window._tfa.push({notify: 'event', name: 'page_view', id: ids[i]});
         !function(t, f, a, x) {
