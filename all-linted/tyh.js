@@ -19,6 +19,7 @@ tyh.settings.TB_pixel_ids =
  * CSS CDN FILE
  */
 tyh.cdnURL = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/';
+tyh.styles = {};
 tyh.styles.main=document.createElement('link');
 tyh.styles.main.setAttribute('rel', 'stylesheet');
 tyh.styles.main.setAttribute('type', 'text/css');
