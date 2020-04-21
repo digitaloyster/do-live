@@ -23,7 +23,7 @@ tyh.styles = {};
 tyh.styles.main=document.createElement('link');
 tyh.styles.main.setAttribute('rel', 'stylesheet');
 tyh.styles.main.setAttribute('type', 'text/css');
-tyh.styles.main.setAttribute('href', cdnURL+'ty.css');
+tyh.styles.main.setAttribute('href', tyh.cdnURL+'ty.css');
 document.getElementsByTagName('head')[0].appendChild(tyh.styles.main);
 
 
