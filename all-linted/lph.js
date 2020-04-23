@@ -81,7 +81,7 @@ if ( lph.settings.postcode) {
     lph.script.dp.src = lph.cdnURL + 'd8/d8_dp.js';
     head.appendChild(lph.script.dp);
   }
-  if (lph.settings.postcode == 'DS1' || lph.seetings.postcode == 'DS2') {
+  if (lph.settings.postcode == 'DS1' || lph.settings.postcode == 'DS2') {
     lph.style.dpa = document.createElement('link');
     lph.style.dpa.setAttribute('rel', 'stylesheet');
     lph.style.dpa.setAttribute('type', 'text/css');
