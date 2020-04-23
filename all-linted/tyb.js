@@ -1,5 +1,7 @@
 /**
- * All Thank You Pages Before Body CDN-v1.0
+ * All Thank You Pages Before Body CDN-v1.3
+ * Change: ES Lint Google
+ * Change: Namespaced
  */
 const tyb = {};
 

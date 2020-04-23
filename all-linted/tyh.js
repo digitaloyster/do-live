@@ -1,6 +1,7 @@
 /**
- * All Thank You Pages Header CDN-v1.0
- * Change: Linted ESLint Google
+ * All Thank You Pages Header CDN-v1.3
+ * Change: ES Lint Google
+ * Change: Namespaced
  */
 const tyh = {};
 
