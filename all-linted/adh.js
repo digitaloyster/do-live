@@ -1,6 +1,7 @@
 /**
  * All Advertorials Header CDN-v1.3
- * Change : Linted to ESLint Google
+ * Change: ES Lint Google
+ * Change: Namespaced
  */
 
 /**

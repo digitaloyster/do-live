@@ -1,21 +1,26 @@
 // Version 1.2.1
 
 $(document).ready(function() {
-  // XXX: Variables/Objects
-  if (document.cdnMultiStep.debugMode) var d = true;
-  else var d = false;
+  if (document.cdnMultiStep.debugMode) {
+    const d = true;
+  } else {
+    const d = false;
+  }
+  if (d) {
+    console.log('debug mode');
+  }
   init = false;
 
   if (document.cdnMultiStep.steps != '') {
-    var steps = document.cdnMultiStep.steps;
+    const steps = document.cdnMultiStep.steps;
   } else alert('steps not found');
   // var buttons = document.cdnMultiStep.buttons;
   if (document.cdnMultiStep.settings != '') {
-    var settings = document.cdnMultiStep.settings;
+    let settings = document.cdnMultiStep.settings;
   } else alert('settings not found');
 
   if (document.cdnMultiStep.hooks != '') {
-    var hooks = document.cdnMultiStep.hooks;
+    const hooks = document.cdnMultiStep.hooks;
   } else alert('hooks not found');
 
   // Variables/Objects
@@ -40,8 +45,10 @@ $(document).ready(function() {
       }
     }
 
-    $( '#' + document.cdnMultiStep.settings.nextButton ).addClass('button-next');
-    $( '#' + document.cdnMultiStep.settings.nextButton ).addClass('button-back');
+    $( '#' + document.cdnMultiStep.settings.nextButton )
+        .addClass('button-next');
+    $( '#' + document.cdnMultiStep.settings.nextButton )
+        .addClass('button-back');
     $( '.lp-pom-button' ).each(function( ) {
       let mousedown = 0;
       $('#' + this.id).mousedown( function(e) {
@@ -66,8 +73,16 @@ $(document).ready(function() {
       $.each(steps[i].fields, function(k, val) {
         page.push('#container_' + k);
       });
-      if (objSize(page) == 0) $('#step-' + (i - 1)).after('<div id="step-' + i + '" data-id="' + i + '" class="step"></div>');
-      else $(page.join(',')).wrapAll('<div id="step-' + i + '" data-id="' + i + '" class="step"></div>');
+      let insert = '<div id="step-';
+      insert += i;
+      insert += '" data-id="';
+      insert += i;
+      insert += '" class="step"></div>';
+      if (objSize(page) == 0) {
+        $('#step-' + (i - 1)).after(insert);
+      } else {
+        $(page.join(',')).wrapAll(insert);
+      }
     });
 
     // Add custom aspects
@@ -83,12 +98,15 @@ $(document).ready(function() {
             if (!$('#' + k).length) {
               $('[name=\'' + k + '\']').parent().addClass('select-button');
               // console.log($("[name='" + k + "']")[0].type);
-              if (objSize(steps[i].fields) === 1 && $('[name=\'' + k + '\']')[0].type !== 'checkbox') {
+              if (objSize(steps[i].fields) === 1 &&
+                $('[name=\'' + k + '\']')[0].type !== 'checkbox') {
                 $('[name=\'' + k + '\']').parent().addClass('single-field');
               }
               $('[name=\'' + k + '\']').bind('change', function() {
                 const $update = $(this).parent('div');
-                if ($('[name=\'' + k + '\']')[0].type !== 'checkbox') $('#container_' + k + ' .selected').removeClass('selected');
+                if ($('[name=\'' + k + '\']')[0].type !== 'checkbox') {
+                  $('#container_' + k + ' .selected').removeClass('selected');
+                }
                 $update.toggleClass('selected');
                 if ($update.hasClass('single-field') && !msBrowser && !oldIOS) {
                   nextStep();
@@ -111,7 +129,7 @@ $(document).ready(function() {
           }
 
           if ('numeric' in val && val.numeric == 'Y') {
-            var field = document.getElementById(k);
+            const field = document.getElementById(k);
             field.type = 'number';
             field.setAttribute('pattern', '[0-9]*');
           }
@@ -119,8 +137,9 @@ $(document).ready(function() {
             loadJqueryUi = true;
             datepicker_option[k] = {changeYear: true, changeMonth: true, firstDay: 1, dateFormat: 'yy-mm-dd', maxDate: '+0'};
             datepicker_option[k].yearRange = '-120:+0';
-            var field = document.getElementById(k);
-            field.setAttribute('pattern', '[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])');
+            const field = document.getElementById(k);
+            const regex = '[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])';
+            field.setAttribute('pattern', regex);
           }
           if ( 'mask' in val ) {
             $('#' + k).mask( val.mask );
@@ -174,11 +193,13 @@ $(document).ready(function() {
     if (init) {
       $('#'+field+' .error-message').remove();
       console.log('firing active validation on '+field);
-      var valid = true;
+      let valid = true;
       const event = new CustomEvent('doError', {detail: {id: field}});
       field = field.trim();
-      if ('postcode' in document.cdnParameters && document.cdnParameters.postcode != 'N') {
-        if ((field == 'add1' || field == 'postcode') && $('#' + field).val() != '') {
+      if ('postcode' in document.cdnParameters &&
+       document.cdnParameters.postcode != 'N') {
+        if ((field == 'add1' || field == 'postcode') &&
+         $('#' + field).val() != '') {
           if (d) console.log('setting add1/PC');
           const poke = new Event('change', {
             bubbles: true,
@@ -367,7 +388,7 @@ $(document).ready(function() {
 
   // Goto prev step
   const prevStep = function() {
-    if ('hookPrevCheck' in hooks && !hooks.call('hookPrevCheck', [])) return; // HOOK
+    if ('hookPrevCheck' in hooks && !hooks.call('hookPrevCheck', [])) return;
     refocusForm();
     let step = getStep();
     gotoStep(--step);

@@ -1,6 +1,7 @@
 /**
  * All Advertorials Before Body CDN-v1.3
- * Change : Linted to ESLint Google
+ * Change: ES Lint Google
+ * Change: Namespaced
  */
 const adb={};
 /**

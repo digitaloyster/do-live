@@ -1,34 +1,36 @@
 /**
- * All Landing Pages Before Body CDN-v1.0
+ * All Landing Pages Before Body CDN-v1.3
+ * Change: ES Lint Google
+ * Change: Namespaced
  */
-
+const lpb = {};
 /**
   * Variables
   */
-let settings;
-settings.cake_offer_id =
-  (document.cdnParameters.cake_offer_id !== undefined) ?
-  document.cdnParameters.cake_offer_id :
+lpb.settings = document.cdnParameters;
+lpb.settings.cake_offer_id =
+  (lpb.settings.cake_offer_id !== undefined) ?
+  lpb.settings.cake_offer_id :
   false;
-settings.cake_lp_event_id =
-  (document.cdnParameters.cake_lp_event_id !== undefined) ?
-  document.cdnParameters.cake_lp_event_id :
+lpb.settings.cake_lp_event_id =
+  (lpb.settings.cake_lp_event_id !== undefined) ?
+  lpb.settings.cake_lp_event_id :
   false;
-settings.lp_tracking_prefix =
-  (document.cdnParameters.lp_tracking_prefix !== undefined) ?
-  document.cdnParameters.lp_tracking_prefix :
+lpb.settings.lp_tracking_prefix =
+  (lpb.settings.lp_tracking_prefix !== undefined) ?
+  lpb.settings.lp_tracking_prefix :
   false;
-settings.hide_elements =
-  (document.cdnParameters.hide_elements !== undefined) ?
-  document.cdnParameters.hide_elements :
+lpb.settings.hide_elements =
+  (lpb.settings.hide_elements !== undefined) ?
+  lpb.settings.hide_elements :
   false;
-settings.hide_elements_affs =
-  (document.cdnParameters.hide_elements_affs !== undefined) ?
-  document.cdnParameters.hide_elements_affs :
+lpb.settings.hide_elements_affs =
+  (lpb.settings.hide_elements_affs !== undefined) ?
+  lpb.settings.hide_elements_affs :
   false;
-settings.smooth_scroll =
-  (document.cdnParameters.smooth_scroll !== undefined) ?
-  document.cdnParameters.smooth_scroll :
+lpb.settings.smooth_scroll =
+  (lpb.settings.smooth_scroll !== undefined) ?
+  lpb.settings.smooth_scroll :
   false;
 
 
@@ -42,7 +44,7 @@ settings.smooth_scroll =
   * @param  {string} sParam Get Variable Parameter
   * @return {string}        Get Variable Value
   */
-function getUrlParameter(sParam) {
+lpb.getUrlParameter = function(sParam) {
   const sPageURL = decodeURIComponent(window.location.search.substring(1));
   const sURLVariables = sPageURL.split('&');
   let sParameterName;
@@ -62,13 +64,13 @@ function getUrlParameter(sParam) {
  *
  * @param  {type} id description
  */
-function setCKMCookie(id) {
+lpb.setCKMCookie = function(id) {
   let cookie = 'ckm_request_id=; ';
   cookie += 'expires=Thu, 01 Jan 1970 00:00:00 UTC; ';
   cookie += 'path=/;';
   document.cookie = cookie;
   document.cookie = 'ckm_request_id=' + id + ';path=/;';
-}
+};
 
 
 $( document ).ready(function() {
@@ -81,19 +83,21 @@ $( document ).ready(function() {
   /**
    * Taboola Remove Elements
    */
-  if (settings.hide_elements != '' && settings.hide_elements &&
-    settings.hide_elements_affs != '' && settings.hide_elements_affs) {
-    const idstring = settings.hide_elements;
-    const affString = settings.hide_elements_affs;
+  if (lpb.settings.hide_elements != '' && lpb.settings.hide_elements &&
+    lpb.settings.hide_elements_affs != '' && lpb.settings.hide_elements_affs) {
+    const idstring = lpb.settings.hide_elements;
+    const affString = lpb.settings.hide_elements_affs;
     const aff = affString.split(',');
     if (affString != '') {
       for (j in aff) {
-        if (getUrlParameter('aff') == aff[j]) {
-          if (idstring != '') {
-            const ids = idstring.split(',');
-            for (i in ids) {
-              if (Object.prototype.hasOwnProperty.call(foo, key)) {
-                $(ids[i]).remove();
+        if (add.hasOwnProperty(i)) {
+          if (getUrlParameter('aff') == aff[j]) {
+            if (idstring != '') {
+              const ids = idstring.split(',');
+              for (i in ids) {
+                if (ids.hasOwnProperty(i)) {
+                  $(ids[i]).remove();
+                }
               }
             }
           }
@@ -105,7 +109,7 @@ $( document ).ready(function() {
   /**
    * Smooth Scroll
    */
-  if (settings.smooth_scroll == 'Y' && settings.smooth_scroll) {
+  if (lpb.settings.smooth_scroll == 'Y' && lpb.settings.smooth_scroll) {
     // The speed of the scroll in milliseconds
     const speed = 1000;
     // Find links that are #anchors and scroll to them
@@ -124,14 +128,14 @@ $( document ).ready(function() {
   /**
    * LP Pixel
    */
-  if (settings.cake_offer_id != '' && settings.cake_offer_id &&
-   settings.cake_lp_event_id != '' && settings.cake_lp_event_id &&
-   settings.lp_tracking_prefix != '' && settings.lp_tracking_prefix) {
+  if (lpb.settings.cake_offer_id != '' && lpb.settings.cake_offer_id &&
+   lpb.settings.cake_lp_event_id != '' && lpb.settings.cake_lp_event_id &&
+   lpb.settings.lp_tracking_prefix != '' && lpb.settings.lp_tracking_prefix) {
     const image = new Image(1, 1);
     let variant;
     if (typeof window.ub !== 'undefined') variant = window.ub.page.variantId;
     else variant = '';
-    image.src = 'https://digitaloyster.jrnytag.com/p.ashx?o='+settings.cake_offer_id+'&e='+settings.cake_lp_event_id+'&f=img&r=' + getUrlParameter('ckm_request_id') + '&t='+settings.lp_tracking_prefix+'-'+ variant + '|' + window.outerWidth + 'x' + window.outerHeight + '|' + getUrlParameter('link_click');
+    image.src = 'https://digitaloyster.jrnytag.com/p.ashx?o='+lpb.settings.cake_offer_id+'&e='+lpb.settings.cake_lp_event_id+'&f=img&r=' + lpb.getUrlParameter('ckm_request_id') + '&t='+lpb.settings.lp_tracking_prefix+'-'+ variant + '|' + window.outerWidth + 'x' + window.outerHeight + '|' + lpb.getUrlParameter('link_click');
   }
 
   /**
@@ -158,15 +162,14 @@ $( document ).ready(function() {
   /**
    * ReqCookie
    */
-  if (getUrlParameter('ckm_request_id')) {
-    setCKMCookie(getUrlParameter('ckm_request_id'));
+  if (lpb.getUrlParameter('ckm_request_id')) {
+    lpb.setCKMCookie(lpb.getUrlParameter('ckm_request_id'));
   } else if (document.getElementById('ckm_request_id') &&
    document.getElementById('ckm_request_id').value !== '') {
-    setCKMCookie(document.getElementById('ckm_request_id').value);
+    lpb.setCKMCookie(document.getElementById('ckm_request_id').value);
   } else {
     setCKMCookie('');
   }
-
 
   /** NEEDS ADDING document.cookie = "lead_id="+id; TO File/App file in UKM/NFC
   *LeadCookie

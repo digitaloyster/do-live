@@ -1,6 +1,7 @@
 /**
  * Combination Page V1.3 - Including Advertorial steps
- * Change: Linted ESLint Google
+ * Change: ES Lint Google
+ * Change: Namespaced
  */
 const cob = {};
 

@@ -1,20 +1,22 @@
-// Version 1.2.1
+/**
+ * Multi Steo Body - Version 1.3
+ */
 
 $(document).ready(function() {
-  // XXX: Variables/Objects
-  if (document.cdnMultiStep.debugMode) var d = true;
-  else var d = false;
+  let d;
+  if (document.cdnMultiStep.debugMode) d = true;
+  else d = false;
 
   if (document.cdnMultiStep.steps != '') {
-    var steps = document.cdnMultiStep.steps;
+    const steps = document.cdnMultiStep.steps;
   } else alert('steps not found');
   // var buttons = document.cdnMultiStep.buttons;
   if (document.cdnMultiStep.settings != '') {
-    var settings = document.cdnMultiStep.settings;
+    const settings = document.cdnMultiStep.settings;
   } else alert('settings not found');
 
   if (document.cdnMultiStep.hooks != '') {
-    var hooks = document.cdnMultiStep.hooks;
+    const hooks = document.cdnMultiStep.hooks;
   } else alert('hooks not found');
 
   // Variables/Objects
@@ -27,7 +29,10 @@ $(document).ready(function() {
     let oldIOS = false;
     let loadJqueryUi = false;
     const datepicker_option = {};
-    if (/MSIE 10/i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent)) {
+    if (/MSIE 10/i.test(navigator.userAgent) ||
+        /MSIE 9/i.test(navigator.userAgent) ||
+        /rv:11.0/i.test(navigator.userAgent) ||
+        /Edge\/\d./i.test(navigator.userAgent)) {
       msBrowser = true;
     }
 
@@ -39,9 +44,9 @@ $(document).ready(function() {
       }
     }
 
-    $( '#' + document.cdnMultiStep.settings.nextButton ).addClass('button-next');
-    $( '#' + document.cdnMultiStep.settings.nextButton ).addClass('button-back');
-    $( '.lp-pom-button' ).each(function( ) {
+    $('#' + document.cdnMultiStep.settings.nextButton).addClass('button-next');
+    $('#' + document.cdnMultiStep.settings.nextButton).addClass('button-back');
+    $('.lp-pom-button').each(function( ) {
       let mousedown = 0;
       $('#' + this.id).mousedown( function(e) {
         mousedown = 1;
@@ -65,8 +70,13 @@ $(document).ready(function() {
       $.each(steps[i].fields, function(k, val) {
         page.push('#container_' + k);
       });
-      if (objSize(page) == 0) $('#step-' + (i - 1)).after('<div id="step-' + i + '" data-id="' + i + '" class="step"></div>');
-      else $(page.join(',')).wrapAll('<div id="step-' + i + '" data-id="' + i + '" class="step"></div>');
+      let insert = '<div id="step-' + i;
+      insert += '" data-id="' + i + '" class="step"></div>';
+      if (objSize(page) == 0) {
+        $('#step-' + (i - 1)).after(insert);
+      } else {
+        $(page.join(',')).wrapAll(insert);
+      }
     });
 
     // Add custom aspects
@@ -74,20 +84,24 @@ $(document).ready(function() {
       if ('fields' in steps[i] && steps[i].fields != '') {
         $.each(steps[i].fields, function(k, val) {
           // Email Validate
-          // if (k==="email_address") {
-          //    document.getElementById(k).setAttribute("pattern", "[a-zA-Z0-9.-_]{1,}@[a-zA-Z0-9.-]{1,}[.]{1}[a-zA-Z0-9]{2,}");
-          // }
+          if (k==='email_address') {
+            const regex = '[a-zA-Z0-9.-_]{1,}@[a-zA-Z0-9.-]{1,}[.]{1}[a-zA-Z0-9]{2,}';
+            document.getElementById(k).setAttribute('pattern', regex);
+          }
           // Buttons
           if ('display' in val && val.display == 'buttons') {
             if (!$('#' + k).length) {
               $('[name=\'' + k + '\']').parent().addClass('select-button');
               // console.log($("[name='" + k + "']")[0].type);
-              if (objSize(steps[i].fields) === 1 && $('[name=\'' + k + '\']')[0].type !== 'checkbox') {
+              if (objSize(steps[i].fields) === 1 &&
+                  $('[name=\'' + k + '\']')[0].type !== 'checkbox') {
                 $('[name=\'' + k + '\']').parent().addClass('single-field');
               }
               $('[name=\'' + k + '\']').bind('change', function() {
                 const $update = $(this).parent('div');
-                if ($('[name=\'' + k + '\']')[0].type !== 'checkbox') $('#container_' + k + ' .selected').removeClass('selected');
+                if ($('[name=\'' + k + '\']')[0].type !== 'checkbox') {
+                  $('#container_' + k + ' .selected').removeClass('selected');
+                }
                 $update.toggleClass('selected');
                 if ($update.hasClass('single-field') && !msBrowser && !oldIOS) {
                   nextStep();
@@ -98,7 +112,8 @@ $(document).ready(function() {
           // DONE: Test Custom Error events
           if ('error' in val && val.error != '') {
             if ($('#' + i).length) {
-              document.getElementById(k).setAttribute('oninvalid', 'this.setCustomValidity(\'' + val.error + '\');');
+              document.getElementById(k)
+                  .setAttribute('oninvalid', 'this.setCustomValidity(\'' + val.error + '\');');
               document.getElementById(k).setAttribute('onchange', 'this.setCustomValidity(\'\');');
             } else if ($('[name="' + k + '"]').length) {
               const elements = document.getElementsByName(k);
