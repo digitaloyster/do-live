@@ -90,7 +90,7 @@ $( document ).ready(function() {
     const aff = affString.split(',');
     if (affString != '') {
       for (j in aff) {
-        if (add.hasOwnProperty(i)) {
+        if (aff.hasOwnProperty(i)) {
           if (getUrlParameter('aff') == aff[j]) {
             if (idstring != '') {
               const ids = idstring.split(',');

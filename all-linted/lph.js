@@ -35,7 +35,7 @@ document.getElementsByTagName('head')[0].appendChild(lph.style.main);
 
 if ( lph.settings.postcode) {
   const head = document.getElementsByTagName('head')[0];
-  if (settings.postcode == 'A') {
+  if (lph.settings.postcode == 'A') {
     (function(n, t, i, r) {
       let u;
       let f;
