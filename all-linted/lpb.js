@@ -168,7 +168,7 @@ $( document ).ready(function() {
    document.getElementById('ckm_request_id').value !== '') {
     lpb.setCKMCookie(document.getElementById('ckm_request_id').value);
   } else {
-    setCKMCookie('');
+    lpb.setCKMCookie('');
   }
 
   /** NEEDS ADDING document.cookie = "lead_id="+id; TO File/App file in UKM/NFC
