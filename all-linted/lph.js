@@ -1,5 +1,5 @@
 /**
- * All Landing Pages header CDN-v1.1
+ * All Landing Pages header CDN-v1.3
  * Change: ES Lint Google
  * Change: Namespaced
  */
@@ -29,7 +29,7 @@ lph.settings.TB_pixel_ids =
 lph.style.main=document.createElement('link');
 lph.style.main.setAttribute('rel', 'stylesheet');
 lph.style.main.setAttribute('type', 'text/css');
-lph.style.main.setAttribute('href', cdnURL + 'all/lp.css');
+lph.style.main.setAttribute('href', lph.cdnURL + 'all/lp.css');
 document.getElementsByTagName('head')[0].appendChild(lph.style.main);
 
 
@@ -56,10 +56,10 @@ if ( lph.settings.postcode) {
     lph.style.p2s = document.createElement('link');
     lph.style.p2s.setAttribute('rel', 'stylesheet');
     lph.style.p2s.setAttribute('type', 'text/css');
-    lph.style.p2s.setAttribute('href', cdnURL + 'p2/p2.css');
+    lph.style.p2s.setAttribute('href', lph.cdnURL + 'p2/p2.css');
     document.head.appendChild(lph.style.p2s);
     lph.script.p2s = document.createElement('script');
-    lph.script.p2s.setAttribute('src', cdnURL + 'p2/p2.js');
+    lph.script.p2s.setAttribute('src', lph.cdnURL + 'p2/p2.js');
     head.appendChild(lph.script.p2s);
   }
   if (lph.settings.postcode != 'A') {
@@ -72,7 +72,7 @@ if ( lph.settings.postcode) {
     lph.style.d8 = document.createElement('link');
     lph.style.d8.setAttribute('rel', 'stylesheet');
     lph.style.d8.setAttribute('type', 'text/css');
-    lph.style.d8.setAttribute('href', cdnURL + 'd8/d8_dp_d1.css');
+    lph.style.d8.setAttribute('href', lph.cdnURL + 'd8/d8_dp_d1.css');
     document.head.appendChild(lph.style.d8);
   }
   if (lph.settings.postcode == 'DP' ) {
@@ -95,18 +95,18 @@ if ( lph.settings.postcode) {
   if (lph.settings.postcode == 'DS1' ) {
     lph.script.ds1 = document.createElement('script');
     lph.script.ds1.type = 'text/javascript';
-    lph.script.ds1.src = cdnURL + 'd8/d8_ds1.js';
+    lph.script.ds1.src = lph.cdnURL + 'd8/d8_ds1.js';
     head.appendChild(lph.script.ds1);
   }
   if ( lph.settings.postcode == 'DS2' ) {
     lph.script.ds2 = document.createElement('script');
     lph.script.ds2.type = 'text/javascript';
-    lph.script.ds2.src = cdnURL + 'd8/d8_ds2.js';
+    lph.script.ds2.src = lph.cdnURL + 'd8/d8_ds2.js';
     head.appendChild(lph.script.ds2);
     lph.style.ds2 = document.createElement('link');
     lph.style.ds2.setAttribute('rel', 'stylesheet');
     lph.style.ds2.setAttribute('type', 'text/css');
-    lph.style.ds2.setAttribute('href', cdnURL + 'd8/d8_d2.css');
+    lph.style.ds2.setAttribute('href', lph.cdnURL + 'd8/d8_d2.css');
     document.head.appendChild(lph.style.ds2);
   }
 }
