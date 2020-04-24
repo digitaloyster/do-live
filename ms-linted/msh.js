@@ -1,5 +1,6 @@
 /**
  * Multistep Script V1.3
+ * Change: ES Linted Google
  */
 
 document.cdnMultiStep.hooks = {
