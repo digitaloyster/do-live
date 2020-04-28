@@ -91,7 +91,7 @@ $( document ).ready(function() {
     if (affString != '') {
       for (j in aff) {
         if (aff.hasOwnProperty(i)) {
-          if (getUrlParameter('aff') == aff[j]) {
+          if (lpb.getUrlParameter('aff') == aff[j]) {
             if (idstring != '') {
               const ids = idstring.split(',');
               for (i in ids) {
@@ -116,7 +116,7 @@ $( document ).ready(function() {
     $('a[href^=\\#]')
         .not('.lp-pom-form .lp-pom-button')
         .unbind('click.smoothScroll')
-        .bind('click.smoothScroll', function(event) {
+        .bind('click.smoothScroll', /* @this HTMLElement */ function(event) {
           event.preventDefault();
           $('html, body')
               .animate(
@@ -146,13 +146,15 @@ $( document ).ready(function() {
    * By default, first form field is focused automatically on page load.
    * Change this value to 'False' to disable this.
    */
-  $(':input, .lp-pom-form .lp-pom-button').focus(function() {
-    $(this).addClass('focusGlow');
-  });
+  $(':input, .lp-pom-form .lp-pom-button')
+      .focus(/* @this HTMLElement */ function() {
+        $(this).addClass('focusGlow');
+      });
 
-  $(':input, .lp-pom-form .lp-pom-button').blur(function() {
-    $(this).removeClass('focusGlow');
-  });
+  $(':input, .lp-pom-form .lp-pom-button')
+      .blur(/* @this HTMLElement */ function() {
+        $(this).removeClass('focusGlow');
+      });
 
   if (focusOnLoad) {
     $('input:not([type=hidden]):first').focus().addClass('focusGlow');
