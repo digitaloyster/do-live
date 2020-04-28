@@ -52,9 +52,9 @@ $(document).ready(function() {
       }
     }
 
-    $( '#' + document.cdnMultiStep.settings.nextButton )
+    $( '#' + settings.nextButton )
         .addClass('button-next');
-    $( '#' + document.cdnMultiStep.settings.nextButton )
+    $( '#' + settings.nextButton )
         .addClass('button-back');
     $( '.lp-pom-button' ).each(/* @this HTMLElement */ function( ) {
       let mousedown = 0;
@@ -428,12 +428,12 @@ $(document).ready(function() {
       $(this).attr('tabindex', count);
       count ++;
     });
-    $('#'+document.cdnMultiStep.settings.nextButton ).attr('tabindex', count);
+    $('#'+settings.nextButton ).attr('tabindex', count);
     count ++;
-    $('#'+document.cdnMultiStep.settings.prevButton ).attr('tabindex', count);
+    $('#'+settings.prevButton ).attr('tabindex', count);
     $( '.lp-pom-button' ).each(/* @this HTMLElement */ function( ) {
-      if ( this.id != document.cdnMultiStep.settings.nextButton &&
-        this.id != document.cdnMultiStep.settings.prevButton ) {
+      if ( this.id != settings.nextButton &&
+        this.id != settings.prevButton ) {
         $(this).attr('tabindex', count);
         count ++;
       }
