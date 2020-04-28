@@ -177,10 +177,10 @@ $(document).ready(function() {
       }
     });
 
-    loadStyleSheet( 'https://cdn.jsdelivr.net/gh/digitaloyster/do-live/ms/ms.css' );
+    msb.loadStyleSheet( 'https://cdn.jsdelivr.net/gh/digitaloyster/do-live/ms/ms.css' );
     if ( loadJqueryUi ) {
-      loadStyleSheet( 'https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css' );
-      loadScript( 'https://code.jquery.com/ui/1.12.0/jquery-ui.min.js', datePickerOption );
+      msb.loadStyleSheet( 'https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css' );
+      msb.loadScript( 'https://code.jquery.com/ui/1.12.0/jquery-ui.min.js', datePickerOption );
     }
 
 
