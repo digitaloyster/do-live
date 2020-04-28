@@ -4,7 +4,7 @@
  */
 
 $(document).ready(function() {
-  const d = false;
+  let d = false;
   if (document.cdnParameters.debug_mode === 'Y') {
     d = true;
   }
