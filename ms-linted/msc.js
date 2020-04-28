@@ -8,9 +8,7 @@ $(document).ready(function() {
   if (document.cdnMultiStep.debugMode) {
     d = true;
   }
-  if (d) {
-    console.log('debug mode');
-  }
+  if (d) console.log('debug mode');
   init = false;
   let steps = {};
   let settings = {};
@@ -112,9 +110,7 @@ $(document).ready(function() {
           if ('display' in val && val.display == 'buttons') {
             if (!$('#' + k).length) {
               $('[name=\'' + k + '\']').parent().addClass('select-button');
-              if (d) {
-                console.log($('[name=\'' + k + '\']')[0].type);
-              }
+              if (d) console.log($('[name=\'' + k + '\']')[0].type);
               if (objSize(steps[i].fields) === 1 &&
                 $('[name=\'' + k + '\']')[0].type !== 'checkbox') {
                 $('[name=\'' + k + '\']').parent().addClass('single-field');
@@ -497,7 +493,7 @@ $(document).ready(function() {
       if ('hookNextCheck' in hooks &&
           !hooks.call('hookNextCheck', [])) return; // HOOK
       msb.gotoStep(++step);
-    } else console.log('validation fail going to step ' + msb.getStep());
+    } else if (d) console.log('validation fail going to step ' + msb.getStep());
   };
 
   /**
@@ -543,7 +539,7 @@ $(document).ready(function() {
   $('#' + settings.prevButton).click(msb.prevStep);
   msb.submitActive();
   $('.select-button.single-field label').click(function() {
-    console.log('single button click');
+    if (d) console.log('single button click');
     msb.nextStep();
   });
 
