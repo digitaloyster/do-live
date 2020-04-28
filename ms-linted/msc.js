@@ -12,9 +12,9 @@ $(document).ready(function() {
     console.log('debug mode');
   }
   init = false;
-  const steps = {};
-  const settings = {};
-  const hooks = {};
+  let steps = {};
+  let settings = {};
+  let hooks = {};
   if (document.cdnMultiStep.steps != '') {
     steps = document.cdnMultiStep.steps;
   } else alert('steps not found');
