@@ -379,7 +379,7 @@ $(document).ready(function() {
     } else {
       $('#' + settings.prevButton).show();
     }
-    if (step == objSize(steps)) {
+    if (step == msb.objSize(steps)) {
       $('#' + settings.nextButton).hide();
       $('#' + settings.submitButton).show();
     } else {
