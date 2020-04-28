@@ -159,7 +159,7 @@ ie.replaceValidationUI = function(form) {
    * browser—each of which do not prevent
    * form submissions by default
    */
-  form.addEventListener('submit', function(event) {
+  form.addEventListener('submit', /* @this HTMLElement */ function(event) {
     if (!this.checkValidity()) {
       // console.log("prevented");
       event.preventDefault();
@@ -173,6 +173,7 @@ ie.replaceValidationUI = function(form) {
   document.addEventListener('doErrors', function(event) {
     ie.doErrors(form);
   });
+  
   document.addEventListener('doError', function(event) {
     // console.log(event);
     ie.doError(event.detail.id);
