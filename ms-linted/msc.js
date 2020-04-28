@@ -85,7 +85,7 @@ $(document).ready(function() {
       insert += '" data-id="';
       insert += i;
       insert += '" class="step"></div>';
-      if (objSize(page) == 0) {
+      if (msb.objSize(page) == 0) {
         $('#step-' + (i - 1)).after(insert);
       } else {
         $(page.join(',')).wrapAll(insert);
