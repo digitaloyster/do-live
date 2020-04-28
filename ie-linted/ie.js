@@ -101,7 +101,7 @@ ie.doError = function(id) {
   let parent = '';
   if (field == null) {
     const element = container.getElementsByClassName('error-message');
-    if (element.length) removeElementsByClass('error-message', container);
+    if (element.length) ie.removeElementsByClass('error-message', container);
   } else {
     if (field.nodeName == 'SELECT') {
       parent = field.parentNode;
