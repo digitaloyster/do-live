@@ -1,6 +1,9 @@
 /**
- * Inline Errors v1.0
+ * Inline Errors v1.3
+ * Change: ES Lint Google
+ * Change: Namespaced
  */
+const ie = {};
 
 /**
  * Functions
@@ -12,12 +15,12 @@
  * @param  {string} className Class to remove...
  * @param  {string} element   within the element
  */
-function removeElementsByClass(className, element) {
+ie.removeElementsByClass = function(className, element) {
   const elements = element.getElementsByClassName(className);
   while (elements.length > 0) {
     elements[0].parentNode.removeChild(elements[0]);
   }
-}
+};
 
 
 /**
@@ -25,7 +28,7 @@ function removeElementsByClass(className, element) {
  *
  * @param  {string} form Form element to run against
  */
-function doErrors(form) {
+ie.doErrors = function(form) {
   const invalidFields = form.querySelectorAll(':invalid');
   const errorMessages = form.querySelectorAll('.error-message');
   let parent;
@@ -83,7 +86,7 @@ function doErrors(form) {
   if (invalidFields.length > 0) {
     invalidFields[0].focus();
   }
-}
+};
 
 
 /**
@@ -91,7 +94,7 @@ function doErrors(form) {
  *
  * @param  {string} id Id of the field to validate
  */
-function doError(id) {
+ie.doError = function(id) {
   // console.log("doError");
   const container = document.getElementById('container_'+id);
   const field = container.querySelector(':invalid');
@@ -136,7 +139,7 @@ function doError(id) {
       }
     }
   }
-}
+};
 
 
 /**
@@ -144,7 +147,7 @@ function doError(id) {
  *
  * @param  {type} form description
  */
-function replaceValidationUI(form) {
+ie.replaceValidationUI = function(form) {
   // Suppress the default bubbles
   form.addEventListener('invalid', function(event) {
     event.preventDefault();
@@ -168,13 +171,13 @@ function replaceValidationUI(form) {
   });
 
   document.addEventListener('doErrors', function(event) {
-    doErrors(form);
+    ie.doErrors(form);
   });
   document.addEventListener('doError', function(event) {
     // console.log(event);
-    doError(event.detail.id);
+    ie.doError(event.detail.id);
   });
-}
+};
 
 // Replace the validation UI for all forms
 const forms = document.querySelectorAll('form');
