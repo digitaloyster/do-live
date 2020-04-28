@@ -5,7 +5,7 @@
 
 $(document).ready(function() {
   const d = false;
-  if (document.cdnMultiStep.debug_mode) {
+  if (document.cdnParameters.debug_mode === 'Y') {
     d = true;
   }
   if (d) console.log('debug mode');
