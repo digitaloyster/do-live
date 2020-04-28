@@ -346,7 +346,7 @@ $(document).ready(function() {
    * @param  {integer} step show elements of the step
    */
   msb.showElements = function(step) {
-    $(getElements()).fadeOut(400);
+    $(msb.getElements()).fadeOut(400);
     if ('elements' in steps[step] && steps[step].elements != '') {
       const elements = steps[step].elements.split(',');
       $.each(elements, function(index, value) {
