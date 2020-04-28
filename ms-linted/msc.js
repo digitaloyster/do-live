@@ -235,7 +235,7 @@ $(document).ready(function() {
    * @return {boolean} Validation State
    */
   msb.isFieldValid = function(field) {
-    const valid = true;
+    let valid = true;
     if (init) {
       $('#'+field+' .error-message').remove();
       if (d) console.log('firing active validation on '+field);
