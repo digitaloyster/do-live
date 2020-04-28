@@ -182,5 +182,5 @@ ie.replaceValidationUI = function(form) {
 // Replace the validation UI for all forms
 const forms = document.querySelectorAll('form');
 for (let i = 0; i < forms.length; i++) {
-  replaceValidationUI(forms[i]);
+  ie.replaceValidationUI(forms[i]);
 }
