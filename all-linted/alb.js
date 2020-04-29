@@ -14,6 +14,11 @@ alb.settings.TW_site_visit_ids =
   alb.settings.TW_site_visit_ids :
   false;
 
+let d = false;
+if (document.cdnParameters.debug_mode === 'Y') {
+  d = true;
+}
+
 
 /**
   * Functions
@@ -46,7 +51,7 @@ alb.getUrlParameter = function(sParam) {
 alb.setFBPixel = function(ids) {
   for (i in ids) {
     if (ids.hasOwnProperty(i)) {
-      console.log('FB Pixel:' + ids[i]);
+      if (d) console.log('FB Pixel:' + ids[i]);
       !function(f, b, e, v, n, t, s) {
         if (f.fbq) return; n=f.fbq=function() {
                     n.callMethod?
