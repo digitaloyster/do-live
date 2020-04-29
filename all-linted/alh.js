@@ -8,6 +8,12 @@
  * CSS CDN FILE
  */
 const alh = {};
+
+let d = false;
+if (document.cdnParameters.debug_mode === 'Y') {
+  d = true;
+}
+
 alh.cdnURL = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/';
 alh.styles = document.createElement('link');
 alh.styles.setAttribute('rel', 'stylesheet');
@@ -65,7 +71,7 @@ if ( mod1 != 'off' && alh.guid % parseInt( mod1 ) === 0 ) {
   window['_fs_namespace'] = 'FS';
   (function(m, n, e, t, l, o, g, y) {
     if (e in m) {
-      if (m.console && m.console.log) {
+      if (d && m.console && m.console.log) {
         const error = 'FullStory namespace conflict.';
         error += 'Please set window["_fs_namespace"].';
         m.console.log(error);
