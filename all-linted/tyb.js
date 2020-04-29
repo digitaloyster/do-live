@@ -5,9 +5,9 @@
  */
 const tyb = {};
 
-let d = false;
+tyb.d = false;
 if (document.cdnParameters.debug_mode === 'Y') {
-  d = true;
+  tyb.d = true;
 }
 
 /**
@@ -108,7 +108,7 @@ if (tyb.settings.cake_offer_id != '' && tyb.settings.cake_offer_id &&
       else variant = '';
       url += '&t='+tyb.settings.ty_tracking_prefix+'-'+variant;
     }
-    if (d) console.log(url);
+    if (tyb.d) console.log(url);
     image.src = url;
   }, 4000);
 }
