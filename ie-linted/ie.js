@@ -58,7 +58,6 @@ ie.doErrors = function(form) {
         if (field.attributes[j].name == 'type') {
           if (field.attributes[j].value == 'radio' ||
               field.attributes[j].value == 'checkbox') {
-            // console.log("Test");
             parent = invalidFields[i].parentNode.parentNode.parentNode;
             if (!parent.querySelectorAll('.error-message').length) {
               const el = invalidFields[i].parentNode.parentNode;
@@ -95,7 +94,6 @@ ie.doErrors = function(form) {
  * @param  {string} id Id of the field to validate
  */
 ie.doError = function(id) {
-  // console.log("doError");
   const container = document.getElementById('container_'+id);
   const field = container.querySelector(':invalid');
   let parent = '';
@@ -161,7 +159,6 @@ ie.replaceValidationUI = function(form) {
    */
   form.addEventListener('submit', /* @this HTMLElement */ function(event) {
     if (!this.checkValidity()) {
-      // console.log("prevented");
       event.preventDefault();
     }
   });
@@ -173,9 +170,8 @@ ie.replaceValidationUI = function(form) {
   document.addEventListener('doErrors', function(event) {
     ie.doErrors(form);
   });
-  
+
   document.addEventListener('doError', function(event) {
-    // console.log(event);
     ie.doError(event.detail.id);
   });
 };
