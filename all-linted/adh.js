@@ -21,6 +21,9 @@ adh.TB_widget = (document.cdnParameters.TB_widget !== undefined) ?
 adh.d = (document.cdnParameters.debug_mode !== undefined) ?
     document.cdnParameters.debug_mode :
     false;
+adh.hide_popup = (document.cdnParameters.hide_popup !== undefined) ?
+    document.cdnParameters.hide_popup :
+    false;
 // CSS CDN FILE
 adh.cdnAllURL = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/';
 adh.styles={};
