@@ -18,6 +18,9 @@ adh.cookie_footer_url =
 adh.TB_widget = (document.cdnParameters.TB_widget !== undefined) ?
     document.cdnParameters.TB_widget :
     false;
+adh.d = (document.cdnParameters.debug_mode !== undefined) ?
+    document.cdnParameters.debug_mode :
+    false;
 // CSS CDN FILE
 adh.cdnAllURL = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/';
 adh.styles={};
