@@ -115,14 +115,15 @@ $(document).ready(function() {
     adb.url += adb.pid;
     let a = 'a:not(#link-no-replace, #ubpoverlay-close,';
     a += adb.settings.adv_not_replace_url_on + ' )';
-    $(a).attr('href', url);
-    $('area').attr('href', url);
+    $(a).attr('href', adb.url);
+    $('area').attr('href', adb.url);
   }
 
   /**
    * ADV Replace URLS
    */
-  if (adb.settings.adv_replace_urls_to !== '' && adb.settings.adv_replace_urls_to) {
+  if (adb.settings.adv_replace_urls_to !== '' &&
+      adb.settings.adv_replace_urls_to) {
     adb.setURLRef(adb.settings.adv_replace_urls_to);
   }
 
