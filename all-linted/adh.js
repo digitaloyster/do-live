@@ -63,6 +63,7 @@ adh.createCookie = function(name, value, minutes) {
 };
 
 if (adh.getParameterByName('aff')=='969' || adh.hide_popup == 'Y') {
+  if (adh.d) console.log('creating cookie');
   adh.createCookie('hidePopup', 'TRUE', 5);
 }
 
