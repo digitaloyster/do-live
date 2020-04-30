@@ -21,8 +21,8 @@ adh.TB_widget = (document.cdnParameters.TB_widget !== undefined) ?
 adh.d = (document.cdnParameters.debug_mode !== undefined) ?
     document.cdnParameters.debug_mode :
     false;
-adh.hide_popup = (document.cdnParameters.hide_popup !== undefined) ?
-    document.cdnParameters.hide_popup :
+adh.hide_popups = (document.cdnParameters.hide_popups !== undefined) ?
+    document.cdnParameters.hide_popups :
     false;
 // CSS CDN FILE
 adh.cdnAllURL = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/';
@@ -68,7 +68,7 @@ adh.createCookie = function(name, value, minutes) {
   document.cookie = name+'='+value+expires+'; path=/';
 };
 
-if (adh.getParameterByName('aff')=='969' || adh.hide_popup == 'Y') {
+if (adh.getParameterByName('aff')=='969' || adh.hide_popups == 'Y') {
   if (adh.d) console.log('creating cookie');
   adh.createCookie('hidePopup', 'TRUE', 5);
 }
