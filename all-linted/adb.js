@@ -94,7 +94,7 @@ $(document).ready(function() {
    */
   if (adb.getParameterByName('pid') !== '' &&
   typeof adb.getParameterByName('pid') === 'string') {
-    pid = '&pid=' + adb.getParameterByName('pid');
+    adb.pid = '&pid=' + adb.getParameterByName('pid');
   }
 
   /**
@@ -104,15 +104,15 @@ $(document).ready(function() {
     adb.settings.adv_replace_urls_to &&
     adb.settings.adv_not_replace_url_on !== '' &&
     adb.settings.adv_not_replace_url_on) {
-    let url = adb.settings.adv_replace_urls_to;
-    if (url.indexOf('?') !== -1) {
-      url += '&ckm_request_id=';
+    adb.url = adb.settings.adv_replace_urls_to;
+    if (adb.url.indexOf('?') !== -1) {
+      adb.url += '&ckm_request_id=';
     } else {
-      url += '?ckm_request_id=';
+      adb.url += '?ckm_request_id=';
     }
-    url += adb.getParameterByName('ckm_request_id');
-    url += '&aff=' + adb.getParameterByName('aff');
-    url += pid;
+    adb.url += adb.getParameterByName('ckm_request_id');
+    adb.url += '&aff=' + adb.getParameterByName('aff');
+    adb.url += adb.pid;
     let a = 'a:not(#link-no-replace, #ubpoverlay-close,';
     a += adb.settings.adv_not_replace_url_on + ' )';
     $(a).attr('href', url);

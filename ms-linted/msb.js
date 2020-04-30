@@ -585,14 +585,16 @@ $(document).ready(function() {
   /**
    * Active Validation Events
    */
-  $.each(steps, function(i, v) {
-    $.each(steps[i].fields, function(j, w) {
-      if (d) console.log('#' + j);
-      $('#' + j).change(function() {
-        msb.isFieldValid(j);
+  if (settings.live_validate == 'Y') {
+    $.each(steps, function(i, v) {
+      $.each(steps[i].fields, function(j, w) {
+        if (d) console.log('#' + j);
+        $('#' + j).change(function() {
+          msb.isFieldValid(j);
+        });
       });
     });
-  });
+  }
 
   /**
    * Prevent enter key functionality
