@@ -1,5 +1,9 @@
-// Global config for Data8 validation v1.0
-const d8Validation = {
+/* Global config for Data8 validation v2.0 */
+const d8 = {};
+d8.d = (document.cdnParameters.debug_mode !== undefined) ?
+    document.cdnParameters.debug_mode :
+    false;
+d8.Validation = {
   apiKey: '8E37-B68G-6V63-M6YF',
   email: {
     enabled: false,
@@ -10,65 +14,43 @@ const d8Validation = {
     enabled: true,
     useLineValidation: true,
     useMobileValidation: true,
+    UseUnavailableStatus: true,
     defaultCountryCode: 44,
     msg: 'Please enter a valid telephone number.',
   },
 };
 
-function d8Complete() {
-  console.log('d8 return');
+d8.d8Complete = function() {
+  if (d8.d) console.log('d8 return');
   const event = new Event('d8Complete');
   document.dispatchEvent(event);
-}
+};
 
-// Runs on form submission
-function startData8Validation(e, $) {
-  // e.preventDefault();
-  // Build an array of validation callbacks
+d8.startData8Validation = function(e, $) {
   const promises = [];
-  // Find the form and all the phone & email fields in it
-  // var form = lp.jQuery('.lp-pom-form form');
-  if (d8Validation.phone.enabled) {
-    // var phoneFields = lp.jQuery('input[type=tel]', form);
+  if (d8.Validation.phone.enabled) {
     const phonefield = document.getElementById('telephone');
-
-    // phoneFields.each(function(idx, el) {
-    promises.push(validatePhoneAsync(phonefield).then(reportValidationResult).then(d8Complete));
-    // });
+    promises.push(
+        d8.validatePhoneAsync(phonefield)
+            .then(d8.reportValidationResult)
+            .then(d8.d8Complete));
   }
+};
 
-  // if (d8Validation.email.enabled) {
-  // var emailFields = lp.jQuery('input[type=email]', form);
-
-  // emailFields.each(function(idx, el) {
-  // promises.push(validateEmailAsync(el).then(reportValidationResult));
-  // });
-  // }
-
-  // Wait for all the callbacks to complete. If the form is then valid, submit it
-  // Promise.all(promises).then(function(values) {
-  //  var event = new Event('doErrors');
-  //  document.dispatchEvent(event);
-  //  //if (form.valid()) form.submit();
-  //
-  // });
-}
-
-function validateEmailAsync(field, valid) {
+d8.validateEmailAsync = function(field, valid) {
   return new Promise(function(resolve, reject) {
     const params = {
       email: field.value,
-      level: d8Validation.email.level,
+      level: d8.Validation.email.level,
     };
 
     const req = new XMLHttpRequest();
-    req.open('POST', 'https://webservices.data-8.co.uk/EmailValidation/IsValid.json?key=' + d8Validation.apiKey);
+    req.open('POST', 'https://webservices.data-8.co.uk/EmailValidation/IsValid.json?key=' + d8.Validation.apiKey);
     req.setRequestHeader('Accept', 'application/json');
     req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
     req.onreadystatechange = function() {
       if (this.readyState === 4) {
         req.onreadystatechange = null;
-
         if (this.status === 200) {
           const result = JSON.parse(this.response);
           if (!result.Status.Success) {
@@ -85,7 +67,7 @@ function validateEmailAsync(field, valid) {
             resolve({
               field: field,
               valid: false,
-              msg: d8Validation.email.msg,
+              msg: d8.Validation.email.msg,
             });
           }
         } else {
@@ -96,30 +78,29 @@ function validateEmailAsync(field, valid) {
         }
       }
     };
-
     req.send(window.JSON.stringify(params));
   });
-}
+};
 
-function validatePhoneAsync(field, valid) {
+d8.validatePhoneAsync = function(field, valid) {
   return new Promise(function(resolve, reject) {
     const params = {
       telephoneNumber: field.value,
-      defaultCountry: d8Validation.phone.defaultCountryCode,
+      defaultCountry: d8.Validation.phone.defaultCountryCode,
       options: {
-        UseLineValidation: d8Validation.phone.useLineValidation,
-        UseMobileValidation: d8Validation.phone.useMobileValidation,
+        UseLineValidation: d8.Validation.phone.useLineValidation,
+        UseMobileValidation: d8.Validation.phone.useMobileValidation,
       },
     };
 
     const req = new XMLHttpRequest();
-    req.open('POST', 'https://webservices.data-8.co.uk/InternationalTelephoneValidation/IsValid.json?key=' + d8Validation.apiKey);
+    req.open('POST', 'https://webservices.data-8.co.uk/InternationalTelephoneValidation/IsValid.json?key=' + d8.Validation.apiKey);
     req.setRequestHeader('Accept', 'application/json');
     req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
     req.onreadystatechange = function() {
       if (this.readyState === 4) {
         req.onreadystatechange = null;
-        console.log(this);
+        if (d8.d) console.log(this);
         if (this.status === 200) {
           const result = JSON.parse(this.response);
           if (!result.Status.Success) {
@@ -127,7 +108,8 @@ function validatePhoneAsync(field, valid) {
               field: field,
               valid: true,
             });
-          } else if (result.Result.ValidationResult !== 'Invalid' && result.Result.ValidationResult !== 'NoCoverage') {
+          } else if (result.Result.ValidationResult !== 'Invalid' &&
+           result.Result.ValidationResult !== 'NoCoverage') {
             resolve({
               field: field,
               valid: true,
@@ -136,7 +118,7 @@ function validatePhoneAsync(field, valid) {
             resolve({
               field: field,
               valid: false,
-              msg: d8Validation.phone.msg,
+              msg: d8.Validation.phone.msg,
             });
           }
         } else {
@@ -149,19 +131,19 @@ function validatePhoneAsync(field, valid) {
     };
     req.send(window.JSON.stringify(params));
   });
-}
+};
 
-function reportValidationResult(result) {
-  console.log(result);
+d8.reportValidationResult = function(result) {
+  if (d8.d) console.log(result);
   if (result.valid) {
     result.field.setCustomValidity('');
   } else {
     result.field.setCustomValidity(result.msg);
   }
   return result;
-}
+};
 
 document.addEventListener('d8Validate', function(e) {
-  console.log('d8 validate heard');
-  startData8Validation(e, $);
+  if (d8.d) console.log('d8 validate heard');
+  d8.startData8Validation(e, $);
 });

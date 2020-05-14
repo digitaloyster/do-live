@@ -14,9 +14,13 @@ window.onload = function() {
     },
     showResults: function( pa, results ) {
       if (!results.Count) {
-        $('#' + pa.elements.textbox.id ).parent().find('.error-message').remove();
+        $('#' + pa.elements.textbox.id ).parent()
+            .find('.error-message').remove();
         $('#container_postcode').find('.error-message').remove();
-        $('#address_search').addClass('error').after('<label for=\'address_search\' generated=\'true\' class=\'error-message\' style=\'\'>Please enter a valid address or postcode</label>');
+        const pcLbl = '<label for=\'address_search\'';
+        pcLbl += 'generated=\'true\' class=\'error-message\' style=\'\'>';
+        pcLbl += 'Please enter a valid address or postcode</label>';
+        $('#address_search').addClass('error').after(pcLbl);
         return true;
       } else {
         $('.error-message').remove();
