@@ -320,9 +320,12 @@ $(document).ready(function() {
 
     //Scroll to top of form
     var refocusForm = function() {
-        $('html, body').animate({
-            scrollTop: $(".lp-pom-form").parent().offset().top
-        }, 500);
+        var step = getStep();
+        if (step != 1 ) {
+          $('html, body').animate({
+              scrollTop: $(".lp-pom-form").parent().offset().top
+          }, 500);
+        }
     };
 
     // Utility functions
@@ -334,20 +337,21 @@ $(document).ready(function() {
     // Goto prev step
     var prevStep = function() {
         if ('hookPrevCheck' in hooks && !hooks.call('hookPrevCheck', [])) return; // HOOK
-        refocusForm();
         var step = getStep();
         gotoStep(--step);
+        refocusForm();
     };
 
     // Goto next step
     var nextStep = function() {
         var step = getStep();
-        if (step != 1) refocusForm();
-
         if (isValid(step)) {
             if ('hookNextCheck' in hooks && !hooks.call('hookNextCheck', [])) return; // HOOK
             gotoStep(++step);
-        } else console.log('validation fail going to step ' + getStep());
+        } else {
+          console.log('validation fail going to step ' + getStep());
+        }
+        if (step != 1) refocusForm();
     };
 
     // Submit functions
