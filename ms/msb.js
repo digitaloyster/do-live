@@ -258,7 +258,11 @@ $(document).ready(function() {
         }
         updateTabIndex();
         if (step !== 1) {
-            $(':input:enabled:visible:first').focus();
+          $(':input:enabled:visible:first').focus();
+        } else {
+          $('html, body').animate({
+            scrollTop: $("body").offset().top
+          }, 0);
         }
         hooks.call('hookNewStep', []); //HOOK
     };
