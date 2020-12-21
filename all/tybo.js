@@ -32,7 +32,7 @@ return "";
 if (document.cdnParameters.cake_offer_id != '' && typeof document.cdnParameters.cake_offer_id !== "undefined" && document.cdnParameters.ty_tracking_prefix != '' && typeof document.cdnParameters.ty_tracking_prefix !== "undefined" && document.cdnParameters.cake_conv_id != '' && typeof document.cdnParameters.cake_conv_id !== "undefined") { //REVIEW: Checking cake_offer_id AND ty_tracking_prefix
   setTimeout(function(){
     var image = new Image(1,1);
-    var url = "http://secureoyster.com/d.ashx?o="+document.cdnParameters.cake_offer_id+"&e="+document.cdnParameters.cake_conv_id+"&r=" + getCookie('ckm_request_id');
+    var url = "https://secureoyster.com/p.ashx?o="+document.cdnParameters.cake_offer_id+"&e="+document.cdnParameters.cake_conv_id+"&r=" + getCookie('ckm_request_id');
     if (document.cdnParameters.cake_conv_id !== 'ld') { //Review: Added for the UKM Fix
       if (getCookie('lead_id') !== null && getCookie('lead_id') !== '' ) url += "&t=" + getCookie('lead_id');
     } else {
