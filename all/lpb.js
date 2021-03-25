@@ -66,7 +66,7 @@ $( document ).ready(function() {
       var variant;
       if (typeof window.ub !== "undefined") variant = window.ub.page.variantId;
       else variant = "";
-      image.src = "https://digitaloyster.jrnytag.com/p.ashx?o="+document.cdnParameters.cake_offer_id+"&e="+document.cdnParameters.cake_lp_event_id+"&f=img&r=" + getUrlParameter('ckm_request_id') + '&t='+document.cdnParameters.lp_tracking_prefix+'-'+ variant + '|' + window.outerWidth + 'x' + window.outerHeight + '|' + getUrlParameter('link_click');
+      image.src = "https://oystercake.co.uk/p.ashx?o="+document.cdnParameters.cake_offer_id+"&e="+document.cdnParameters.cake_lp_event_id+"&f=img&r=" + getUrlParameter('ckm_request_id') + '&t='+document.cdnParameters.lp_tracking_prefix+'-'+ variant + '|' + window.outerWidth + 'x' + window.outerHeight + '|' + getUrlParameter('link_click');
 
     }
   //LP Pixel
