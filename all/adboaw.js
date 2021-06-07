@@ -11,6 +11,53 @@ function getParameterByName(name) {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
+var postCKM = function() {
+  // replace URL
+  if (document.cdnParameters.adv_replace_urls_to != '' && typeof document.cdnParameters.adv_replace_urls_to !== 'undefined' && document.cdnParameters.adv_not_replace_url_on != '' && typeof document.cdnParameters.adv_not_replace_url_on !== 'undefined') { //REVIEW: Add check for adv_not_replace_url_on
+    var url = document.cdnParameters.adv_replace_urls_to;
+    if (url.indexOf('?') !== -1) {
+      url += '&ckm_request_id=' + ckm_request_id + '&aff=' + affiliate + pid;
+    } else {
+      url += '?ckm_request_id=' + ckm_request_id + '&aff=' + affiliate + pid;
+    }
+    $('a:not(#link-no-replace, #ubpoverlay-close,' + document.cdnParameters.adv_not_replace_url_on + ' )').attr('href', url);
+    $("area").attr("href", url);
+  }
+  // replace URL
+
+  // ADV Replace URLS
+  if (document.cdnParameters.adv_replace_urls_to != '' && typeof document.cdnParameters.adv_replace_urls_to !== 'undefined') {
+    (function setURLRef(lpURL) {
+      var separator = '&';
+      var urls = $('[href^="' + lpURL + '"]');
+
+      $.each(urls, function(i, val) {
+        i++;
+        var href = $(val).attr('href');
+        href += separator + 'link_click=' + i;
+        $(val).attr('href', href);
+      });
+    })(document.cdnParameters.adv_replace_urls_to);
+  }
+  // ADV Replace URLS
+
+  // Adv pixel
+  if (document.cdnParameters.cake_offer_id != '' && typeof document.cdnParameters.cake_offer_id !== 'undefined' && document.cdnParameters.cake_adv_event_id != '' && typeof document.cdnParameters.cake_adv_event_id !== 'undefined' && document.cdnParameters.adv_tracking_prefix != '' && typeof document.cdnParameters.adv_tracking_prefix !== 'undefined') { //REVIEW: Add check for cake_offer_id AND cake_adv_event_id AND adv_tracking_prefix
+    var image = new Image(1, 1);
+    image.src = "https://secureoyster.com/p.ashx?o=" + document.cdnParameters.cake_offer_id + "&e=" + document.cdnParameters.cake_adv_event_id + "&f=img&r=" + ckm_request_id + '&t=' + document.cdnParameters.adv_tracking_prefix + '-' + window.ub.page.variantId + '|' + window.outerWidth + 'x' + window.outerHeight;
+  }
+  // Adv Pixel
+
+  // 10sec pixel
+  if (document.cdnParameters.cake_offer_id != '' && typeof document.cdnParameters.cake_offer_id !== 'undefined' && document.cdnParameters.cake_10s_event_id != '' && typeof document.cdnParameters.cake_10s_event_id !== 'undefined') { //REVIEW: Add check for cake_offer_id AND cake_10s_event_id
+    setTimeout(function() {
+      var image = new Image(1, 1);
+      image.src = "https://secureoyster.com/p.ashx?o=" + document.cdnParameters.cake_offer_id + "&e=" + document.cdnParameters.cake_10s_event_id + "&f=img&r=" + ckm_request_id;
+    }, 10000);
+  }
+  // 10sec pixel
+};
+
 $(document).ready(function() {
   var pid = '';
   if (getParameterByName('pid') != '' && typeof getParameterByName('pid') === 'string') {
@@ -40,52 +87,7 @@ $(document).ready(function() {
 
 
 
-  var postCKM = function() {
-    // replace URL
-    if (document.cdnParameters.adv_replace_urls_to != '' && typeof document.cdnParameters.adv_replace_urls_to !== 'undefined' && document.cdnParameters.adv_not_replace_url_on != '' && typeof document.cdnParameters.adv_not_replace_url_on !== 'undefined') { //REVIEW: Add check for adv_not_replace_url_on
-      var url = document.cdnParameters.adv_replace_urls_to;
-      if (url.indexOf('?') !== -1) {
-        url += '&ckm_request_id=' + ckm_request_id + '&aff=' + affiliate + pid;
-      } else {
-        url += '?ckm_request_id=' + ckm_request_id + '&aff=' + affiliate + pid;
-      }
-      $('a:not(#link-no-replace, #ubpoverlay-close,' + document.cdnParameters.adv_not_replace_url_on + ' )').attr('href', url);
-      $("area").attr("href", url);
-    }
-    // replace URL
 
-    // ADV Replace URLS
-    if (document.cdnParameters.adv_replace_urls_to != '' && typeof document.cdnParameters.adv_replace_urls_to !== 'undefined') {
-      (function setURLRef(lpURL) {
-        var separator = '&';
-        var urls = $('[href^="' + lpURL + '"]');
-
-        $.each(urls, function(i, val) {
-          i++;
-          var href = $(val).attr('href');
-          href += separator + 'link_click=' + i;
-          $(val).attr('href', href);
-        });
-      })(document.cdnParameters.adv_replace_urls_to);
-    }
-    // ADV Replace URLS
-
-    // Adv pixel
-    if (document.cdnParameters.cake_offer_id != '' && typeof document.cdnParameters.cake_offer_id !== 'undefined' && document.cdnParameters.cake_adv_event_id != '' && typeof document.cdnParameters.cake_adv_event_id !== 'undefined' && document.cdnParameters.adv_tracking_prefix != '' && typeof document.cdnParameters.adv_tracking_prefix !== 'undefined') { //REVIEW: Add check for cake_offer_id AND cake_adv_event_id AND adv_tracking_prefix
-      var image = new Image(1, 1);
-      image.src = "https://secureoyster.com/p.ashx?o=" + document.cdnParameters.cake_offer_id + "&e=" + document.cdnParameters.cake_adv_event_id + "&f=img&r=" + ckm_request_id + '&t=' + document.cdnParameters.adv_tracking_prefix + '-' + window.ub.page.variantId + '|' + window.outerWidth + 'x' + window.outerHeight;
-    }
-    // Adv Pixel
-
-    // 10sec pixel
-    if (document.cdnParameters.cake_offer_id != '' && typeof document.cdnParameters.cake_offer_id !== 'undefined' && document.cdnParameters.cake_10s_event_id != '' && typeof document.cdnParameters.cake_10s_event_id !== 'undefined') { //REVIEW: Add check for cake_offer_id AND cake_10s_event_id
-      setTimeout(function() {
-        var image = new Image(1, 1);
-        image.src = "https://secureoyster.com/p.ashx?o=" + document.cdnParameters.cake_offer_id + "&e=" + document.cdnParameters.cake_10s_event_id + "&f=img&r=" + ckm_request_id;
-      }, 10000);
-    }
-    // 10sec pixel
-  };
 
 
 
