@@ -59,7 +59,7 @@ var postCKM = function() {
 };
 
 $(document).ready(function() {
-  var pid = '';
+  pid = '';
   if (getParameterByName('pid') != '' && typeof getParameterByName('pid') === 'string') {
     pid = '&pid=' + getParameterByName('pid');
   }
