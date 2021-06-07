@@ -20,13 +20,13 @@ $(document).ready(function() {
   //let ckm_request_id, affiliate;
 
   if (getParameterByName('ckm_request_id') != '' && typeof getParameterByName('ckm_request_id') === 'string') {
-    let ckm_request_id = getParameterByName('ckm_request_id');
-    let affiliate = getParameterByName('aff');
+    ckm_request_id = getParameterByName('ckm_request_id');
+    affiliate = getParameterByName('aff');
     postCKM();
   } else if (getParameterByName('a') != '' && typeof getParameterByName('a') === 'string' && getParameterByName('c') != '' && typeof getParameterByName('c') === 'string') {
     // <script type="text/javascript" src="https://digitaloyster.jrnytag.com/?a=23&c=13&cp=js&s1=TEST"></script>
     let clickpixel = 'https://digitaloyster.jrnytag.com/' + location.search + '&cp=js';
-    let affiliate = getParameterByName('a');
+    affiliate = getParameterByName('a');
     //$('head').append(clickpixel);
     //eval($('#clickpixel').text());
     $.getScript(clickpixel, function() {
