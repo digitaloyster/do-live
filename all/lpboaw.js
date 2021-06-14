@@ -78,7 +78,7 @@ $(document).ready(function() {
     let variant;
     let ckmri = '';
     if (getUrlParameter('ckm_request_id')) {
-      ckmri = getUrlParamter('ckm_request_id');
+      ckmri = getUrlParameter('ckm_request_id');
     } else if (typeof getUrlParameter('ckm_request_id') !== 'string' && getUrlParameter('a') != '' && typeof getUrlParameter('a') === 'string' && getUrlParameter('c') != '' && typeof getUrlParameter('c') === 'string') {
       ckmri = ckm_request_id;
     }
