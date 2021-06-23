@@ -64,9 +64,13 @@ $(document).ready(function() {
   if (typeof getUrlParameter('ckm_request_id') !== 'string' && getUrlParameter('a') != '' && typeof getUrlParameter('a') === 'string' && getUrlParameter('c') != '' && typeof getUrlParameter('c') === 'string') {
     let clickpixel = 'https://digitaloyster.jrnytag.com/' + location.search + '&cp=js';
     affiliate = getUrlParameter('a');
+
     // $('head').append(clickpixel);
     // eval($('#clickpixel').text());
     $.getScript(clickpixel, function() {
+      let image = new Image(1, 1);
+      let variant;
+      let ckmri = '';      
       document.getElementById('ckm_request_id').value = ckm_request_id;
       ckmri = ckm_request_id;
       console.log("ckm:"+ckmri);
