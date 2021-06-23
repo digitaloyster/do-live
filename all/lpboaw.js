@@ -68,6 +68,12 @@ $(document).ready(function() {
     // eval($('#clickpixel').text());
     $.getScript(clickpixel, function() {
       document.getElementById('ckm_request_id').value = ckm_request_id;
+      ckmri = ckm_request_id;
+      console.log("ckm:"+ckmri);
+      if (typeof window.ub !== 'undefined') variant = window.ub.page.variantId;
+      else variant = '';
+
+      image.src = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id + '&e=' + document.cdnParameters.cake_lp_event_id + '&f=img&r=' + ckmri + '&t=' + document.cdnParameters.lp_tracking_prefix + '-' + variant + '|' + window.outerWidth + 'x' + window.outerHeight + '|' + getUrlParameter('link_click');
     });
   }
   // Get ckm_request_id
@@ -79,15 +85,10 @@ $(document).ready(function() {
     let ckmri = '';
     if (getUrlParameter('ckm_request_id')) {
       ckmri = getUrlParameter('ckm_request_id');
-    } else if (typeof getUrlParameter('ckm_request_id') !== 'string' && getUrlParameter('a') != '' && typeof getUrlParameter('a') === 'string' && getUrlParameter('c') != '' && typeof getUrlParameter('c') === 'string') {
-      ckmri = ckm_request_id;
+      if (typeof window.ub !== 'undefined') variant = window.ub.page.variantId;
+      else variant = '';
+      image.src = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id + '&e=' + document.cdnParameters.cake_lp_event_id + '&f=img&r=' + ckmri + '&t=' + document.cdnParameters.lp_tracking_prefix + '-' + variant + '|' + window.outerWidth + 'x' + window.outerHeight + '|' + getUrlParameter('link_click');
     }
-    if (typeof window.ub !== 'undefined') variant = window.ub.page.variantId;
-    else variant = '';
-
-
-    image.src = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id + '&e=' + document.cdnParameters.cake_lp_event_id + '&f=img&r=' + ckmri + '&t=' + document.cdnParameters.lp_tracking_prefix + '-' + variant + '|' + window.outerWidth + 'x' + window.outerHeight + '|' + getUrlParameter('link_click');
-
   }
   // LP Pixel
   //
