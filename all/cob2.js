@@ -126,6 +126,7 @@ $(document).ready(function() {
     const clickpixel = 'https://digitaloyster.jrnytag.com/' + location.search + '&cp=js';
     affiliate = getParameterByName('a');
     $.getScript(clickpixel, function() {
+      document.getElementById('ckm_request_id').value = ckm_request_id;
       postCKM();
     });
   } else {
