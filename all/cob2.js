@@ -21,9 +21,9 @@ const setCKMCookie = function(id) {
 
 const postCKM = function() {
   // Adv pixel
-  if (document.cdnParameters.cake_offer_id != '' && typeof document.cdnParameters.cake_offer_id !== 'undefined' && document.cdnParameters.cake_adv_event_id != '' && typeof document.cdnParameters.cake_adv_event_id !== 'undefined' && document.cdnParameters.adv_tracking_prefix != '' && typeof document.cdnParameters.adv_tracking_prefix !== 'undefined') {
+  if (document.cdnParameters.cake_offer_id != '' && typeof document.cdnParameters.cake_offer_id !== 'undefined' && document.cdnParameters.cake_adv_event_id != '' && typeof document.cdnParameters.cake_adv_event_id !== 'undefined' && document.cdnParameters.lp_tracking_prefix != '' && typeof document.cdnParameters.lp_tracking_prefix !== 'undefined') {
     const image = new Image(1, 1);
-    image.src = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id + '&e=' + document.cdnParameters.cake_adv_event_id + '&f=img&r=' + ckm_request_id + '&t=' + document.cdnParameters.adv_tracking_prefix + '-' + window.ub.page.variantId + '|' + window.outerWidth + 'x' + window.outerHeight;
+    image.src = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id + '&e=' + document.cdnParameters.cake_adv_event_id + '&f=img&r=' + ckm_request_id + '&t=' + document.cdnParameters.lp_tracking_prefix + '-' + window.ub.page.variantId + '|' + window.outerWidth + 'x' + window.outerHeight;
     console.log('fire adv');
   }
   // Adv Pixel
