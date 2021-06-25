@@ -1,19 +1,19 @@
 // All Landing Pages Before Body CDN-v2
 
 // Functions
-const getUrlParameter = function getUrlParameter(sParam) {
-  const sPageURL = decodeURIComponent(window.location.search.substring(1));
-  const sURLVariables = sPageURL.split('&');
-  let sParameterName;
-  let i;
+//const getUrlParameter = function getUrlParameter(sParam) {
+//  const sPageURL = decodeURIComponent(window.location.search.substring(1));
+//  const sURLVariables = sPageURL.split('&');
+//  let sParameterName;
+//  let i;
 
-  for (i = 0; i < sURLVariables.length; i++) {
-    sParameterName = sURLVariables[i].split('=');
-    if (sParameterName[0] === sParam) {
-      return sParameterName[1] === undefined ? true : sParameterName[1];
-    }
-  }
-};
+// for (i = 0; i < sURLVariables.length; i++) {
+//    sParameterName = sURLVariables[i].split('=');
+//    if (sParameterName[0] === sParam) {
+//      return sParameterName[1] === undefined ? true : sParameterName[1];
+//    }
+//  }
+//};
 
 const setCKMCookie = function(id) {
   document.cookie = 'ckm_request_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
@@ -33,7 +33,7 @@ $(document).ready(function() {
     const aff = affString.split(',');
     if (affString != '') {
       for (j in aff) {
-        if (getUrlParameter('aff') == aff[j]) {
+        if (getParameterByName('aff') == aff[j]) {
           if (idstring != '') {
             const ids = idstring.split(',');
             for (i in ids) {
@@ -61,12 +61,10 @@ $(document).ready(function() {
   // Smooth Scroll
   //
   // Get ckm_request_id
-  if (typeof getUrlParameter('ckm_request_id') !== 'string' && getUrlParameter('a') != '' && typeof getUrlParameter('a') === 'string' && getUrlParameter('c') != '' && typeof getUrlParameter('c') === 'string') {
+  if (typeof getParameterByName('ckm_request_id') !== 'string' && getParameterByName('a') != '' && typeof getParameterByName('a') === 'string' && getParameterByName('c') != '' && typeof getParameterByName('c') === 'string') {
     const clickpixel = 'https://digitaloyster.jrnytag.com/' + location.search + '&cp=js';
-    affiliate = getUrlParameter('a');
+    affiliate = getParameterByName('a');
 
-    // $('head').append(clickpixel);
-    // eval($('#clickpixel').text());
     $.getScript(clickpixel, function() {
       const image = new Image(1, 1);
       let variant;
@@ -77,7 +75,7 @@ $(document).ready(function() {
       if (typeof window.ub !== 'undefined') variant = window.ub.page.variantId;
       else variant = '';
 
-      image.src = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id + '&e=' + document.cdnParameters.cake_lp_event_id + '&f=img&r=' + ckmri + '&t=' + document.cdnParameters.lp_tracking_prefix + '-' + variant + '|' + window.outerWidth + 'x' + window.outerHeight + '|' + getUrlParameter('link_click');
+      image.src = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id + '&e=' + document.cdnParameters.cake_lp_event_id + '&f=img&r=' + ckmri + '&t=' + document.cdnParameters.lp_tracking_prefix + '-' + variant + '|' + window.outerWidth + 'x' + window.outerHeight + '|' + getParameterByName('link_click');
     });
   }
   // Get ckm_request_id
@@ -87,11 +85,11 @@ $(document).ready(function() {
     const image = new Image(1, 1);
     let variant;
     let ckmri = '';
-    if (getUrlParameter('ckm_request_id')) {
-      ckmri = getUrlParameter('ckm_request_id');
+    if (getParameterByName('ckm_request_id')) {
+      ckmri = getParameterByName('ckm_request_id');
       if (typeof window.ub !== 'undefined') variant = window.ub.page.variantId;
       else variant = '';
-      image.src = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id + '&e=' + document.cdnParameters.cake_lp_event_id + '&f=img&r=' + ckmri + '&t=' + document.cdnParameters.lp_tracking_prefix + '-' + variant + '|' + window.outerWidth + 'x' + window.outerHeight + '|' + getUrlParameter('link_click');
+      image.src = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id + '&e=' + document.cdnParameters.cake_lp_event_id + '&f=img&r=' + ckmri + '&t=' + document.cdnParameters.lp_tracking_prefix + '-' + variant + '|' + window.outerWidth + 'x' + window.outerHeight + '|' + getParameterByName('link_click');
     }
   }
   // LP Pixel
@@ -112,8 +110,8 @@ $(document).ready(function() {
   // Glow
   //
   // ReqCookie
-  if (getUrlParameter('ckm_request_id')) {
-    setCKMCookie(getUrlParameter('ckm_request_id'));
+  if (getParameterByName('ckm_request_id')) {
+    setCKMCookie(getParameterByName('ckm_request_id'));
   } else if (document.getElementById('ckm_request_id') && document.getElementById('ckm_request_id').value !== '') {
     setCKMCookie(document.getElementById('ckm_request_id').value);
   } else {

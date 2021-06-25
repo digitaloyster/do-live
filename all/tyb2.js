@@ -41,7 +41,7 @@ if (document.cdnParameters.cake_offer_id != '' && typeof document.cdnParameters.
       else variant = '';
       url += '&t='+document.cdnParameters.ty_tracking_prefix+'-'+variant;
     }
-    console.log(url);
+    console.log('TY Fired:'+url);
     image.src = url;
   }, 4000);
 }
