@@ -1,7 +1,7 @@
-// Combo Pages header CDN-v2
+// All Landing Pages header CDN-v2
 
 // CSS CDN FILE
-const styles = document.createElement('link');
+const styles=document.createElement('link');
 styles.setAttribute('rel', 'stylesheet');
 styles.setAttribute('type', 'text/css');
 styles.setAttribute('href', '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/lp.css');
@@ -95,10 +95,7 @@ if (document.cdnParameters.TB_pixel_ids != '' && typeof document.cdnParameters.T
       window._tfa.push({notify: 'event', name: 'page_view', id: ids[i]});
       !function(t, f, a, x) {
         if (!document.getElementById(x)) {
-          t.async = 1;
-          t.src = a;
-          t.id=x;
-          f.parentNode.insertBefore(t, f);
+          t.async = 1; t.src = a; t.id=x; f.parentNode.insertBefore(t, f);
         }
       }(document.createElement('script'),
           document.getElementsByTagName('script')[0],
