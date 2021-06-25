@@ -1,11 +1,11 @@
 // All Pages Scripts Header CDN-v2
 
 // CSS CDN FILE
-const styles=document.createElement('link');
-styles.setAttribute('rel', 'stylesheet');
-styles.setAttribute('type', 'text/css');
-styles.setAttribute('href', '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/al.css');
-document.getElementsByTagName('head')[0].appendChild(styles);
+const alStyle=document.createElement('link');
+alStyle.setAttribute('rel', 'stylesheet');
+alStyle.setAttribute('type', 'text/css');
+alStyle.setAttribute('href', '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/al.css');
+document.getElementsByTagName('head')[0].appendChild(alStyle);
 
 // FullStory
 const getSum = function(total, num) {
@@ -16,7 +16,7 @@ const guid = function() {
   const d = new Date();
   const nav = window.navigator;
   const screen = window.screen;
-  const guid = nav.userAgent.replace(/\D+/g, '').match(/.{1}/g).reduce(getSum, 0);
+  let guid = nav.userAgent.replace(/\D+/g, '').match(/.{1}/g).reduce(getSum, 0);
   guid += parseInt(nav.mimeTypes.length);
   guid += parseInt(nav.plugins.length);
   guid += parseInt(screen.pixelDepth) || 1;

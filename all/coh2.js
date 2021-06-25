@@ -1,11 +1,11 @@
 // Combo Pages header CDN-v2
 
 // CSS CDN FILE
-const styles = document.createElement('link');
-styles.setAttribute('rel', 'stylesheet');
-styles.setAttribute('type', 'text/css');
-styles.setAttribute('href', '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/lp.css');
-document.getElementsByTagName('head')[0].appendChild(styles);
+const lpStyle = document.createElement('link');
+lpStyle.setAttribute('rel', 'stylesheet');
+lpStyle.setAttribute('type', 'text/css');
+lpStyle.setAttribute('href', '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/lp.css');
+document.getElementsByTagName('head')[0].appendChild(lpStyle);
 // CSS CDN FILE
 
 if ( typeof document.cdnParameters.postcode !== 'undefined' ) {
