@@ -1,18 +1,18 @@
 // All Pages Scripts Before Body CDN-v2
 
 // Functions
-const getUrlParameter = function getUrlParameter(sParam) {
-  const sPageURL = decodeURIComponent(window.location.search.substring(1));
-  const sURLVariables = sPageURL.split('&');
-  let sParameterName;
-  let i;
-  for (i = 0; i < sURLVariables.length; i++) {
-    sParameterName = sURLVariables[i].split('=');
-    if (sParameterName[0] === sParam) {
-      return sParameterName[1] === undefined ? true : sParameterName[1];
-    }
-  }
-};
+//const getUrlParameter = function getUrlParameter(sParam) {
+//  const sPageURL = decodeURIComponent(window.location.search.substring(1));
+//  const sURLVariables = sPageURL.split('&');
+//  let sParameterName;
+//  let i;
+//  for (i = 0; i < sURLVariables.length; i++) {
+//    sParameterName = sURLVariables[i].split('=');
+//    if (sParameterName[0] === sParam) {
+//      return sParameterName[1] === undefined ? true : sParameterName[1];
+//    }
+//  }
+//};
 
 // Fix Styling Issues
 if (typeof window.ub !== 'undefined') window.ub.page.disableTextAdjustments = true;

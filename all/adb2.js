@@ -1,15 +1,15 @@
 // All Advertorials Before Body CDN-v2
 
 // Link Builder (Doc Ready)
-const getParameterByName = function(name) {
-  const url = window.location.href;
-  const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-  const results = regex.exec(url);
-  name = name.replace(/[\[\]]/g, '\\$&');
-  if (!results) return null;
-  if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
+// const getParameterByName = function(name) {
+//  const url = window.location.href;
+//  const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+//  const results = regex.exec(url);
+//  name = name.replace(/[\[\]]/g, '\\$&');
+//  if (!results) return null;
+//  if (!results[2]) return '';
+//  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+//}
 
 const replaceURL = function() {
   // replace URL

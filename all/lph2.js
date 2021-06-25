@@ -1,11 +1,11 @@
 // All Landing Pages header CDN-v2
 
 // CSS CDN FILE
-const styles=document.createElement('link');
-styles.setAttribute('rel', 'stylesheet');
-styles.setAttribute('type', 'text/css');
-styles.setAttribute('href', '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/lp.css');
-document.getElementsByTagName('head')[0].appendChild(styles);
+const lpStyle=document.createElement('link');
+lpStyle.setAttribute('rel', 'stylesheet');
+lpStyle.setAttribute('type', 'text/css');
+lpStyle.setAttribute('href', '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/lp.css');
+document.getElementsByTagName('head')[0].appendChild(lpStyle);
 // CSS CDN FILE
 
 if ( typeof document.cdnParameters.postcode !== 'undefined' ) {
@@ -30,10 +30,10 @@ if ( typeof document.cdnParameters.postcode !== 'undefined' ) {
     head.appendChild(p2Script);
   }
   if (document.cdnParameters.postcode != 'A') {
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://cdn.jsdelivr.net/gh/digitaloyster/do-live/p2/address-edit.js';
-    head.appendChild(script);
+    const p2AEScript = document.createElement('script');
+    p2AEScript.type = 'text/javascript';
+    p2AEScript.src = 'https://cdn.jsdelivr.net/gh/digitaloyster/do-live/p2/address-edit.js';
+    head.appendChild(p2AEScript);
   }
   if ( document.cdnParameters.postcode == 'DP' || document.cdnParameters.postcode == 'DS1' ) {
     const d8css = document.createElement('link');
@@ -43,10 +43,10 @@ if ( typeof document.cdnParameters.postcode !== 'undefined' ) {
     document.head.appendChild(d8css);
   }
   if ( document.cdnParameters.postcode == 'DP' ) {
-    const script2 = document.createElement('script');
-    script2.type = 'text/javascript';
-    script2.src = 'https://cdn.jsdelivr.net/gh/digitaloyster/do-live/d8/d8_dp.js';
-    head.appendChild(script2);
+    const d8DPScript = document.createElement('script');
+    d8DPScript.type = 'text/javascript';
+    d8DPScript.src = 'https://cdn.jsdelivr.net/gh/digitaloyster/do-live/d8/d8_dp.js';
+    head.appendChild(d8DPScript);
   }
   if ( document.cdnParameters.postcode == 'DS1' ) {
     const d8style = document.createElement('link');
@@ -54,14 +54,14 @@ if ( typeof document.cdnParameters.postcode !== 'undefined' ) {
     d8style.setAttribute('type', 'text/css');
     d8style.setAttribute('href', 'https://webservices.data-8.co.uk/content/predictiveaddress.css');
     head.appendChild(d8style);
-    const script3 = document.createElement('script');
-    script3.type = 'text/javascript';
-    script3.src = 'https://webservices.data-8.co.uk/javascript/predictiveaddress.js';
-    head.appendChild(script3);
-    const script4 = document.createElement('script');
-    script4.type = 'text/javascript';
-    script4.src = 'https://cdn.jsdelivr.net/gh/digitaloyster/do-live/d8/d8_ds1.js';
-    head.appendChild(script4);
+    const d8PAScript = document.createElement('script');
+    d8PAScript.type = 'text/javascript';
+    d8PAScript.src = 'https://webservices.data-8.co.uk/javascript/predictiveaddress.js';
+    head.appendChild(d8PAScript);
+    const d8DS1Script = document.createElement('script');
+    d8DS1Script.type = 'text/javascript';
+    d8DS1Script.src = 'https://cdn.jsdelivr.net/gh/digitaloyster/do-live/d8/d8_ds1.js';
+    head.appendChild(d8DS1Script);
   }
   if ( document.cdnParameters.postcode == 'DS2' ) {
     const d8style = document.createElement('link');
@@ -69,14 +69,14 @@ if ( typeof document.cdnParameters.postcode !== 'undefined' ) {
     d8style.setAttribute('type', 'text/css');
     d8style.setAttribute('href', 'https://webservices.data-8.co.uk/content/predictiveaddress.css');
     head.appendChild(d8style);
-    const script3 = document.createElement('script');
-    script3.type = 'text/javascript';
-    script3.src = 'https://webservices.data-8.co.uk/javascript/predictiveaddress.js';
-    head.appendChild(script3);
-    const script4 = document.createElement('script');
-    script4.type = 'text/javascript';
-    script4.src = 'https://cdn.jsdelivr.net/gh/digitaloyster/do-live/d8/d8_ds2.js';
-    head.appendChild(script4);
+    const d8PAScript = document.createElement('script');
+    d8PAScript.type = 'text/javascript';
+    d8PAScript.src = 'https://webservices.data-8.co.uk/javascript/predictiveaddress.js';
+    head.appendChild(d8PAScript);
+    const d8D2Script = document.createElement('script');
+    d8D2Script.type = 'text/javascript';
+    d8D2Script.src = 'https://cdn.jsdelivr.net/gh/digitaloyster/do-live/d8/d8_ds2.js';
+    head.appendChild(d8D2Script);
     const d8css = document.createElement('link');
     d8css.setAttribute('rel', 'stylesheet');
     d8css.setAttribute('type', 'text/css');
@@ -107,8 +107,8 @@ if (document.cdnParameters.TB_pixel_ids != '' && typeof document.cdnParameters.T
 // Taboola Pixels
 
 // Load PolyFill
-const polyfill = document.createElement('script');
-polyfill.setAttribute('src', 'https://polyfill.io/v3/polyfill.min.js');
-polyfill.setAttribute('crossorigin', 'anonymous');
-document.head.appendChild(polyfill);
+const polyfillScript = document.createElement('script');
+polyfillScript.setAttribute('src', 'https://polyfill.io/v3/polyfill.min.js');
+polyfillScript.setAttribute('crossorigin', 'anonymous');
+document.head.appendChild(polyfillScript);
 // Load PolyFill
