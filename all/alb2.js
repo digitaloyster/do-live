@@ -1,18 +1,15 @@
 // All Pages Scripts Before Body CDN-v2
 
 // Functions
-//const getUrlParameter = function getUrlParameter(sParam) {
-//  const sPageURL = decodeURIComponent(window.location.search.substring(1));
-//  const sURLVariables = sPageURL.split('&');
-//  let sParameterName;
-//  let i;
-//  for (i = 0; i < sURLVariables.length; i++) {
-//    sParameterName = sURLVariables[i].split('=');
-//    if (sParameterName[0] === sParam) {
-//      return sParameterName[1] === undefined ? true : sParameterName[1];
-//    }
-//  }
-//};
+const getParameterByName = function(name) {
+  const url = window.location.href;
+  name = name.replace(/[\[\]]/g, '\\$&');
+  const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+  const results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+};
 
 // Fix Styling Issues
 if (typeof window.ub !== 'undefined') window.ub.page.disableTextAdjustments = true;
@@ -54,8 +51,8 @@ const setFBPixel = function(ids) {
   document.body.prepend(contentEvent);
 };
 
-if (getUrlParameter('pid') != '' && typeof getUrlParameter('pid') !== 'undefined') {
-  const id = getUrlParameter('pid');
+if (getParameterByName('pid') != '' && typeof getParameterByName('pid') !== 'undefined') {
+  const id = getParameterByName('pid');
   const ids = [];
   if (typeof window.ub.form !== 'undefined') {
     if (window.ub.form.url != '' && typeof window.ub.form.url !== 'undefined') {
