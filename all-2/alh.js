@@ -1,11 +1,11 @@
 // All Pages Scripts Header CDN-v2
 
 // CSS CDN FILE
-const cdn = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/';
+const cdnAl = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/';
 const alStyle=document.createElement('link');
 alStyle.setAttribute('rel', 'stylesheet');
 alStyle.setAttribute('type', 'text/css');
-alStyle.setAttribute('href', cdn+'all/al.css');
+alStyle.setAttribute('href', cdnAl+'all/al.css');
 document.getElementsByTagName('head')[0].appendChild(alStyle);
 
 // FullStory

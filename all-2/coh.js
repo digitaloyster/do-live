@@ -1,11 +1,11 @@
 // Combo Pages header CDN-v2
 
 // CSS CDN FILE
-const cdn = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/';
+const cdnCo = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/';
 const lpStyle = document.createElement('link');
 lpStyle.setAttribute('rel', 'stylesheet');
 lpStyle.setAttribute('type', 'text/css');
-lpStyle.setAttribute('href', cdn + 'all/lp.css');
+lpStyle.setAttribute('href', cdnCo + 'all-2/lp.css');
 document.getElementsByTagName('head')[0].appendChild(lpStyle);
 // CSS CDN FILE
 
@@ -34,16 +34,16 @@ if ( typeof document.cdnParameters.postcode !== 'undefined' ) {
     const p2Style = document.createElement('link');
     p2Style.setAttribute('rel', 'stylesheet');
     p2Style.setAttribute('type', 'text/css');
-    p2Style.setAttribute('href', cdn + 'p2/p2.css');
+    p2Style.setAttribute('href', cdnCo + 'p2/p2.css');
     document.head.appendChild(p2Style);
     const p2Script = document.createElement('script');
-    p2Script.setAttribute('src', cdn + 'p2/p2.js');
+    p2Script.setAttribute('src', cdnCo + 'p2/p2.js');
     head.appendChild(p2Script);
   }
   if (document.cdnParameters.postcode != 'A') {
     const p2AEScript = document.createElement('script');
     p2AEScript.type = 'text/javascript';
-    p2AEScript.src = cdn + 'p2/address-edit.js';
+    p2AEScript.src = cdnCo + 'p2/address-edit.js';
     head.appendChild(p2AEScript);
   }
   if ( document.cdnParameters.postcode == 'DP' ||
@@ -51,13 +51,13 @@ if ( typeof document.cdnParameters.postcode !== 'undefined' ) {
     const d8css = document.createElement('link');
     d8css.setAttribute('rel', 'stylesheet');
     d8css.setAttribute('type', 'text/css');
-    d8css.setAttribute('href', cdn + 'd8/d8_dp_d1.css');
+    d8css.setAttribute('href', cdnCo + 'd8-2/d8_dp_d1.css');
     document.head.appendChild(d8css);
   }
   if ( document.cdnParameters.postcode == 'DP' ) {
     const d8DPScript = document.createElement('script');
     d8DPScript.type = 'text/javascript';
-    d8DPScript.src = cdn + 'd8/d8_dp.js';
+    d8DPScript.src = cdnCo + 'd8-2/d8_dp.js';
     head.appendChild(d8DPScript);
   }
   if ( document.cdnParameters.postcode == 'DS1' ) {
@@ -72,7 +72,7 @@ if ( typeof document.cdnParameters.postcode !== 'undefined' ) {
     head.appendChild(d8PAScript);
     const d8DS1Script = document.createElement('script');
     d8DS1Script.type = 'text/javascript';
-    d8DS1Script.src = 'https://cdn.jsdelivr.net/gh/digitaloyster/do-live/d8/d8_ds1.js';
+    d8DS1Script.src = cdnCo + 'd8-2/d8_ds1.js';
     head.appendChild(d8DS1Script);
   }
   if ( document.cdnParameters.postcode == 'DS2' ) {
@@ -87,12 +87,12 @@ if ( typeof document.cdnParameters.postcode !== 'undefined' ) {
     head.appendChild(d8PAScript);
     const d8D2Script = document.createElement('script');
     d8D2Script.type = 'text/javascript';
-    d8D2Script.src = cdn + 'd8/d8_ds2.js';
+    d8D2Script.src = cdnCo + 'd8-2/d8_ds2.js';
     head.appendChild(d8D2Script);
     const d8css = document.createElement('link');
     d8css.setAttribute('rel', 'stylesheet');
     d8css.setAttribute('type', 'text/css');
-    d8css.setAttribute('href', cdn + 'd8/d8_d2.css');
+    d8css.setAttribute('href', cdnCo + 'd8-2/d8_d2.css');
     document.head.appendChild(d8css);
   }
 }

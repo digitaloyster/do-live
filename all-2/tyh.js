@@ -1,11 +1,11 @@
 // All Thank You Pages Header CDN-v2
 
 // CSS CDN FILE
-const cdn = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/';
+const cdnTy = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/';
 const styles=document.createElement('link');
 styles.setAttribute('rel', 'stylesheet');
 styles.setAttribute('type', 'text/css');
-styles.setAttribute('href', cdn + 'all/ty.css');
+styles.setAttribute('href', cdnTy + 'all-2/ty.css');
 document.getElementsByTagName('head')[0].appendChild(styles);
 // CSS CDN FILE
 

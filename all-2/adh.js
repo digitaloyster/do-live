@@ -1,11 +1,11 @@
 // All Advertorials Header CDN-v2
 
 // CSS CDN FILE
-const cdn = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/';
+const cdnAd = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/';
 const styles = document.createElement('link');
 styles.setAttribute('rel', 'stylesheet');
 styles.setAttribute('type', 'text/css');
-styles.setAttribute('href', cdn + 'all/ad.css');
+styles.setAttribute('href', cdnAd + 'all-2/ad.css');
 document.getElementsByTagName('head')[0].appendChild(styles);
 
 
