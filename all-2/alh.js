@@ -1,22 +1,11 @@
 // All Pages Scripts Header CDN-v2
 
-// Functions
-const getParameterByName = function(name) {
-  const url = window.location.href;
-  name = name.replace(/[\[\]]/g, '\\$&');
-  const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-  const results = regex.exec(url);
-  if (!results) return null;
-  if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
-};
-// Functions
-
 // CSS CDN FILE
+const cdn = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/';
 const alStyle=document.createElement('link');
 alStyle.setAttribute('rel', 'stylesheet');
 alStyle.setAttribute('type', 'text/css');
-alStyle.setAttribute('href', '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/al.css');
+alStyle.setAttribute('href', cdn+'all/al.css');
 document.getElementsByTagName('head')[0].appendChild(alStyle);
 
 // FullStory
@@ -37,11 +26,14 @@ const guid = function() {
 };
 
 let mod1 = 0;
-document.cdnParameters.full_story ? mod1 = document.cdnParameters.full_story : mod1 = 3;
+document.cdnParameters.full_story ?
+ mod1 = document.cdnParameters.full_story :
+  mod1 = 3;
 if ( typeof mod1 === 'string' ) {
   mod1 = mod1.toLowerCase();
 }
-if ( mod1 != 'off' && guid() % parseInt( mod1 ) === 0 ) {
+if ( mod1 != 'off' &&
+ guid() % parseInt( mod1 ) === 0 ) {
   window['_fs_debug'] = false;
   window['_fs_host'] = 'fullstory.com';
   window['_fs_script'] = 'edge.fullstory.com/s/fs.js';
@@ -50,7 +42,9 @@ if ( mod1 != 'off' && guid() % parseInt( mod1 ) === 0 ) {
   (function(m, n, e, t, l, o, g, y) {
     if (e in m) {
       if (m.console && m.console.log) {
-        m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');
+        const m = 'FullStory namespace conflict.'+
+        ' Please set window["_fs_namespace"].';
+        m.console.log(m);
       }
       return;
     }
@@ -96,6 +90,9 @@ if ( mod1 != 'off' && guid() % parseInt( mod1 ) === 0 ) {
 $('head').append('<script src="https://73943c0bf6144760a33cc02ec368be53.js.ubembed.com" async></script>');
 
 // Favicon
-if (document.cdnParameters.favicon_url != '' && typeof document.cdnParameters.favicon_url !== 'undefined') {
-  $('head').append('<link rel="icon" type="image/x-icon" href="'+document.cdnParameters.favicon_url+'" />');
+if (document.cdnParameters.favicon_url != '' &&
+ typeof document.cdnParameters.favicon_url !== 'undefined') {
+  $('head').append('<link rel="icon" type="image/x-icon" href="'+
+  document.cdnParameters.favicon_url+
+  '" />');
 }

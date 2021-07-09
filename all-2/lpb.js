@@ -1,7 +1,7 @@
 // All Landing Pages Before Body CDN-v2
 
 // Functions
-//const getUrlParameter = function getUrlParameter(sParam) {
+// const getUrlParameter = function getUrlParameter(sParam) {
 //  const sPageURL = decodeURIComponent(window.location.search.substring(1));
 //  const sURLVariables = sPageURL.split('&');
 //  let sParameterName;
@@ -13,10 +13,11 @@
 //      return sParameterName[1] === undefined ? true : sParameterName[1];
 //    }
 //  }
-//};
+// };
 
 const setCKMCookie = function(id) {
-  document.cookie = 'ckm_request_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  document.cookie = 'ckm_request_id=; expires='+
+  'Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   document.cookie = 'ckm_request_id=' + id + ';path=/;';
 };
 // Functions
@@ -27,7 +28,10 @@ $(document).ready(function() {
   // Add submit class to submit buttons
   //
   // Taboola Remove Elements
-  if (document.cdnParameters.hide_elements != '' && typeof document.cdnParameters.hide_elements !== 'undefined' && document.cdnParameters.hide_elements_affs != '' && typeof document.cdnParameters.hide_elements_affs !== 'undefined') {
+  if (document.cdnParameters.hide_elements != '' &&
+   typeof document.cdnParameters.hide_elements !== 'undefined' &&
+    document.cdnParameters.hide_elements_affs != '' &&
+     typeof document.cdnParameters.hide_elements_affs !== 'undefined') {
     const idstring = document.cdnParameters.hide_elements;
     const affString = document.cdnParameters.hide_elements_affs;
     const aff = affString.split(',');
@@ -37,7 +41,9 @@ $(document).ready(function() {
           if (idstring != '') {
             const ids = idstring.split(',');
             for (i in ids) {
-              $(ids[i]).remove();
+              if ({}.hasOwnProperty.call(ids, i)) {
+                $(ids[i]).remove();
+              }
             }
           }
         }
@@ -47,21 +53,29 @@ $(document).ready(function() {
   // Taboola Remove Elements
   //
   // Smooth Scroll
-  if (document.cdnParameters.smooth_scroll == 'Y' && typeof document.cdnParameters.smooth_scroll !== 'undefined') {
+  if (document.cdnParameters.smooth_scroll == 'Y' &&
+   typeof document.cdnParameters.smooth_scroll !== 'undefined') {
     // The speed of the scroll in milliseconds
     const speed = 1000;
     // Find links that are #anchors and scroll to them
-    $('a[href^=\\#]').not('.lp-pom-form .lp-pom-button').unbind('click.smoothScroll').bind('click.smoothScroll', function(event) {
-      event.preventDefault();
-      $('html, body').animate({
-        scrollTop: $($(this).attr('href')).offset().top,
-      }, speed);
-    });
+    $('a[href^=\\#]')
+        .not('.lp-pom-form .lp-pom-button')
+        .unbind('click.smoothScroll')
+        .bind('click.smoothScroll', function(event) {
+          event.preventDefault();
+          $('html, body').animate({
+            scrollTop: $($(this).attr('href')).offset().top,
+          }, speed);
+        });
   }
   // Smooth Scroll
   //
   // Get ckm_request_id
-  if (typeof getParameterByName('ckm_request_id') !== 'string' && getParameterByName('a') != '' && typeof getParameterByName('a') === 'string' && getParameterByName('c') != '' && typeof getParameterByName('c') === 'string') {
+  if (typeof getParameterByName('ckm_request_id') !== 'string' &&
+   getParameterByName('a') != '' &&
+    typeof getParameterByName('a') === 'string' &&
+     getParameterByName('c') != '' &&
+      typeof getParameterByName('c') === 'string') {
     const clickpixel = 'https://digitaloyster.jrnytag.com/' + location.search + '&cp=js';
     affiliate = getParameterByName('a');
 
@@ -71,17 +85,29 @@ $(document).ready(function() {
       let ckmri = '';
       document.getElementById('ckm_request_id').value = ckm_request_id;
       ckmri = ckm_request_id;
-      console.log('ckm:'+ckmri);
+      console.log('ckm:' + ckmri);
       if (typeof window.ub !== 'undefined') variant = window.ub.page.variantId;
       else variant = '';
 
-      image.src = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id + '&e=' + document.cdnParameters.cake_lp_event_id + '&f=img&r=' + ckmri + '&t=' + document.cdnParameters.lp_tracking_prefix + '-' + variant + '|' + window.outerWidth + 'x' + window.outerHeight + '|' + getParameterByName('link_click');
+      image.src = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id +
+        '&e=' + document.cdnParameters.cake_lp_event_id +
+        '&f=img&r=' + ckmri +
+        '&t=' + document.cdnParameters.lp_tracking_prefix +
+        '-' + variant +
+        '|' + window.outerWidth +
+        'x' + window.outerHeight +
+        '|' + getParameterByName('link_click');
     });
   }
   // Get ckm_request_id
   //
   // LP Pixel
-  if (document.cdnParameters.cake_offer_id != '' && typeof document.cdnParameters.cake_offer_id !== 'undefined' && document.cdnParameters.cake_lp_event_id != '' && typeof document.cdnParameters.cake_lp_event_id !== 'undefined' && document.cdnParameters.lp_tracking_prefix != '' && typeof document.cdnParameters.lp_tracking_prefix !== 'undefined') {
+  if (document.cdnParameters.cake_offer_id != '' &&
+   typeof document.cdnParameters.cake_offer_id !== 'undefined' &&
+   document.cdnParameters.cake_lp_event_id != '' &&
+   typeof document.cdnParameters.cake_lp_event_id !== 'undefined' &&
+   document.cdnParameters.lp_tracking_prefix != '' &&
+   typeof document.cdnParameters.lp_tracking_prefix !== 'undefined') {
     const image = new Image(1, 1);
     let variant;
     let ckmri = '';
@@ -89,13 +115,22 @@ $(document).ready(function() {
       ckmri = getParameterByName('ckm_request_id');
       if (typeof window.ub !== 'undefined') variant = window.ub.page.variantId;
       else variant = '';
-      image.src = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id + '&e=' + document.cdnParameters.cake_lp_event_id + '&f=img&r=' + ckmri + '&t=' + document.cdnParameters.lp_tracking_prefix + '-' + variant + '|' + window.outerWidth + 'x' + window.outerHeight + '|' + getParameterByName('link_click');
+      image.src = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id +
+      '&e=' + document.cdnParameters.cake_lp_event_id +
+      '&f=img&r=' + ckmri +
+      '&t=' + document.cdnParameters.lp_tracking_prefix +
+      '-' + variant +
+      '|' + window.outerWidth +
+      'x' + window.outerHeight +
+      '|' + getParameterByName('link_click');
     }
   }
   // LP Pixel
   //
   // Glow
-  const focusOnLoad = true; // By default, first form field is focused automatically on page load. Change this value to 'False' to disable this.
+  const focusOnLoad = true;
+  // By default, first form field is focused automatically on page load.
+  // Change this value to 'False' to disable this.
   $(':input, .lp-pom-form .lp-pom-button').focus(function() {
     $(this).addClass('focusGlow');
   });
@@ -112,7 +147,8 @@ $(document).ready(function() {
   // ReqCookie
   if (getParameterByName('ckm_request_id')) {
     setCKMCookie(getParameterByName('ckm_request_id'));
-  } else if (document.getElementById('ckm_request_id') && document.getElementById('ckm_request_id').value !== '') {
+  } else if (document.getElementById('ckm_request_id') &&
+  document.getElementById('ckm_request_id').value !== '') {
     setCKMCookie(document.getElementById('ckm_request_id').value);
   } else {
     setCKMCookie('');

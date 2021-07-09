@@ -29,12 +29,21 @@ const getCookie = function(cname) {
 // Functions
 
 // Cake Conversion Pixel
-if (document.cdnParameters.cake_offer_id != '' && typeof document.cdnParameters.cake_offer_id !== 'undefined' && document.cdnParameters.ty_tracking_prefix != '' && typeof document.cdnParameters.ty_tracking_prefix !== 'undefined' && document.cdnParameters.cake_conv_id != '' && typeof document.cdnParameters.cake_conv_id !== 'undefined') {
+if (document.cdnParameters.cake_offer_id != '' &&
+typeof document.cdnParameters.cake_offer_id !== 'undefined' &&
+ document.cdnParameters.ty_tracking_prefix != '' &&
+ typeof document.cdnParameters.ty_tracking_prefix !== 'undefined' &&
+ document.cdnParameters.cake_conv_id != '' &&
+ typeof document.cdnParameters.cake_conv_id !== 'undefined') {
   setTimeout(function() {
     const image = new Image(1, 1);
-    let url = 'https://secureoyster.com/p.ashx?o='+document.cdnParameters.cake_offer_id+'&e='+document.cdnParameters.cake_conv_id+'&r=' + getCookie('ckm_request_id');
+    let url = 'https://secureoyster.com/p.ashx?o='+document.cdnParameters.cake_offer_id+
+    '&e='+document.cdnParameters.cake_conv_id+
+    '&r=' + getCookie('ckm_request_id');
     if (document.cdnParameters.cake_conv_id !== 'ld') {
-      if (getCookie('lead_id') !== null && getCookie('lead_id') !== '' ) url += '&t=' + getCookie('lead_id');
+      if (getCookie('lead_id') !== null && getCookie('lead_id') !== '' ) {
+        url += '&t=' + getCookie('lead_id');
+      }
     } else {
       let variant;
       if (typeof window.ub !== 'undefined') variant = window.ub.page.variantId;
@@ -48,7 +57,8 @@ if (document.cdnParameters.cake_offer_id != '' && typeof document.cdnParameters.
 // Cake Conversion Pixel
 
 // Facebook Lead tracking
-if (document.cdnParameters.FB_pixel_ids != '' && typeof document.cdnParameters.FB_pixel_ids !== 'undefined') {
+if (document.cdnParameters.FB_pixel_ids != '' &&
+ typeof document.cdnParameters.FB_pixel_ids !== 'undefined') {
   fbq('track', 'Lead', {
     value: 10.00,
     currency: 'GBP',
@@ -57,24 +67,33 @@ if (document.cdnParameters.FB_pixel_ids != '' && typeof document.cdnParameters.F
 // Facebook Lead tracking
 
 // Taboola Pixels
-if (document.cdnParameters.TB_pixel_ids != '' && typeof document.cdnParameters.TB_pixel_ids !== 'undefined') {
+if (document.cdnParameters.TB_pixel_ids != '' &&
+ typeof document.cdnParameters.TB_pixel_ids !== 'undefined') {
   const idstring = document.cdnParameters.TB_pixel_ids;
   if (idstring != '') {
     const ids = idstring.split(',');
     for (i in ids) {
-      _tfa.push({notify: 'event', name: 'lead', id: ids[i]});
+      if ({}.hasOwnProperty.call(ids, i)) {
+        _tfa.push({notify: 'event', name: 'lead', id: ids[i]});
+      }
     }
   }
 }
 // Taboola Pixels
 
 // Twitter conversion
-if (document.cdnParameters.TW_lead_ids != '' && typeof document.cdnParameters.TW_lead_ids !== 'undefined') {
+if (document.cdnParameters.TW_lead_ids != '' &&
+ typeof document.cdnParameters.TW_lead_ids !== 'undefined') {
   $.getScript('//platform.twitter.com/oct.js', function() {
     const idstring = document.cdnParameters.TW_lead_ids;
     const ids = idstring.split(',');
     for (i in ids) {
-      twttr.conversion.trackPid(ids[i], {tw_sale_amount: 0, tw_order_quantity: 0});
+      if ({}.hasOwnProperty.call(ids, i)) {
+        twttr.conversion.trackPid(ids[i], {
+          tw_sale_amount: 0,
+          tw_order_quantity: 0,
+        });
+      }
     }
   });
 }

@@ -1,22 +1,25 @@
 // All Advertorials Header CDN-v2
 
 // CSS CDN FILE
-const styles=document.createElement('link');
+const cdn = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/';
+const styles = document.createElement('link');
 styles.setAttribute('rel', 'stylesheet');
 styles.setAttribute('type', 'text/css');
-styles.setAttribute('href', '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/ad.css');
+styles.setAttribute('href', cdn + 'all/ad.css');
 document.getElementsByTagName('head')[0].appendChild(styles);
 
 
 // Cookie consent
-if (document.cdnParameters.cookie_footer_url != '' && typeof document.cdnParameters.cookie_footer_url !== 'undefined') {
-  const styles=document.createElement('link');
+if (document.cdnParameters.cookie_footer_url != '' &&
+  typeof document.cdnParameters.cookie_footer_url !== 'undefined') {
+  const consent = '//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/';
+  const styles = document.createElement('link');
   styles.setAttribute('rel', 'stylesheet');
   styles.setAttribute('type', 'text/css');
-  styles.setAttribute('href', '//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css');
+  styles.setAttribute('href', consent + 'cookieconsent.min.css');
   document.getElementsByTagName('head')[0].appendChild(styles);
 
-  $.getScript('//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js');
+  $.getScript(consent + 'cookieconsent.min.js');
 
   window.addEventListener('load', function() {
     window.cookieconsent.initialise({
@@ -37,10 +40,13 @@ if (document.cdnParameters.cookie_footer_url != '' && typeof document.cdnParamet
 // Cookie consent
 
 // Taboola Widgets
-if (document.cdnParameters.TB_widget == 'Y' && typeof document.cdnParameters.TB_widget !== 'undefined') {
+if (document.cdnParameters.TB_widget == 'Y' &&
+  typeof document.cdnParameters.TB_widget !== 'undefined') {
   window._taboola = window._taboola || [];
-  _taboola.push({article: 'auto'});
-  !function(e, f, u, i) {
+  _taboola.push({
+    article: 'auto',
+  });
+  ! function(e, f, u, i) {
     if (!document.getElementById(i)) {
       e.async = 1;
       e.src = u;
