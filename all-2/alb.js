@@ -54,7 +54,6 @@ const setFBPixel = function(ids) {
 
 if (getParameterByName('pid') != null &&
  typeof getParameterByName('pid') !== 'undefined') {
-  console.log('pid');
   const id = getParameterByName('pid');
   const ids = [];
   if (typeof window.ub.form !== 'undefined') {
@@ -70,11 +69,8 @@ if (getParameterByName('pid') != null &&
   setFBPixel(ids);
 } else if (document.cdnParameters.FB_pixel_ids != '' &&
  typeof document.cdnParameters.FB_pixel_ids !== 'undefined') {
-  console.log('doc');
   const idstring = document.cdnParameters.FB_pixel_ids;
-  console.log('idstring:'+idstring);
   const ids = idstring.split(',');
-  console.log('ids:'+ids);
   setFBPixel(ids);
 }
 
