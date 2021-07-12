@@ -1,5 +1,17 @@
 // All Pages Scripts Header CDN-v2
 
+// Functions
+const getParameterByName = function(name) {
+  const url = window.location.href;
+  name = name.replace(/[\[\]]/g, '\\$&');
+  const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+  const results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+};
+// Functions
+
 // CSS CDN FILE
 const cdnAl = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/';
 const alStyle=document.createElement('link');
