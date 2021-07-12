@@ -1,10 +1,11 @@
 // All Pages Scripts Header CDN-v2
 //
 // Global Variables
-const d = false;
-if (document.cdnParameters.debugMode == '1') {
+let d = false;
+if (document.cdnParameters.debugMode == '1' ||
+ getParameterByName('debug') == '1') {
   d = true;
-  console.log('DEBUG MODE ACTIVE');
+  if (d) console.log('DEBUG MODE ACTIVE');
 }
 // Global Variables
 //
