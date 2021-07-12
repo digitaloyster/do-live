@@ -24,26 +24,24 @@ const postCKM = function() {
   // Adv pixel
   if (document.cdnParameters.cake_offer_id != '' &&
    typeof document.cdnParameters.cake_offer_id !== 'undefined' &&
-    document.cdnParameters.cake_adv_event_id != '' &&
-     typeof document.cdnParameters.cake_adv_event_id !== 'undefined' &&
-      document.cdnParameters.lp_tracking_prefix != '' &&
-       typeof document.cdnParameters.lp_tracking_prefix !== 'undefined') {
-    const image = new Image(1, 1);
-    image.src = 'https://secureoyster.com/p.ashx?o=' +
+   document.cdnParameters.cake_adv_event_id != '' &&
+   typeof document.cdnParameters.cake_adv_event_id !== 'undefined' &&
+   document.cdnParameters.lp_tracking_prefix != '' &&
+   typeof document.cdnParameters.lp_tracking_prefix !== 'undefined') {
+    const ifrm = document.createElement('iframe');
+    const s = 'https://secureoyster.com/p.ashx?o=' +
      document.cdnParameters.cake_offer_id +
-      '&e=' +
-       document.cdnParameters.cake_adv_event_id +
-        '&f=img&r=' +
-         ckm_request_id +
-          '&t=' +
-           document.cdnParameters.lp_tracking_prefix +
-            '-' +
-             window.ub.page.variantId +
-              '|' +
-               window.outerWidth +
-                'x' +
-                 window.outerHeight;
-    if (d) console.log('fire adv:'+ image.src);
+     '&e=' + document.cdnParameters.cake_adv_event_id +
+     '&f=img&r=' + ckm_request_id +
+     '&t=' + document.cdnParameters.lp_tracking_prefix +
+     '-' + window.ub.page.variantId +
+     '|' + window.outerWidth + 'x' + window.outerHeight;
+    ifrm.setAttribute('src', s);
+    ifrm.style.width = '1';
+    ifrm.style.height = '1';
+    ifrm.style.frameborder = '0';
+    document.body.appendChild(ifrm);
+    if (d) console.log('fire adv:'+ s);
   }
   // Adv Pixel
   //
@@ -53,14 +51,17 @@ const postCKM = function() {
     document.cdnParameters.cake_10s_event_id != '' &&
      typeof document.cdnParameters.cake_10s_event_id !== 'undefined') {
     setTimeout(function() {
-      const image = new Image(1, 1);
-      image.src = 'https://secureoyster.com/p.ashx?o=' +
+      const ifrm = document.createElement('iframe');
+      const s = 'https://secureoyster.com/p.ashx?o=' +
        document.cdnParameters.cake_offer_id +
-        '&e=' +
-         document.cdnParameters.cake_10s_event_id +
-          '&f=img&r=' +
-           ckm_request_id;
-      if (d) console.log('fire 10sec:'+ image.src);
+       '&e=' + document.cdnParameters.cake_10s_event_id +
+       '&f=img&r=' + ckm_request_id;
+      ifrm.setAttribute('src', s);
+      ifrm.style.width = '1';
+      ifrm.style.height = '1';
+      ifrm.style.frameborder = '0';
+      document.body.appendChild(ifrm);
+      if (d) console.log('fire 10sec:'+ s);
     }, 10000);
   }
   // 10sec pixel
@@ -72,27 +73,23 @@ const postCKM = function() {
      typeof document.cdnParameters.cake_lp_event_id !== 'undefined' &&
       document.cdnParameters.lp_tracking_prefix != '' &&
        typeof document.cdnParameters.lp_tracking_prefix !== 'undefined') {
-    const image = new Image(1, 1);
     let variant;
     if (typeof window.ub !== 'undefined') variant = window.ub.page.variantId;
     else variant = '';
-    image.src = 'https://secureoyster.com/p.ashx?o=' +
+    const ifrm = document.createElement('iframe');
+    const s = 'https://secureoyster.com/p.ashx?o=' +
      document.cdnParameters.cake_offer_id +
-      '&e=' +
-       document.cdnParameters.cake_lp_event_id +
-        '&f=img&r=' +
-         ckm_request_id +
-          '&t=' +
-           document.cdnParameters.lp_tracking_prefix +
-            '-' +
-             variant +
-              '|' +
-               window.outerWidth +
-                'x' +
-                 window.outerHeight +
-                  '|' +
-                   getParameterByName('link_click');
-    if (d) console.log('fire lp:'+ image.src);
+     '&e=' + document.cdnParameters.cake_lp_event_id +
+     '&f=img&r=' + ckm_request_id +
+     '&t=' + document.cdnParameters.lp_tracking_prefix + '-' + variant +
+     '|' + window.outerWidth + 'x' + window.outerHeight +
+     '|' + getParameterByName('link_click');
+    ifrm.setAttribute('src', s);
+    ifrm.style.width = '1';
+    ifrm.style.height = '1';
+    ifrm.style.frameborder = '0';
+    document.body.appendChild(ifrm);
+    if (d) console.log('fire lp:'+ s);
   }
   // LP Pixel
   //
