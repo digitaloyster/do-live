@@ -189,7 +189,7 @@ $(document).ready(function() {
 
   // Validate current page
   const isValid = function(step) {
-    const valid = true;
+    let valid = true;
     const event = new Event('doErrors');
     $.each(steps[step].fields, function(i, v) {
       i = i.trim();
