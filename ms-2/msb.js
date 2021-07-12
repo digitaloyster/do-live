@@ -7,8 +7,6 @@ $(document).ready(function() {
   let settings = {};
   let hooks = {};
   // XXX: Variables/Objects
-  const d = false;
-  if (document.cdnMultiStep.debugMode) d = true;
 
   if (document.cdnMultiStep.steps != '') {
     steps = document.cdnMultiStep.steps;
@@ -398,7 +396,7 @@ $(document).ready(function() {
       ifrm.style.height = '1';
       ifrm.style.frameborder = '0';
       document.body.appendChild(ifrm);
-      console.log('Step Pixel Fired: ' + s);
+      if (d) console.log('Step Pixel Fired: ' + s);
     }
   };
 
@@ -420,7 +418,7 @@ $(document).ready(function() {
 
   const submitActive = function() {
     $('#' + settings.submitButton).click(function(e) {
-      console.log('submitbutton specific');
+      if (d) console.log('submitbutton specific');
       e.preventDefault();
       if ('data8' in document.cdnParameters && document.cdnParameters.data8 == 'Y') d8Validate();
       else submit();
@@ -435,7 +433,7 @@ $(document).ready(function() {
   $('#' + settings.prevButton).click(prevStep);
   submitActive();
   $('.select-button.single-field label').click(function() {
-    console.log('single button click');
+    if (d) console.log('single button click');
     nextStep();
   });
   document.addEventListener('submitActive', function() {
@@ -451,13 +449,13 @@ $(document).ready(function() {
   // Custom Event listeners for page control.
   document.addEventListener('nextStep', function() {
     nextStep();
-    console.log('nextStep heard');
+    if (d) console.log('nextStep heard');
   });
   document.addEventListener('prevStep', function() {
     prevStep();
   });
   document.addEventListener('gotoStep', function(e) {
-    console.log(e.detail);
+    if (d) console.log(e.detail);
     gotoStep(e.detail);
   });
 

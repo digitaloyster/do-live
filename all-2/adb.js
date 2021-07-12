@@ -101,7 +101,7 @@ const postCKM = function() {
     ifrm.style.height = '1';
     ifrm.style.frameborder = '0';
     document.body.appendChild(ifrm);
-    console.log('Adv Pixel Fired: ' + s);
+    if (d) console.log('Adv Pixel Fired: ' + s);
   }
   // Adv Pixel
 
@@ -123,7 +123,7 @@ const postCKM = function() {
       ifrm.style.height = '1';
       ifrm.style.frameborder = '0';
       document.body.appendChild(ifrm);
-      console.log('10sec Pixel Fired: ' + s);
+      if (d) console.log('10sec Pixel Fired: ' + s);
     }, 10000);
   }
   // 10sec pixel

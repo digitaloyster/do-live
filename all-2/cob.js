@@ -43,7 +43,7 @@ const postCKM = function() {
                window.outerWidth +
                 'x' +
                  window.outerHeight;
-    console.log('fire adv:'+ image.src);
+    if (d) console.log('fire adv:'+ image.src);
   }
   // Adv Pixel
   //
@@ -60,7 +60,7 @@ const postCKM = function() {
          document.cdnParameters.cake_10s_event_id +
           '&f=img&r=' +
            ckm_request_id;
-      console.log('fire 10sec:'+ image.src);
+      if (d) console.log('fire 10sec:'+ image.src);
     }, 10000);
   }
   // 10sec pixel
@@ -92,7 +92,7 @@ const postCKM = function() {
                  window.outerHeight +
                   '|' +
                    getParameterByName('link_click');
-    console.log('fire lp:'+ image.src);
+    if (d) console.log('fire lp:'+ image.src);
   }
   // LP Pixel
   //

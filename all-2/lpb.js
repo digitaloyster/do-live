@@ -119,7 +119,7 @@ $(document).ready(function() {
       ifrm.style.height = '1';
       ifrm.style.frameborder = '0';
       document.body.appendChild(ifrm);
-      console.log('LP Pixel fired: ' + s);
+      if (d) console.log('LP Pixel fired: ' + s);
     }
   }
   // LP Pixel

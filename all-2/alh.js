@@ -1,6 +1,11 @@
 // All Pages Scripts Header CDN-v2
-
-// Functions
+//
+// Global Variables
+const d = false;
+if (document.cdnMultiStep.debugMode) d = true;
+// Global Variables
+//
+// Global Functions
 const getParameterByName = function(name) {
   const url = window.location.href;
   name = name.replace(/[\[\]]/g, '\\$&');
@@ -10,7 +15,7 @@ const getParameterByName = function(name) {
   if (!results[2]) return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 };
-// Functions
+// Global Functions
 
 // CSS CDN FILE
 const cdnAl = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/';

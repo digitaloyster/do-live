@@ -41,12 +41,13 @@ $(document).ready(function() {
         else variant = '';
         s += '&t='+document.cdnParameters.ty_tracking_prefix+'-'+variant;
       }
-      console.log('TY Pixel Fired: ' + s);
+
       ifrm.setAttribute('src', s);
       ifrm.style.width = '1';
       ifrm.style.height = '1';
       ifrm.style.frameborder = '0';
       document.body.appendChild(ifrm);
+      if (d) console.log('TY Pixel Fired: ' + s);
     }, 4000);
   }
   // Cake Conversion Pixel
