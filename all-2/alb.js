@@ -25,7 +25,7 @@ document.body.className += ' ' + OSName;
 const setFBPixel = function(ids) {
   for (i in ids) {
     if ({}.hasOwnProperty.call(ids, i)) {
-      console.log('FB Pixel:' + ids[i]);
+      if (d) console.log('FB Pixel:' + ids[i]);
       ! function(f, b, e, v, n, t, s) {
         if (f.fbq) return;
         n = f.fbq = function() {
