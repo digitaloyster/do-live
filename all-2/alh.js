@@ -2,7 +2,7 @@
 //
 // Global Variables
 const d = false;
-if (document.cdnMultiStep.debugMode == '1') {
+if (document.cdnParameters.debugMode == '1') {
   d = true;
   console.log('DEBUG MODE ACTIVE');
 }
