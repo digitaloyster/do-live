@@ -23,7 +23,6 @@ document.body.className += ' ' + OSName;
 
 // Facebook Pixels (expects csv of ID)
 const setFBPixel = function(ids) {
-  console.log(ids);
   for (i in ids) {
     if ({}.hasOwnProperty.call(ids, i)) {
       console.log('FB Pixel:' + ids[i]);
@@ -71,7 +70,9 @@ if (getParameterByName('pid') != '' &&
 } else if (document.cdnParameters.FB_pixel_ids != '' &&
  typeof document.cdnParameters.FB_pixel_ids !== 'undefined') {
   const idstring = document.cdnParameters.FB_pixel_ids;
+  console.log('idstring:'+idstring);
   const ids = idstring.split(',');
+  console.log('ids:'+ids);
   setFBPixel(ids);
 }
 
