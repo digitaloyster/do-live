@@ -2,7 +2,10 @@
 //
 // Global Variables
 const d = false;
-if (document.cdnMultiStep.debugMode) d = true;
+if (document.cdnMultiStep.debugMode) {
+  d = true;
+  console.log('DEBUG MODE ACTIVE');
+}
 // Global Variables
 //
 // Global Functions
