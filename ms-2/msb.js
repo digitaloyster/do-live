@@ -387,7 +387,7 @@ $(document).ready(function() {
       let variant;
       if (typeof window.ub !== 'undefined') variant = window.ub.page.variantId;
       else variant = '';
-      image.src = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id + '&e=' + steps[page].event + '&f=img&r=' + getUrlParameter('ckm_request_id') + '&t=' + document.cdnParameters.lp_tracking_prefix + '-' + variant + '|' + window.outerWidth + 'x' + window.outerHeight + '|' + getUrlParameter('link_click');
+      image.src = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id + '&e=' + steps[page].event + '&f=img&r=' + getUrlParameter('ckm_request_id') + '&t=' + document.cdnParameters.lp_tracking_prefix + '-' + variant + '|' + window.outerWidth + 'x' + window.outerHeight + '|' + getParameterByName('link_click');
     }
   };
 
