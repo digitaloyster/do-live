@@ -1,16 +1,6 @@
 // All Advertorials Before Body CDN-v2
 
 // Link Builder (Doc Ready)
-// const getParameterByName = function(name) {
-//  const url = window.location.href;
-//  const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-//  const results = regex.exec(url);
-//  name = name.replace(/[\[\]]/g, '\\$&');
-//  if (!results) return null;
-//  if (!results[2]) return '';
-//  return decodeURIComponent(results[2].replace(/\+/g, ' '));
-// }
-
 const replaceURL = function() {
   // replace URL
   if (document.cdnParameters.adv_replace_urls_to != '' &&
@@ -51,9 +41,9 @@ const replaceURL = function() {
 const postCKM = function() {
   // replace URL
   if (document.cdnParameters.adv_replace_urls_to != '' &&
-  typeof document.cdnParameters.adv_replace_urls_to !== 'undefined' &&
+   typeof document.cdnParameters.adv_replace_urls_to !== 'undefined' &&
    document.cdnParameters.adv_not_replace_url_on != '' &&
-    typeof document.cdnParameters.adv_not_replace_url_on !== 'undefined') {
+   typeof document.cdnParameters.adv_not_replace_url_on !== 'undefined') {
     const url = document.cdnParameters.adv_replace_urls_to;
     if (url.indexOf('?') !== -1) {
       url += '&ckm_request_id=' + ckm_request_id + '&aff=' + affiliate + pid;
@@ -87,12 +77,12 @@ const postCKM = function() {
   // Adv pixel
   if (document.cdnParameters.cake_offer_id != '' &&
    typeof document.cdnParameters.cake_offer_id !== 'undefined' &&
-    document.cdnParameters.cake_adv_event_id != '' &&
-     typeof document.cdnParameters.cake_adv_event_id !== 'undefined' &&
-      document.cdnParameters.adv_tracking_prefix != '' &&
-       typeof document.cdnParameters.adv_tracking_prefix !== 'undefined') {
-    const image = new Image(1, 1);
-    image.src = 'https://secureoyster.com/p.ashx?o=' +
+   document.cdnParameters.cake_adv_event_id != '' &&
+   typeof document.cdnParameters.cake_adv_event_id !== 'undefined' &&
+   document.cdnParameters.adv_tracking_prefix != '' &&
+   typeof document.cdnParameters.adv_tracking_prefix !== 'undefined') {
+    const ifrm = document.createElement('iframe');
+    const s = 'https://secureoyster.com/p.ashx?o=' +
     document.cdnParameters.cake_offer_id +
     '&e=' +
     document.cdnParameters.cake_adv_event_id +
@@ -106,22 +96,34 @@ const postCKM = function() {
     window.outerWidth +
     'x' +
     window.outerHeight;
+    ifrm.setAttribute('src', s);
+    ifrm.style.width = '1';
+    ifrm.style.height = '1';
+    ifrm.style.frameborder = '0';
+    document.body.appendChild(ifrm);
+    console.log('Adv Pixel Fired: ' + s);
   }
   // Adv Pixel
 
   // 10sec pixel
   if (document.cdnParameters.cake_offer_id != '' &&
    typeof document.cdnParameters.cake_offer_id !== 'undefined' &&
-    document.cdnParameters.cake_10s_event_id != '' &&
-     typeof document.cdnParameters.cake_10s_event_id !== 'undefined') {
+   document.cdnParameters.cake_10s_event_id != '' &&
+   typeof document.cdnParameters.cake_10s_event_id !== 'undefined') {
     setTimeout(function() {
-      const image = new Image(1, 1);
-      image.src = 'https://secureoyster.com/p.ashx?o=' +
+      const ifrm = document.createElement('iframe');
+      const s = 'https://secureoyster.com/p.ashx?o=' +
        document.cdnParameters.cake_offer_id +
-        '&e=' +
-         document.cdnParameters.cake_10s_event_id +
-          '&f=img&r=' +
-           ckm_request_id;
+       '&e=' +
+       document.cdnParameters.cake_10s_event_id +
+       '&f=img&r=' +
+       ckm_request_id;
+      ifrm.setAttribute('src', s);
+      ifrm.style.width = '1';
+      ifrm.style.height = '1';
+      ifrm.style.frameborder = '0';
+      document.body.appendChild(ifrm);
+      console.log('10sec Pixel Fired: ' + s);
     }, 10000);
   }
   // 10sec pixel
@@ -162,7 +164,6 @@ $(document).ready(function() {
    typeof document.cdnParameters.scrolling_banner_box_id !== 'undefined') {
     const boxToAppend = document.cdnParameters.scrolling_banner_box_id;
     if (boxToAppend != '') {
-      // const boxParent = $(boxToAppend).parent();
       $(boxToAppend).css({
         'position': 'fixed',
         'left': 'auto',
@@ -176,7 +177,7 @@ $(document).ready(function() {
     }
   }
   // Fixed Header v1.
-
+  //
   // Taboola Widgets
   if (document.cdnParameters.TB_widget == 'Y' &&
    typeof document.cdnParameters.TB_widget !== 'undefined') {

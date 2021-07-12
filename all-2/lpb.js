@@ -1,20 +1,6 @@
 // All Landing Pages Before Body CDN-v2
 
 // Functions
-// const getUrlParameter = function getUrlParameter(sParam) {
-//  const sPageURL = decodeURIComponent(window.location.search.substring(1));
-//  const sURLVariables = sPageURL.split('&');
-//  let sParameterName;
-//  let i;
-
-// for (i = 0; i < sURLVariables.length; i++) {
-//    sParameterName = sURLVariables[i].split('=');
-//    if (sParameterName[0] === sParam) {
-//      return sParameterName[1] === undefined ? true : sParameterName[1];
-//    }
-//  }
-// };
-
 const setCKMCookie = function(id) {
   document.cookie = 'ckm_request_id=; expires='+
   'Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
@@ -73,14 +59,13 @@ $(document).ready(function() {
   // Get ckm_request_id
   if (typeof getParameterByName('ckm_request_id') !== 'string' &&
    getParameterByName('a') != '' &&
-    typeof getParameterByName('a') === 'string' &&
-     getParameterByName('c') != '' &&
-      typeof getParameterByName('c') === 'string') {
+   typeof getParameterByName('a') === 'string' &&
+   getParameterByName('c') != '' &&
+   typeof getParameterByName('c') === 'string') {
     const clickpixel = 'https://digitaloyster.jrnytag.com/' + location.search + '&cp=js';
     affiliate = getParameterByName('a');
 
     $.getScript(clickpixel, function() {
-      const image = new Image(1, 1);
       let variant;
       let ckmri = '';
       document.getElementById('ckm_request_id').value = ckm_request_id;
@@ -88,8 +73,8 @@ $(document).ready(function() {
       console.log('ckm:' + ckmri);
       if (typeof window.ub !== 'undefined') variant = window.ub.page.variantId;
       else variant = '';
-
-      image.src = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id +
+      const ifrm = document.createElement('iframe');
+      const s = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id +
         '&e=' + document.cdnParameters.cake_lp_event_id +
         '&f=img&r=' + ckmri +
         '&t=' + document.cdnParameters.lp_tracking_prefix +
@@ -97,6 +82,12 @@ $(document).ready(function() {
         '|' + window.outerWidth +
         'x' + window.outerHeight +
         '|' + getParameterByName('link_click');
+      ifrm.setAttribute('src', s);
+      ifrm.style.width = '1';
+      ifrm.style.height = '1';
+      ifrm.style.frameborder = '0';
+      document.body.appendChild(ifrm);
+      console.log('LP Pixel fired: ' + s);
     });
   }
   // Get ckm_request_id
@@ -108,14 +99,14 @@ $(document).ready(function() {
    typeof document.cdnParameters.cake_lp_event_id !== 'undefined' &&
    document.cdnParameters.lp_tracking_prefix != '' &&
    typeof document.cdnParameters.lp_tracking_prefix !== 'undefined') {
-    const image = new Image(1, 1);
     let variant;
     let ckmri = '';
     if (getParameterByName('ckm_request_id')) {
       ckmri = getParameterByName('ckm_request_id');
       if (typeof window.ub !== 'undefined') variant = window.ub.page.variantId;
       else variant = '';
-      image.src = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id +
+      const ifrm = document.createElement('iframe');
+      const s = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id +
       '&e=' + document.cdnParameters.cake_lp_event_id +
       '&f=img&r=' + ckmri +
       '&t=' + document.cdnParameters.lp_tracking_prefix +
@@ -123,6 +114,12 @@ $(document).ready(function() {
       '|' + window.outerWidth +
       'x' + window.outerHeight +
       '|' + getParameterByName('link_click');
+      ifrm.setAttribute('src', s);
+      ifrm.style.width = '1';
+      ifrm.style.height = '1';
+      ifrm.style.frameborder = '0';
+      document.body.appendChild(ifrm);
+      console.log('LP Pixel fired: ' + s);
     }
   }
   // LP Pixel
@@ -154,11 +151,4 @@ $(document).ready(function() {
     setCKMCookie('');
   }
   // ReqCookie
-
-  // NEEDS ADDING document.cookie = "lead_id="+id; TO File/App file in UKM/NFC
-  // LeadCookie
-  // if (document.getElementById('lead_id')) {
-  //  document.cookie = "lead_id="+document.getElementById('lead_id').value;
-  // }
-  // LeadCookie
 });

@@ -382,12 +382,23 @@ $(document).ready(function() {
   // StepPixel
   const stepPixel = function(page) {
     if (document.cdnParameters.cake_offer_id != '' && typeof document.cdnParameters.cake_offer_id !== 'undefined' && steps[page].event != '' && typeof steps[page].event !== 'undefined' && document.cdnParameters.lp_tracking_prefix != '' && typeof document.cdnParameters.lp_tracking_prefix !== 'undefined') {
-      // REVIEW: Added check for cake_offer_id AND cake_lp_event_id AND lp_tracking_prefix
-      const image = new Image(1, 1);
       let variant;
       if (typeof window.ub !== 'undefined') variant = window.ub.page.variantId;
       else variant = '';
-      image.src = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id + '&e=' + steps[page].event + '&f=img&r=' + getParameterByName('ckm_request_id') + '&t=' + document.cdnParameters.lp_tracking_prefix + '-' + variant + '|' + window.outerWidth + 'x' + window.outerHeight + '|' + getParameterByName('link_click');
+      const ifrm = document.createElement('iframe');
+      const s = 'https://secureoyster.com/p.ashx?o=' +
+       document.cdnParameters.cake_offer_id +
+       '&e=' + steps[page].event +
+       '&f=img&r=' + getParameterByName('ckm_request_id') +
+       '&t=' + document.cdnParameters.lp_tracking_prefix +
+       '-' + variant + '|' + window.outerWidth +
+       'x' + window.outerHeight + '|' + getParameterByName('link_click');
+      ifrm.setAttribute('src', s);
+      ifrm.style.width = '1';
+      ifrm.style.height = '1';
+      ifrm.style.frameborder = '0';
+      document.body.appendChild(ifrm);
+      console.log('Step Pixel Fired: ' + s);
     }
   };
 
