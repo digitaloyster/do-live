@@ -72,7 +72,6 @@ if (getParameterByName('pid') != '' &&
  typeof document.cdnParameters.FB_pixel_ids !== 'undefined') {
   const idstring = document.cdnParameters.FB_pixel_ids;
   const ids = idstring.split(',');
-  )
   setFBPixel(ids);
 }
 
