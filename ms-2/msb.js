@@ -362,14 +362,14 @@ $(document).ready(function() {
   // Goto prev step
   const prevStep = function() {
     if ('hookPrevCheck' in hooks && !hooks.call('hookPrevCheck', [])) return; // HOOK
-    const step = getStep();
+    let step = getStep();
     gotoStep(--step);
     refocusForm();
   };
 
   // Goto next step
   const nextStep = function() {
-    const step = getStep();
+    let step = getStep();
     if (isValid(step)) {
       if ('hookNextCheck' in hooks && !hooks.call('hookNextCheck', [])) return; // HOOK
       gotoStep(++step);
