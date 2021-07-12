@@ -52,7 +52,7 @@ const setFBPixel = function(ids) {
   document.body.prepend(contentEvent);
 };
 
-if (getParameterByName('pid') != '' &&
+if (getParameterByName('pid') != NULL &&
  typeof getParameterByName('pid') !== 'undefined') {
   console.log('pid');
   const id = getParameterByName('pid');
