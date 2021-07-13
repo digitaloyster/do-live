@@ -387,7 +387,7 @@ $(document).ready(function() {
       const s = 'https://secureoyster.com/p.ashx?o=' +
        document.cdnParameters.cake_offer_id +
        '&e=' + steps[page].event +
-       '&f=img&r=' + getParameterByName('ckm_request_id') +
+       '&r=' + getParameterByName('ckm_request_id') +
        '&t=' + document.cdnParameters.lp_tracking_prefix +
        '-' + variant + '|' + window.outerWidth +
        'x' + window.outerHeight + '|' + getParameterByName('link_click');

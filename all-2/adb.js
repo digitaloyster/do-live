@@ -86,7 +86,7 @@ const postCKM = function() {
     document.cdnParameters.cake_offer_id +
     '&e=' +
     document.cdnParameters.cake_adv_event_id +
-    '&f=img&r=' +
+    '&r=' +
     ckm_request_id +
     '&t=' +
     document.cdnParameters.adv_tracking_prefix +
@@ -116,7 +116,7 @@ const postCKM = function() {
        document.cdnParameters.cake_offer_id +
        '&e=' +
        document.cdnParameters.cake_10s_event_id +
-       '&f=img&r=' +
+       '&r=' +
        ckm_request_id;
       ifrm.setAttribute('src', s);
       ifrm.setAttribute('width', '1');

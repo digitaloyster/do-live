@@ -76,7 +76,7 @@ $(document).ready(function() {
       const ifrm = document.createElement('iframe');
       const s = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id +
         '&e=' + document.cdnParameters.cake_lp_event_id +
-        '&f=img&r=' + ckmri +
+        '&r=' + ckmri +
         '&t=' + document.cdnParameters.lp_tracking_prefix +
         '-' + variant +
         '|' + window.outerWidth +
@@ -108,7 +108,7 @@ $(document).ready(function() {
       const ifrm = document.createElement('iframe');
       const s = 'https://secureoyster.com/p.ashx?o=' + document.cdnParameters.cake_offer_id +
       '&e=' + document.cdnParameters.cake_lp_event_id +
-      '&f=img&r=' + ckmri +
+      '&r=' + ckmri +
       '&t=' + document.cdnParameters.lp_tracking_prefix +
       '-' + variant +
       '|' + window.outerWidth +

@@ -32,7 +32,7 @@ const postCKM = function() {
     const s = 'https://secureoyster.com/p.ashx?o=' +
      document.cdnParameters.cake_offer_id +
      '&e=' + document.cdnParameters.cake_adv_event_id +
-     '&f=img&r=' + ckm_request_id +
+     '&r=' + ckm_request_id +
      '&t=' + document.cdnParameters.lp_tracking_prefix +
      '-' + window.ub.page.variantId +
      '|' + window.outerWidth + 'x' + window.outerHeight;
@@ -55,7 +55,7 @@ const postCKM = function() {
       const s = 'https://secureoyster.com/p.ashx?o=' +
        document.cdnParameters.cake_offer_id +
        '&e=' + document.cdnParameters.cake_10s_event_id +
-       '&f=img&r=' + ckm_request_id;
+       '&r=' + ckm_request_id;
       ifrm.setAttribute('src', s);
       ifrm.setAttribute('width', '1');
       ifrm.setAttribute('height', '1');
@@ -80,7 +80,7 @@ const postCKM = function() {
     const s = 'https://secureoyster.com/p.ashx?o=' +
      document.cdnParameters.cake_offer_id +
      '&e=' + document.cdnParameters.cake_lp_event_id +
-     '&f=img&r=' + ckm_request_id +
+     '&r=' + ckm_request_id +
      '&t=' + document.cdnParameters.lp_tracking_prefix + '-' + variant +
      '|' + window.outerWidth + 'x' + window.outerHeight +
      '|' + getParameterByName('link_click');
