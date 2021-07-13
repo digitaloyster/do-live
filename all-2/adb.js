@@ -29,7 +29,7 @@ const replaceURL = function() {
 
       $.each(urls, function(i, val) {
         i++;
-        const href = $(val).attr('href');
+        let href = $(val).attr('href');
         href += separator + 'link_click=' + i;
         $(val).attr('href', href);
       });
