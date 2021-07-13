@@ -392,9 +392,9 @@ $(document).ready(function() {
        '-' + variant + '|' + window.outerWidth +
        'x' + window.outerHeight + '|' + getParameterByName('link_click');
       ifrm.setAttribute('src', s);
-      ifrm.style.width = '1';
-      ifrm.style.height = '1';
-      ifrm.style.frameborder = '0';
+      ifrm.setAttribute('width', '1');
+      ifrm.setAttribute('height', '1');
+      ifrm.setAttribute('frameborder', '0');
       document.body.appendChild(ifrm);
       if (d) console.log('Step Pixel Fired: ' + s);
     }
