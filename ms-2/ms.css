@@ -1,7 +1,9 @@
+/* MS Styles Version 2.0 */
 /* Pagination */
 .step {
   display: none;
 }
+
 .step.active {
   display: block;
 }
@@ -17,9 +19,11 @@
   width: 100%;
   border-radius: 5px;
 }
+
 .select-button:hover {
   opacity: 0.7;
 }
+
 .select-button label {
   padding: 0 !important;
   position: relative;
@@ -27,6 +31,7 @@
   width: 100% !important;
   height: 100% !important;
 }
+
 .select-button label span {
   text-align: center;
   font-size: 18px !important;
@@ -36,6 +41,7 @@
   line-height: 40px;
   top: 50% !important;
 }
+
 .select-button input {
   display: none;
 }

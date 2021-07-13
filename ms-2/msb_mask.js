@@ -1,4 +1,6 @@
-const msb_mask = function() {
+/* MS Mask Version 2.0 */
+
+const MSBmask = function() {
   const masks = {
     'money decimal': {
       mask: '000,000,000',
@@ -160,9 +162,9 @@ const msb_mask = function() {
       if (buf.length && a.rearChar) {
         buf.push(a.rearChar);
       }
-      const final_val = buf.join('');
-      this.oldValue = final_val;
-      $('#' + this.el).val(final_val);
+      const finalVal = buf.join('');
+      this.oldValue = finalVal;
+      $('#' + this.el).val(finalVal);
       this.oldSelectionEnd = this.oldSelectionStart;
       if (a.rearChar) {
         this.setCaretPos($('#' + this.el)[0], $('#' + this.el)[0].value.length - 1, $('#' + this.el)[0].value.length - 1);

@@ -1,6 +1,6 @@
 /* jslint this */
 /* jslint long */
-// Version 1.2.1
+// MS Body Version 2.0
 
 $(document).ready(function() {
   let steps = {};

@@ -1,3 +1,4 @@
+/* MS Progress Bar Version 2.0 */
 'use strict';
 const hooks = document.cdnMultiStep.hooks;
 hooks.register(
