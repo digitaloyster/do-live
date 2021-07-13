@@ -226,7 +226,7 @@ $(document).ready(function() {
         const ele = document.getElementsByName(i);
         if (!ele[0].checkValidity()) {
           valid = false;
-          if (d) console.log('failed');
+          if (d) console.log(ele + 'validation failed.');
         }
       }
     });
