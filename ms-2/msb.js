@@ -30,7 +30,10 @@ $(document).ready(function() {
     let oldIOS = false;
     let loadJqueryUi = false;
     const datePickerOption = {};
-    if (/MSIE 10/i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent)) {
+    if (/MSIE 10/i.test(navigator.userAgent) ||
+     /MSIE 9/i.test(navigator.userAgent) ||
+     /rv:11.0/i.test(navigator.userAgent) ||
+     /Edge\/\d./i.test(navigator.userAgent)) {
       msBrowser = true;
     }
 
@@ -69,9 +72,13 @@ $(document).ready(function() {
         page.push('#container_' + k);
       });
       if (objSize(page) == 0) {
-        $('#step-' + (i - 1)).after('<div id="step-' + i + '" data-id="' + i + '" class="step"></div>');
+        $('#step-' + (i - 1)).after('<div id="step-' + i +
+         '" data-id="' + i +
+         '" class="step"></div>');
       } else {
-        $(page.join(',')).wrapAll('<div id="step-' + i + '" data-id="' + i + '" class="step"></div>');
+        $(page.join(',')).wrapAll('<div id="step-' + i +
+         '" data-id="' + i +
+         '" class="step"></div>');
       }
     });
 
@@ -79,19 +86,13 @@ $(document).ready(function() {
     $.each(steps, function(i, val) {
       if ('fields' in steps[i] && steps[i].fields != '') {
         $.each(steps[i].fields, function(k, val) {
-          // Email Validate
-          // if (k==="email_address") {
-          //    document.getElementById(k).setAttribute(
-          //       "pattern",
-          //       "[a-zA-Z0-9.-_]{1,}@[a-zA-Z0-9.-]{1,}[.]{1}[a-zA-Z0-9]{2,}"
-          //    );
-          // }
           // Buttons
           if ('display' in val && val.display == 'buttons') {
             if (!$('#' + k).length) {
               $('[name="' + k + '"]').parent().addClass('select-button');
               // console.log($("[name='" + k + "']")[0].type);
-              if (objSize(steps[i].fields) === 1 && $('[name="' + k + '"]')[0].type !== 'checkbox') {
+              if (objSize(steps[i].fields) === 1 &&
+               $('[name="' + k + '"]')[0].type !== 'checkbox') {
                 $('[name="' + k + '"]').parent().addClass('single-field');
               }
               $('[name="' + k + '"]').bind('change', function() {
@@ -108,13 +109,25 @@ $(document).ready(function() {
           }
           if ('error' in val && val.error != '') {
             if ($('#' + i).length) {
-              document.getElementById(k).setAttribute('oninvalid', 'this.setCustomValidity("' + val.error + '");');
-              document.getElementById(k).setAttribute('onchange', 'this.setCustomValidity("");');
+              document.getElementById(k).setAttribute(
+                  'oninvalid',
+                  'this.setCustomValidity("' + val.error + '");',
+              );
+              document.getElementById(k).setAttribute(
+                  'onchange',
+                  'this.setCustomValidity("");',
+              );
             } else if ($('[name="' + k + '"]').length) {
               const elements = document.getElementsByName(k);
               for (i = 0; i < elements.length; i++) {
-                elements[i].setAttribute('oninvalid', 'this.setCustomValidity("' + val.error + '");');
-                elements[i].setAttribute('onchange', 'this.setCustomValidity("");');
+                elements[i].setAttribute(
+                    'oninvalid',
+                    'this.setCustomValidity("' + val.error + '");',
+                );
+                elements[i].setAttribute(
+                    'onchange',
+                    'this.setCustomValidity("");',
+                );
               }
             }
           }
@@ -135,7 +148,10 @@ $(document).ready(function() {
             };
             datePickerOption[k].yearRange = '-120:+0';
             const field = document.getElementById(k);
-            field.setAttribute('pattern', '[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])');
+            field.setAttribute(
+                'pattern',
+                '[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])',
+            );
           }
           if ('mask' in val) {
             $('#' + k).mask(val.mask);
@@ -180,7 +196,8 @@ $(document).ready(function() {
   const d8Validate = function() {
     if (d) console.log('d8Validate()');
     // TODO: Switch custom validity from hardcoded to set variable if exists.
-    document.getElementById('telephone').setCustomValidity('Please enter a valid telephone number.');
+    document.getElementById('telephone')
+        .setCustomValidity('Please enter a valid telephone number.');
     const event = new Event('d8Validate');
     document.dispatchEvent(event);
   };
@@ -191,7 +208,8 @@ $(document).ready(function() {
     const event = new Event('doErrors');
     $.each(steps[step].fields, function(i, v) {
       i = i.trim();
-      if ('postcode' in document.cdnParameters && document.cdnParameters.postcode != 'N') {
+      if ('postcode' in document.cdnParameters &&
+       document.cdnParameters.postcode != 'N') {
         if ((i == 'add1' || i == 'postcode') && $('#' + i).val() != '') {
           if (d) console.log('setting add1/PC');
           const poke = new Event('change', {
@@ -253,7 +271,8 @@ $(document).ready(function() {
     $('.active').removeClass('active');
     $('#step-' + step).addClass('active');
     $('body').attr('data-current-page', step);
-    $('#' + settings.nextButton + ' span strong').text(steps[step].nextButtonText);
+    $('#' + settings.nextButton + ' span strong')
+        .text(steps[step].nextButtonText);
     clearErrors();
     showStep();
     showElements(step);
@@ -313,7 +332,8 @@ $(document).ready(function() {
     count++;
     $('#' + document.cdnMultiStep.settings.prevButton).attr('tabindex', count);
     $('.lp-pom-button').each(function() {
-      if (this.id != document.cdnMultiStep.settings.nextButton && this.id != document.cdnMultiStep.settings.prevButton) {
+      if (this.id != document.cdnMultiStep.settings.nextButton &&
+       this.id != document.cdnMultiStep.settings.prevButton) {
         $(this).attr('tabindex', count);
         count++;
       }
@@ -343,7 +363,8 @@ $(document).ready(function() {
   const refocusForm = function() {
     const step = getStep();
     if (step != 1) {
-      if ('refocus' in document.cdnParameters && document.cdnParameters.refocus != 'N') {
+      if ('refocus' in document.cdnParameters &&
+       document.cdnParameters.refocus != 'N') {
         $('html, body').animate({
           scrollTop: $('.lp-pom-form').parent().offset().top,
         }, 500);
@@ -359,7 +380,9 @@ $(document).ready(function() {
 
   // Goto prev step
   const prevStep = function() {
-    if ('hookPrevCheck' in hooks && !hooks.call('hookPrevCheck', [])) return; // HOOK
+    if ('hookPrevCheck' in hooks && !hooks.call('hookPrevCheck', [])) {
+      return; // HOOK
+    }
     let step = getStep();
     gotoStep(--step);
     refocusForm();
@@ -369,17 +392,24 @@ $(document).ready(function() {
   const nextStep = function() {
     let step = getStep();
     if (isValid(step)) {
-      if ('hookNextCheck' in hooks && !hooks.call('hookNextCheck', [])) return; // HOOK
+      if ('hookNextCheck' in hooks && !hooks.call('hookNextCheck', [])) {
+        return; // HOOK
+      }
       gotoStep(++step);
     } else {
-      console.log('validation fail going to step ' + getStep());
+      if (d) console.log('validation fail going to step ' + getStep());
     }
     if (step != 1) refocusForm();
   };
 
   // StepPixel
   const stepPixel = function(page) {
-    if (document.cdnParameters.cake_offer_id != '' && typeof document.cdnParameters.cake_offer_id !== 'undefined' && steps[page].event != '' && typeof steps[page].event !== 'undefined' && document.cdnParameters.lp_tracking_prefix != '' && typeof document.cdnParameters.lp_tracking_prefix !== 'undefined') {
+    if (document.cdnParameters.cake_offer_id != '' &&
+     typeof document.cdnParameters.cake_offer_id !== 'undefined' &&
+     steps[page].event != '' &&
+     typeof steps[page].event !== 'undefined' &&
+     document.cdnParameters.lp_tracking_prefix != '' &&
+     typeof document.cdnParameters.lp_tracking_prefix !== 'undefined') {
       let variant;
       if (typeof window.ub !== 'undefined') variant = window.ub.page.variantId;
       else variant = '';
@@ -405,10 +435,12 @@ $(document).ready(function() {
     if (isValid(getStep())) {
       if (d) console.log('Submitted');
       else {
-        if ('hookSubmit' in hooks && !hooks.call('hookSubmit', [])) return; // HOOK
+        if ('hookSubmit' in hooks && !hooks.call('hookSubmit', [])) {
+          return; // HOOK
+        }
         const myForm = document.forms[0];
         const event = new Event('submit', {
-          'bubbles': true, // Whether the event will bubble up through the DOM or not
+          'bubbles': true, // Does event will bubble up through the DOM or not
           'cancelable': true, // Whether the event may be canceled or not
         });
         myForm.dispatchEvent(event);
@@ -420,8 +452,10 @@ $(document).ready(function() {
     $('#' + settings.submitButton).click(function(e) {
       if (d) console.log('submitbutton specific');
       e.preventDefault();
-      if ('data8' in document.cdnParameters && document.cdnParameters.data8 == 'Y') d8Validate();
-      else submit();
+      if ('data8' in document.cdnParameters &&
+       document.cdnParameters.data8 == 'Y') {
+        d8Validate();
+      } else submit();
     });
   };
 
