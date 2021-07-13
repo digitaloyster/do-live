@@ -67,11 +67,13 @@ if (getParameterByName('pid') != null &&
   }
   ids.push(id);
   setFBPixel(ids);
+  if (d) console.log('Fired FB Pixel from URL');
 } else if (document.cdnParameters.FB_pixel_ids != '' &&
  typeof document.cdnParameters.FB_pixel_ids !== 'undefined') {
   const idstring = document.cdnParameters.FB_pixel_ids;
   const ids = idstring.split(',');
   setFBPixel(ids);
+  if (d) console.log('Fired FB Pixel from default');
 }
 
 // Facebook Pixels (expects csv of ID)
@@ -96,6 +98,7 @@ if (document.cdnParameters.TW_site_visit_ids != '' &&
         a.parentNode.insertBefore(u, a));
       }(window, document, 'script');
       // Insert Twitter Pixel ID and Standard Event data below
+      if (d) console.log('Fired Twitter Pixel');
       twq('init', ids[i]);
       twq('track', 'PageView');
     }
@@ -142,6 +145,7 @@ if (document.cdnParameters.YG_pixel_ids != '' &&
           const par = scr.parentNode;
           par.insertBefore(s, scr);
         })(window, document, 'script', 'https://s.yimg.com/wi/ytc.js', 'dotq');
+        if (d) console.log('Fired Yahoo Pixel');
       }
     }
   }
