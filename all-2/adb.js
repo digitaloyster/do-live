@@ -1,4 +1,4 @@
-// All Advertorials Before Body CDN-v2
+// All Advertorials Before Body CDN-v2.0
 
 // Link Builder (Doc Ready)
 const replaceURL = function() {

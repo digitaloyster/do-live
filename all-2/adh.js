@@ -1,4 +1,4 @@
-// All Advertorials Header CDN-v2
+// All Advertorials Header CDN-v2.0
 
 // CSS CDN FILE
 const cdnAd = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/';

@@ -1,4 +1,4 @@
-// Combo Pages header CDN-v2
+// Combo Pages header CDN-v2.0
 
 // CSS CDN FILE
 const cdnCo = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/';

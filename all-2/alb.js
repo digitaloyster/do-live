@@ -1,4 +1,4 @@
-// All Pages Scripts Before Body CDN-v2
+// All Pages Scripts Before Body CDN-v2.0
 
 // Fix Styling Issues
 if (typeof window.ub !== 'undefined') {

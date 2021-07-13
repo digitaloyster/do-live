@@ -1,4 +1,4 @@
-// All Thank You Pages Before Body CDN-v2
+// All Thank You Pages Before Body CDN-v2.0
 //
 // Functions
 const getCookie = function(cname) {

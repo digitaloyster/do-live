@@ -1,4 +1,4 @@
-// All Landing Pages header CDN-v2
+// All Landing Pages header CDN-v2.0
 
 // CSS CDN FILE
 const cdnLp = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/';

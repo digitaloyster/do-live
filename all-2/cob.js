@@ -1,4 +1,4 @@
-// Combination Page Body Script CDN-v2
+// Combination Page Body Script CDN-v2.0
 //
 // Replacement for LPBO and COBO. For use on Combination Pages
 

@@ -1,4 +1,4 @@
-// All Landing Pages Before Body CDN-v2
+// All Landing Pages Before Body CDN-v2.0
 
 // Functions
 const setCKMCookie = function(id) {

@@ -1,4 +1,4 @@
-// All Pages Scripts Header CDN-v2
+// All Pages Scripts Header CDN-v2.0
 //
 // Global Functions
 const getParameterByName = function(name) {

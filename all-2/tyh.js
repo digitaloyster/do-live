@@ -1,4 +1,4 @@
-// All Thank You Pages Header CDN-v2
+// All Thank You Pages Header CDN-v2.0
 
 // CSS CDN FILE
 const cdnTy = '//cdn.jsdelivr.net/gh/digitaloyster/do-live/';
