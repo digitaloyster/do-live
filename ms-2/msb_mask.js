@@ -1,4 +1,4 @@
-const msb_mask = function () {
+const msb_mask = function() {
   const masks = {
     'money decimal': {
       mask: '000,000,000',
@@ -52,10 +52,10 @@ const msb_mask = function () {
   };
 
   return {
-    getMask: function (this_mask) {
+    getMask: function(this_mask) {
       return this.mask;
     },
-    setMask: function (mask, el) {
+    setMask: function(mask, el) {
       this.mask = masks[mask];
       this.maskEv = true;
       this.el = el;
@@ -87,7 +87,7 @@ const msb_mask = function () {
         },
       };
     },
-    checkMask: function (inputVal) {
+    checkMask: function(inputVal) {
       const a = this.mask;
       inputVal = a.frontChar == $('#' + this.el).val().slice(0, 1) ? $('#' + this.el).val().slice(1) : $('#' + this.el).val();
       inputVal = a.rearChar == inputVal.slice(-1) ? inputVal.slice(0, -1) : inputVal;
@@ -170,7 +170,7 @@ const msb_mask = function () {
         this.setCaretPos($('#' + this.el)[0], this.oldSelectionEnd, this.oldSelectionStart);
       }
     },
-    calcMask: function (caret, arrPos, maskVal, a) {
+    calcMask: function(caret, arrPos, maskVal, a) {
       let retChar;
       if (a.escChar && this.unmaskArr[arrPos] == a.escChar.key && this.escCharNum < a.escChar.num) {
         retChar = this.unmaskArr[arrPos];
@@ -201,18 +201,18 @@ const msb_mask = function () {
         'caret': caret,
       };
     },
-    unMask: function () {
+    unMask: function() {
       $('#' + this.el).val(this.charArr.join(''));
     },
-    setCaretPos: function (input, start, end) {
+    setCaretPos: function(input, start, end) {
       input.focus();
       input.setSelectionRange(start, end);
     },
   };
 };
 const masks = {};
-$.fn.mask = function (mask) {
-  this.each(function () {
+$.fn.mask = function(mask) {
+  this.each(function() {
     const id = this.id;
     masks[id] = new msb_mask;
     masks[id].setMask(mask, id);
@@ -221,11 +221,11 @@ $.fn.mask = function (mask) {
      * setInputFilter - description
      *
      * @param  {type} textbox     description
-     * @param  {type} inputFilter description     
+     * @param  {type} inputFilter description
      * @return {type}             Not Return
      */
     function setInputFilter(textbox, inputFilter) {
-      textbox.addEventListener('input', function () {
+      textbox.addEventListener('input', function() {
         if (inputFilter(this.value)) {
           this.oldValue = this.value;
           if (window.event.key) {
@@ -244,13 +244,13 @@ $.fn.mask = function (mask) {
         }
       });
     }
-    setInputFilter(document.getElementById(id), function (value) {
+    setInputFilter(document.getElementById(id), function(value) {
       return masks[id].mask.regex.test(value);
     });
   });
 };
-$.fn.unMask = function () {
-  this.each(function () {
+$.fn.unMask = function() {
+  this.each(function() {
     const id = this.id;
     masks[id].unMask();
   });
