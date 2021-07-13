@@ -44,7 +44,7 @@ const postCKM = function() {
    typeof document.cdnParameters.adv_replace_urls_to !== 'undefined' &&
    document.cdnParameters.adv_not_replace_url_on != '' &&
    typeof document.cdnParameters.adv_not_replace_url_on !== 'undefined') {
-    const url = document.cdnParameters.adv_replace_urls_to;
+    let url = document.cdnParameters.adv_replace_urls_to;
     if (url.indexOf('?') !== -1) {
       url += '&ckm_request_id=' + ckm_request_id + '&aff=' + affiliate + pid;
     } else {
