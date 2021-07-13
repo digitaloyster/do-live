@@ -221,7 +221,7 @@ $(document).ready(function() {
       }
       if ($('#' + i).length && !document.getElementById(i).checkValidity()) {
         valid = false;
-        if (d) console.log('failed');
+        if (d) console.log(i + ' validation failed.');
       } else if ($('[name="' + i + '"]').length) {
         const ele = document.getElementsByName(i);
         if (!ele[0].checkValidity()) {
