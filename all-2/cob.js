@@ -37,9 +37,9 @@ const postCKM = function() {
      '-' + window.ub.page.variantId +
      '|' + window.outerWidth + 'x' + window.outerHeight;
     ifrm.setAttribute('src', s);
-    ifrm.style.width = '1';
-    ifrm.style.height = '1';
-    ifrm.style.frameborder = '0';
+    ifrm.setAttribute('width', '1');
+    ifrm.setAttribute('height', '1');
+    ifrm.setAttribute('frameborder', '0');
     document.body.appendChild(ifrm);
     if (d) console.log('fire adv:'+ s);
   }
@@ -57,9 +57,9 @@ const postCKM = function() {
        '&e=' + document.cdnParameters.cake_10s_event_id +
        '&f=img&r=' + ckm_request_id;
       ifrm.setAttribute('src', s);
-      ifrm.style.width = '1';
-      ifrm.style.height = '1';
-      ifrm.style.frameborder = '0';
+      ifrm.setAttribute('width', '1');
+      ifrm.setAttribute('height', '1');
+      ifrm.setAttribute('frameborder', '0');
       document.body.appendChild(ifrm);
       if (d) console.log('fire 10sec:'+ s);
     }, 10000);
@@ -85,9 +85,9 @@ const postCKM = function() {
      '|' + window.outerWidth + 'x' + window.outerHeight +
      '|' + getParameterByName('link_click');
     ifrm.setAttribute('src', s);
-    ifrm.style.width = '1';
-    ifrm.style.height = '1';
-    ifrm.style.frameborder = '0';
+    ifrm.setAttribute('width', '1');
+    ifrm.setAttribute('height', '1');
+    ifrm.setAttribute('frameborder', '0');
     document.body.appendChild(ifrm);
     if (d) console.log('fire lp:'+ s);
   }

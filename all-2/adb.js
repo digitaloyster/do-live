@@ -97,9 +97,9 @@ const postCKM = function() {
     'x' +
     window.outerHeight;
     ifrm.setAttribute('src', s);
-    ifrm.style.width = '1';
-    ifrm.style.height = '1';
-    ifrm.style.frameborder = '0';
+    ifrm.setAttribute('width', '1');
+    ifrm.setAttribute('height', '1');
+    ifrm.setAttribute('frameborder', '0');
     document.body.appendChild(ifrm);
     if (d) console.log('Adv Pixel Fired: ' + s);
   }
@@ -119,9 +119,9 @@ const postCKM = function() {
        '&f=img&r=' +
        ckm_request_id;
       ifrm.setAttribute('src', s);
-      ifrm.style.width = '1';
-      ifrm.style.height = '1';
-      ifrm.style.frameborder = '0';
+      ifrm.setAttribute('width', '1');
+      ifrm.setAttribute('height', '1');
+      ifrm.setAttribute('frameborder', '0');
       document.body.appendChild(ifrm);
       if (d) console.log('10sec Pixel Fired: ' + s);
     }, 10000);

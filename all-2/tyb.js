@@ -43,9 +43,9 @@ $(document).ready(function() {
       }
 
       ifrm.setAttribute('src', s);
-      ifrm.style.width = '1';
-      ifrm.style.height = '1';
-      ifrm.style.frameborder = '0';
+      ifrm.setAttribute('width', '1');
+      ifrm.setAttribute('height', '1');
+      ifrm.setAttribute('frameborder', '0');
       document.body.appendChild(ifrm);
       if (d) console.log('TY Pixel Fired: ' + s);
     }, 4000);
