@@ -43,7 +43,7 @@ if ( typeof mod1 === 'string' ) {
 }
 if ( mod1 != 'off' && guid() % parseInt( mod1 ) === 0 ) {
   window['_fs_debug'] = false;
-  window['_fs_host'] = 'fullstory.com';
+  window['_fs_host'] = 'edge.fullstory.com';
   window['_fs_script'] = 'edge.fullstory.com/s/fs.js';
   window['_fs_org'] = 'F14BY';
   window['_fs_namespace'] = 'FS';
