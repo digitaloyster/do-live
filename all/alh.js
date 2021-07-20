@@ -1,11 +1,11 @@
 // All Pages Scripts Header CDN-v1.0
 
 // CSS CDN FILE
-const styles=document.createElement('link');
-styles.setAttribute('rel', 'stylesheet');
-styles.setAttribute('type', 'text/css');
-styles.setAttribute('href', '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/al.css');
-document.getElementsByTagName('head')[0].appendChild(styles);
+const stylesALH=document.createElement('link');
+stylesALH.setAttribute('rel', 'stylesheet');
+stylesALH.setAttribute('type', 'text/css');
+stylesALH.setAttribute('href', '//cdn.jsdelivr.net/gh/digitaloyster/do-live/all/al.css');
+document.getElementsByTagName('head')[0].appendChild(stylesALH);
 
 // FullStory
 function getSum(total, num) {
