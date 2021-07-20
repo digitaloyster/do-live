@@ -1,5 +1,5 @@
 // All Pages Scripts Header CDN-v1.0
-
+// Testing GitCDN
 // CSS CDN FILE
 const stylesALH=document.createElement('link');
 stylesALH.setAttribute('rel', 'stylesheet');
