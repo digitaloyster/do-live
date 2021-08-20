@@ -125,9 +125,9 @@ g.q?g.q.push([a, b, s]):g._api(a, b, s);
     g._v='1.3.0';
   })(window, document, window['_fs_namespace'], 'script', 'user');
   let cri = getCookie('ckm_request_id');
-  if (cri != '' && typeof cri !== 'undefined') FS.identify(cri, '{displayName: \''+cri+'\'}');
+  if (cri != '' && typeof cri !== 'undefined') FS.identify(cri, {displayName: cri});
   cri = getParameterByName('ckm_request_id');
-  if (cri != '' && typeof cri !== 'undefined') FS.identify(cri, '{displayName: \''+cri+'\'}');
+  if (cri != '' && typeof cri !== 'undefined') FS.identify(cri, {displayName: cri});
 }
 // FullStory
 //
