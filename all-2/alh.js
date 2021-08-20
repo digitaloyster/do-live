@@ -10,6 +10,22 @@ const getParameterByName = function(name) {
   if (!results[2]) return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 };
+
+const getCookie = function(cname) {
+  const name = cname + '=';
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const ca = decodedCookie.split(';');
+  for (let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return '';
+};
 // Global Functions
 //
 // Global Variables
@@ -108,7 +124,7 @@ g.q?g.q.push([a, b, s]):g._api(a, b, s);
     }
     g._v='1.3.0';
   })(window, document, window['_fs_namespace'], 'script', 'user');
-  FS.identify(ckm_request_id.value);
+  FS.identify(getCookie(ckm_request_id));
 }
 // FullStory
 //
