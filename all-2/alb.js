@@ -151,3 +151,7 @@ if (document.cdnParameters.YG_pixel_ids != '' &&
   }
 }
 // Yahoo Pixel
+//
+// Full Story Sessions
+FS.identify(ckm_request_id);
+// Full Story Sessions
