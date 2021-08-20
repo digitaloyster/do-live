@@ -124,7 +124,7 @@ g.q?g.q.push([a, b, s]):g._api(a, b, s);
     }
     g._v='1.3.0';
   })(window, document, window['_fs_namespace'], 'script', 'user');
-  FS.identify(getCookie(ckm_request_id));
+  FS.identify(getCookie('ckm_request_id'));
 }
 // FullStory
 //
