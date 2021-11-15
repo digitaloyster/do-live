@@ -53,6 +53,7 @@ const validatePhoneAsync = function(field, valid) {
     };
 
     const req = new XMLHttpRequest();
+    console.log('XMLHttpRequest');
     req.open('POST', 'https://webservices.data-8.co.uk/PhoneValidation/IsValid.json?key=' + d8Validation.apiKey);
     req.setRequestHeader('Accept', 'application/json');
     req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
@@ -62,6 +63,7 @@ const validatePhoneAsync = function(field, valid) {
         console.log(this);
         if (this.status === 200) {
           const result = JSON.parse(this.response);
+          console.log(result);
           if (!result.Status.Success) {
             resolve({
               field: field,
