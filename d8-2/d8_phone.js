@@ -49,6 +49,7 @@ const validatePhoneAsync = function(field, valid) {
         UseLineValidation: d8Validation.phone.useLineValidation,
         UseMobileValidation: d8Validation.phone.useMobileValidation,
         AllowedPrefixes: d8Validation.phone.allowedPrefixes,
+        DefaultFormatType: 'Local',
       },
     };
 
@@ -64,28 +65,35 @@ const validatePhoneAsync = function(field, valid) {
         if (this.status === 200) {
           const result = JSON.parse(this.response);
           console.log(result);
+          const telephone = result.Result.TelephoneNumber.trim();
+          console.log('Telephone:'+telephone);
           if (!result.Status.Success) {
             resolve({
               field: field,
               valid: true,
+              number: telephone,
             });
           } else if (result.Result.ValidationResult !== 'Invalid' &&
           result.Result.ValidationResult !== 'NoCoverage') {
             resolve({
               field: field,
               valid: true,
+              number: telephone,
             });
           } else {
             resolve({
               field: field,
               valid: false,
               msg: d8Validation.phone.msg,
+              number: telephone,
             });
           }
         } else {
           resolve({
             field: field,
-            valid: true,
+            valid: false,
+            msg: 'Could not validate.',
+            number: telephone,
           });
         }
       }
@@ -96,6 +104,7 @@ const validatePhoneAsync = function(field, valid) {
 
 const reportValidationResult = function(result) {
   console.log(result);
+  result.field.value = result.telephone;
   if (result.valid) {
     result.field.setCustomValidity('');
   } else {
