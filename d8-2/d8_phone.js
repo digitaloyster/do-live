@@ -65,7 +65,7 @@ const validatePhoneAsync = function(field, valid) {
         if (this.status === 200) {
           const result = JSON.parse(this.response);
           console.log(result);
-          const telephone = result.Result.TelephoneNumber.trim();
+          const telephone = result.Result.TelephoneNumber.replace(/\s/g, '');
           console.log('Telephone:'+telephone);
           if (!result.Status.Success) {
             resolve({
