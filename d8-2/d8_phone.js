@@ -104,7 +104,7 @@ const validatePhoneAsync = function(field, valid) {
 
 const reportValidationResult = function(result) {
   console.log(result);
-  result.field.value = result.telephone;
+  result.field.value = result.number;
   if (result.valid) {
     result.field.setCustomValidity('');
   } else {
