@@ -33,10 +33,15 @@ const startData8Validation = function(e, $) {
     // var phoneFields = lp.jQuery('input[type=tel]', form);
     const phonefield = document.getElementById('telephone');
 
-    // phoneFields.each(function(idx, el) {
-    promises.push(validatePhoneAsync(phonefield)
-        .then(reportValidationResult).then(d8Complete));
-    // });
+    if (phonefield.value==''||phonefield.value==null) {
+      phonefield.setCustomValidity('Required');
+      d8Complete();
+    } else {
+      // phoneFields.each(function(idx, el) {
+      promises.push(validatePhoneAsync(phonefield)
+          .then(reportValidationResult).then(d8Complete));
+      // });
+    }
   }
 };
 
