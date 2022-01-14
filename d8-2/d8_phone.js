@@ -32,7 +32,7 @@ const startData8Validation = function(e, $) {
   if (d8Validation.phone.enabled) {
     // var phoneFields = lp.jQuery('input[type=tel]', form);
     const phonefield = document.getElementById('telephone');
-
+    console.log('Phone Field:'+phonefield.value);
     if (phonefield.value==''||phonefield.value==null) {
       phonefield.setCustomValidity('Required');
       d8Complete();
