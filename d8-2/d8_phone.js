@@ -34,7 +34,7 @@ const startData8Validation = function(e, $) {
     const phonefield = document.getElementById('telephone');
     console.log('Phone Field:'+phonefield.value);
     if (phonefield.value==''||phonefield.value==null) {
-      phonefield.setCustomValidity('Required');
+      phonefield.setCustomValidity('This field is required.');
       d8Complete();
     } else {
       // phoneFields.each(function(idx, el) {
