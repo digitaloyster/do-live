@@ -415,8 +415,10 @@ $(document).ready(function() {
       if (getParameterByName('ckm_request_id') != '' &&
        getParameterByName('ckm_request_id') !== 'undefined') {
         ckmri = getParameterByName('ckm_request_id');
+        if (d) console.log('ckmri from url:'+ckmri);
       } else {
         ckmri = $('#ckm_request_id').val();
+        if (d) console.log('ckmri from field:'+ckmri);
       }
       if (typeof window.ub !== 'undefined') variant = window.ub.page.variantId;
       else variant = '';
