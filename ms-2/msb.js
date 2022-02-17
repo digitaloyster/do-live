@@ -412,7 +412,7 @@ $(document).ready(function() {
      typeof document.cdnParameters.lp_tracking_prefix !== 'undefined') {
       let variant;
       let ckmri;
-      if (getParameterByName('ckm_request_id') > '') {
+      if (getParameterByName('ckm_request_id') != null) {
         ckmri = getParameterByName('ckm_request_id');
         if (d) console.log('ckmri from url:'+ckmri);
       } else {
