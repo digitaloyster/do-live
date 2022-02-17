@@ -411,13 +411,20 @@ $(document).ready(function() {
      document.cdnParameters.lp_tracking_prefix != '' &&
      typeof document.cdnParameters.lp_tracking_prefix !== 'undefined') {
       let variant;
+      let ckmri;
+      if (getParameterByName('ckm_request_id') != '' &&
+       getParameterByName('ckm_request_id') !== 'undefined') {
+        ckmri = getParameterByName('ckm_request_id');
+      } else {
+        ckmri = $('#ckm_request_id').val();
+      }
       if (typeof window.ub !== 'undefined') variant = window.ub.page.variantId;
       else variant = '';
       const ifrm = document.createElement('iframe');
       const s = 'https://secureoyster.com/p.ashx?o=' +
        document.cdnParameters.cake_offer_id +
        '&e=' + steps[page].event +
-       '&r=' + getParameterByName('ckm_request_id') +
+       '&r=' + ckmri +
        '&t=' + document.cdnParameters.lp_tracking_prefix +
        '-' + variant + '|' + window.outerWidth +
        'x' + window.outerHeight + '|' + getParameterByName('link_click');
@@ -425,7 +432,7 @@ $(document).ready(function() {
       ifrm.setAttribute('width', '1');
       ifrm.setAttribute('height', '1');
       ifrm.setAttribute('frameborder', '0');
-      document.body.appendChild(ifrm);
+      if (page != 1) document.body.appendChild(ifrm);
       if (d) console.log('Step Pixel Fired: ' + s);
     }
   };
