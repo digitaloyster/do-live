@@ -45,7 +45,7 @@ $(document).ready(function() {
     const speed = 1000;
     // Find links that are #anchors and scroll to them
     $('a[href^=\\#]')
-        .not('.lp-pom-form .lp-pom-button, .noscroll')
+        .not('.lp-pom-form .lp-pom-button, .noscroll, *:not([id])')
         .unbind('click.smoothScroll')
         .bind('click.smoothScroll', function(event) {
           event.preventDefault();
