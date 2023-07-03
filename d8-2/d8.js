@@ -1,4 +1,7 @@
-// Global config for Data8 validation v1.0
+
+// Global config for Data8 Phone Validation v1.0
+// This is actually the _phone variant. Need to stop using older API and ressurecting old sites is making it impossible to keep this enforced.
+
 const d8Validation = {
   apiKey: '8E37-B68G-6V63-M6YF',
   email: {
@@ -11,8 +14,8 @@ const d8Validation = {
     useLineValidation: true,
     useMobileValidation: true,
     defaultCountryCode: 44,
-    allowedPrefixes: “+441,+442,+447”,
-    msg: 'Please enter a valid telephone number.',
+    allowedPrefixes: '+441,+442,+447',
+    msg: 'Please enter a valid UK telephone number.',
   },
 };
 
@@ -32,77 +35,18 @@ const startData8Validation = function(e, $) {
   if (d8Validation.phone.enabled) {
     // var phoneFields = lp.jQuery('input[type=tel]', form);
     const phonefield = document.getElementById('telephone');
-
-    // phoneFields.each(function(idx, el) {
-    promises.push(validatePhoneAsync(phonefield)
-        .then(reportValidationResult).then(d8Complete));
-    // });
+    console.log('Phone Field:'+phonefield.value);
+    if (phonefield.value==''||phonefield.value==null) {
+      phonefield.setCustomValidity('This field is required.');
+      d8Complete();
+    } else {
+      // phoneFields.each(function(idx, el) {
+      promises.push(validatePhoneAsync(phonefield)
+          .then(reportValidationResult).then(d8Complete));
+      // });
+    }
   }
-
-  // if (d8Validation.email.enabled) {
-  // var emailFields = lp.jQuery('input[type=email]', form);
-
-  // emailFields.each(function(idx, el) {
-  // promises.push(validateEmailAsync(el).then(reportValidationResult));
-  // });
-  // }
-
-  // Wait for all the callbacks to complete.
-  // If the form is then valid, submit it
-  // Promise.all(promises).then(function(values) {
-  //  var event = new Event('doErrors');
-  //  document.dispatchEvent(event);
-  //  //if (form.valid()) form.submit();
-  //
-  // });
 };
-
-/* const validateEmailAsync = function(field, valid) {
-  return new Promise(function(resolve, reject) {
-    const params = {
-      email: field.value,
-      level: d8Validation.email.level,
-    };
-
-    const req = new XMLHttpRequest();
-    req.open('POST', 'https://webservices.data-8.co.uk/EmailValidation/IsValid.json?key=' + d8Validation.apiKey);
-    req.setRequestHeader('Accept', 'application/json');
-    req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-    req.onreadystatechange = function() {
-      if (this.readyState === 4) {
-        req.onreadystatechange = null;
-
-        if (this.status === 200) {
-          const result = JSON.parse(this.response);
-          if (!result.Status.Success) {
-            resolve({
-              field: field,
-              valid: true,
-            });
-          } else if (result.Result !== 'Invalid') {
-            resolve({
-              field: field,
-              valid: true,
-            });
-          } else {
-            resolve({
-              field: field,
-              valid: false,
-              msg: d8Validation.email.msg,
-            });
-          }
-        } else {
-          resolve({
-            field: field,
-            valid: true,
-          });
-        }
-      }
-    };
-
-    req.send(window.JSON.stringify(params));
-  });
-}*/
 
 const validatePhoneAsync = function(field, valid) {
   return new Promise(function(resolve, reject) {
@@ -112,11 +56,14 @@ const validatePhoneAsync = function(field, valid) {
       options: {
         UseLineValidation: d8Validation.phone.useLineValidation,
         UseMobileValidation: d8Validation.phone.useMobileValidation,
+        AllowedPrefixes: d8Validation.phone.allowedPrefixes,
+        DefaultFormatType: 'Local',
       },
     };
 
     const req = new XMLHttpRequest();
-    req.open('POST', 'https://webservices.data-8.co.uk/InternationalTelephoneValidation/IsValid.json?key=' + d8Validation.apiKey);
+    console.log('XMLHttpRequest');
+    req.open('POST', 'https://webservices.data-8.co.uk/PhoneValidation/IsValid.json?key=' + d8Validation.apiKey);
     req.setRequestHeader('Accept', 'application/json');
     req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
     req.onreadystatechange = function() {
@@ -125,28 +72,36 @@ const validatePhoneAsync = function(field, valid) {
         console.log(this);
         if (this.status === 200) {
           const result = JSON.parse(this.response);
+          console.log(result);
+          const telephone = result.Result.TelephoneNumber.replace(/\s/g, '');
+          console.log('Telephone:'+telephone);
           if (!result.Status.Success) {
             resolve({
               field: field,
               valid: true,
+              number: telephone,
             });
           } else if (result.Result.ValidationResult !== 'Invalid' &&
           result.Result.ValidationResult !== 'NoCoverage') {
             resolve({
               field: field,
               valid: true,
+              number: telephone,
             });
           } else {
             resolve({
               field: field,
               valid: false,
               msg: d8Validation.phone.msg,
+              number: telephone,
             });
           }
         } else {
           resolve({
             field: field,
-            valid: true,
+            valid: false,
+            msg: 'Could not validate.',
+            number: telephone,
           });
         }
       }
@@ -157,6 +112,7 @@ const validatePhoneAsync = function(field, valid) {
 
 const reportValidationResult = function(result) {
   console.log(result);
+  result.field.value = result.number;
   if (result.valid) {
     result.field.setCustomValidity('');
   } else {
@@ -169,3 +125,43 @@ document.addEventListener('d8Validate', function(e) {
   console.log('d8 validate heard');
   startData8Validation(e, $);
 });
+
+
+// -------Success Response
+// {
+//  "Status": {
+//    "Success": true,
+//    "ErrorMessage": null,
+//    "CreditsRemaining": 4
+//  },
+//  "Result": {
+//    "TelephoneNumber": "0151 355 4555",
+//    "ValidationResult": "Valid",
+//    "ValidationLevel": "FullNumber",
+//    "NumberType": "Landline",
+//    "Location": "Liverpool",
+//    "Provider": "BT",
+//    "CountryCode": "GB",
+//    "CountryName": "United Kingdom"
+//  }
+// }
+//
+
+// -------Error Response
+// {
+//  "Status": {
+//    "Success": true,
+//    "ErrorMessage": null,
+//    "CreditsRemaining": 1
+//  },
+//  "Result": {
+//    "TelephoneNumber": "0151 355 4",
+//    "ValidationResult": "Invalid",
+//    "ValidationLevel": "None",
+//    "NumberType": "Unknown",
+//    "Location": null,
+//    "Provider": null,
+//    "CountryCode": null,
+//    "CountryName": null
+//  }
+// }
