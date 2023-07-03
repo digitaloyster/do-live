@@ -11,7 +11,6 @@ var d8Validation = {
     useLineValidation: true,
     useMobileValidation: true,
     defaultCountryCode: 44,
-    allowedPrefixes: '+441,+442,+447',
     msg: "Please enter a valid telephone number."
   }
 };
